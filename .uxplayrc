@@ -1,0 +1,8 @@
+nofreeze
+fps 144
+p
+n ArchLinuxAirplayServer
+s 2560x1440
+nh
+pin 6942
+h265
