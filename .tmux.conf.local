@@ -450,6 +450,7 @@ set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'xamut/tmux-weather'
 set -g @plugin 'catppuccin/tmux'
 set-option -g @tmux-weather-interval 15
