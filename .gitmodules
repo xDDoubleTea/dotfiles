@@ -1,0 +1,12 @@
+[submodule ".config/zathura"]
+	path = .config/zathura
+	url = https://github.com/dracula/zathura
+[submodule ".config/neofetch/neofetch-themes"]
+	path = .config/neofetch/neofetch-themes
+	url = https://github.com/Chick2D/neofetch-themes/
+[submodule ".tmux"]
+	path = .tmux
+	url = https://github.com/gpakosz/.tmux.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git

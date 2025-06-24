@@ -1,0 +1,44 @@
+refresh
+cmus --plugins
+wq
+Wq
+q
+w
+w\
+pl-create nostalgia
+nostalgia
+help
+set repeat_current=false
+set repeat_current=true
+pl-create stuff
+pl-create
+save
+colorscheme cyan
+colorscheme jellybeans
+colorscheme iTunes-like
+colorscheme zenburn
+colorscheme OneDark
+colorscheme spotify
+colorscheme solarized-dark
+colorscheme night
+colorscheme gray-88
+colorscheme 
+h
+live-filter 
+pl-create anime-on-piano
+pl-create specter
+pl-create konosuba
+pl-create TheFatRat
+pl-create Vexento 
+pl-create stellar-stellar
+pl-create Minecraft
+pl-create aots3
+player-next
+next
+pl-create lofi
+pl-create aots2
+pl-create aots1
+pl_create
+pl
+pl-create NoGameNoLifeZero
+Countinue

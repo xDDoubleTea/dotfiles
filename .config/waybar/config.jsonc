@@ -1,0 +1,190 @@
+{
+  "position": "top",
+  "output": "DP-1",
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/notification",
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/vpn",
+    "network",
+    "pulseaudio",
+    "bluetooth",
+    "clock",
+    "group/hardware",
+    "power-profiles-daemon",
+    "group/power",
+  ],
+  "hyprland/workspaces": {
+    "show-special": true,
+  },
+  "clock": {
+    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "no-power",
+      "transition-left-to-right": true,
+    },
+    "modules": [
+      "cpu",
+      "memory",
+      "custom/nvidia",
+    ]
+  },
+  "group/power": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "no-power",
+      "transition-left-to-right": false,
+    },
+    "modules": [
+      "custom/power",
+      "custom/reboot",
+      "custom/lock",
+      "custom/quit",
+    ]
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
+    "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
+    "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
+    "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
+    "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip-format": "{time}",
+  },
+  "custom/quit": {
+    "format": "<span size='13000' foreground='#EEc2e7'>󰗼 </span>",
+    "tooltip": true,
+    "tooltip-format": ":( Why quit?",
+    "on-click": "hyprctl dispatch exit"
+  },
+  "custom/lock": {
+    "format": "<span size='13000' foreground='#EEce00'>󰍁 </span>",
+    "tooltip": true,
+    "tooltip-format": "Lock",
+    "on-click": "hyprlock"
+  },
+  "custom/reboot": {
+    "format": "<span size='13000' foreground='#777777'>󰜉 </span>",
+    "tooltip": true,
+    "tooltip-format": "Reboot",
+    "on-click": "poweroff --reboot"
+  },
+  "custom/power": {
+    "format": "<span size='13000' foreground='#EE2255'> </span>",
+    "tooltip": true,
+    "tooltip-format": "Power Off",
+    "on-click": "poweroff --poweroff"
+  },
+  "network": {
+    "format": "",
+    "interval": 1,
+    // "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
+    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰈀 </span> {ifname}",
+    // "format-linked": "{ifname} (No IP) ",
+    // "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
+    // "tooltip-format-wifi": "Signal Strength: {signalStrength}%",
+    "tooltip-format-ethernet": "IP: {ipaddr}, {bandwidthDownBytes}￬ {bandwidthUpBytes}↑",
+    "on-click": "nm-connection-editor"
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10,
+  },
+  "cpu": {
+    "format": "<span size='13000' foreground='#f5c2e7'>󰘚  </span>{usage}%",
+    "format-icons": [
+      "󰘚"
+    ],
+    "tooltip-format": "{usage}%",
+  },
+  "memory": {
+    "format": "<span size='13000' foreground='#f5c2e7'>󰍛  </span>{used}MB",
+    "format-icons": [
+      "󰍛"
+    ],
+    "tooltip-format": "{used}/{total}MB",
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        " "
+      ],
+    },
+    "on-click": "pavucontrol",
+  },
+  "custom/vpn": {
+    "format": "{icon} VPN",
+    "format-icons": {
+      "connected": " ",
+      "disconnected": " ",
+    },
+    "exec": "~/.config/waybar/scripts/testvpn.sh",
+    "exec-on-event": "~/.config/waybar/scripts/testvpn.sh",
+    "on-click": "kitty --class='Auth' -T='Auth_for_waybar' -e ~/.config/waybar/scripts/vpn_toggle.zsh",
+    "return-type": "json",
+    "interval": 5
+  },
+  "custom/nvidia": {
+    "exec": "$HOME/.config/waybar/scripts/gpudisplay.zsh",
+    "format": "<span size='13000' foreground='#f5c2e7'>󰢮  </span>{}",
+    "return-type": "json",
+    "interval": 2
+  },
+  "power-profiles-daemon": {
+    "format": "  {icon}  ",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    },
+  },
+  "custom/notification": {
+    "format": "{icon} ",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+}
