@@ -71,6 +71,8 @@ main() {
   chsh -s /usr/bin/zsh
   clone_powerlevel10k
   cd ${exec_at}
+  mv ~/.config/hypr/ ~/.config/hypr_bak
+  mv ~/.config/kitty/ ~/.config/kitty_bak/
   stow_dir
   sudo VencordInstaller
   echo "The installation completed, please reboot your computer."
