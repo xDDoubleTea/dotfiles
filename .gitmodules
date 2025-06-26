@@ -9,7 +9,5 @@
 	url = https://github.com/gpakosz/.tmux.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = https://github.com/xDDoubleTea/ohmyzsh
-[submodule ".oh-my-zsh-custom/powerlevel10k"]
-	path = .oh-my-zsh-custom/powerlevel10k
-	url = https://github.com/xDDoubleTea/powerlevel10k
+  url = https://github.com/xDDoubleTea/ohmyzsh
+  branch = forked
