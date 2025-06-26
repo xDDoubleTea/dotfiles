@@ -1,3 +1,4 @@
+Vencord
 btop
 cava
 cmus
@@ -11,9 +12,8 @@ nvim_nvchad
 rmpc
 rofi
 swaync
-Vencord
+tmux
 waybar
 waypaper
 zathura
 zsh
-tmux
