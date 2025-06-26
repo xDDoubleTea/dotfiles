@@ -26,6 +26,8 @@ You're all setup! (STILL TESTING)
 
 The `--recurse-submodules` option in git clone is necessary, as it clones the submodules in this repo, which are dependencies for ohmyzsh, ohmytmux, neofetch theme and zathura theme to work.
 
+The install script assumes you want the default settings of kitty and hypr to be replaced.
+
 ## Screenshots
 
 ## KeyBinds
