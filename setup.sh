@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 get_pkgs() {
-
+  cd ~/dotfiles
   echo "Validating package list..."
   while read -r package; do
     if [[ -z "$package" ]]; then
@@ -51,6 +51,7 @@ install_Vencord() {
 }
 
 main() {
+  exec_at=$(pwd)
   if ! which yay >/dev/null; then
     echo "yay is not installed, installing..."
     sudo pacman -S --needed git base-devel
@@ -59,6 +60,7 @@ main() {
     cd yay
     makepkg -si
   fi
+  cd ${exec_at}
   get_pkgs
   if ! which zsh >/dev/null; then
     echo "Something went worng with the zsh installation"
@@ -67,7 +69,7 @@ main() {
     exit 1
   fi
   chsh -s /usr/bin/zsh
-  cd ~/dotfiles
+  cd ${exec_at}
   stow_dir
   sudo VencordInstaller
   echo "The installation completed, please reboot your computer."
