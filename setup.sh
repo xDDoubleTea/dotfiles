@@ -69,6 +69,7 @@ main() {
     exit 1
   fi
   chsh -s /usr/bin/zsh
+  clone_powerlevel10k
   cd ${exec_at}
   stow_dir
   sudo VencordInstaller

@@ -38,6 +38,8 @@ swaync
 swww
 tmux
 ttf-jetbrains-mono-nerd
+unzip
+pavucontrol
 uxplay-git
 vencord-installer-bin
 visual-studio-code-bin
