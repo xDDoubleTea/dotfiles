@@ -12,4 +12,4 @@
 pkg/
 src/
 startvnc.sh
-.config/Vencord/dist
+Vencord/.config/Vencord/dist

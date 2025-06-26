@@ -28,6 +28,8 @@ The `--recurse-submodules` option in git clone is necessary, as it clones the su
 
 The install script assumes you want the default settings of kitty and hypr to be replaced.
 
+As a user coming from an era where hyprland (uwsm-managed) wasn't a thing, this setup might not work if you chose to start up hyprland with it.
+
 ## Screenshots
 
 ## KeyBinds

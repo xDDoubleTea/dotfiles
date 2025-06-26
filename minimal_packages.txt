@@ -14,6 +14,8 @@ fcitx5-lua
 fcitx5-mcbopomofo-git
 fcitx5-qt
 fcixt5-chewing
+fd
+fzf
 github-cli
 htop
 hyprland
@@ -50,3 +52,7 @@ wl-clipboard
 zathura
 zen-browser-bin
 zsh
+ripgrep
+noto-fonts-cjk
+noto-fonts
+noto-fonts-emoji
