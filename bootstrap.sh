@@ -1,4 +1,4 @@
-#/usr/bin/sh
+#!/usr/bin/sh
 
 get_pkgs() {
 
@@ -20,13 +20,13 @@ get_pkgs() {
 	yay -S --needed --noconfirm - <minimal_packages.txt
 }
 
-copy_ohmyzsh_theme() {
-	cp -r ~/dotfiles/.oh-my-zsh-custom/powerlevel10k/ ./.oh-my-zsh/custom/themes/
-	cp ~/dotfiles/.oh-my-zsh-custom/alias.zsh ~/.oh-my-zsh/custom/alias.zsh
+clone_powerlevel10k() {
+	echo "Cloning powerlevel10k zsh theme..."
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 }
 
 stow_dir() {
-
+	echo "Stowing..."
 }
 
 main() {
@@ -38,10 +38,15 @@ main() {
 		cd yay
 		makepkg -si
 	fi
-	chsh -s /usr/bin/zsh
 	get_pkgs
-	cd dotfiles
-	copy_ohmyzsh_theme
+	if ! which zsh >/dev/null; then
+		echo "Something went worng with the zsh installation"
+		echo "Since we uses oh-my-zsh, the installation will be aborted..."
+		sleep 1
+		exit 1
+	fi
+	chsh -s /usr/bin/zsh
+	cd ~/dotfiles
 	stow_dir
 }
 main
