@@ -25,6 +25,10 @@ copy_ohmyzsh_theme() {
 	cp ~/dotfiles/.oh-my-zsh-custom/alias.zsh ~/.oh-my-zsh/custom/alias.zsh
 }
 
+stow_dir() {
+
+}
+
 main() {
 	if ! which yay >/dev/null; then
 		echo "yay is not installed, installing..."
@@ -34,8 +38,10 @@ main() {
 		cd yay
 		makepkg -si
 	fi
+	chsh -s /usr/bin/zsh
 	get_pkgs
 	cd dotfiles
 	copy_ohmyzsh_theme
+	stow_dir
 }
 main
