@@ -27,7 +27,7 @@ clone_powerlevel10k() {
 
 stow_dir() {
 	echo "Stowing..."
-	cd ~/.dotfiles || exit 1
+	cd ~/dotfiles || exit 1
 	while read -r package; do
 		# Skip any empty lines in the file
 		if [[ -z "$package" ]]; then
@@ -44,6 +44,10 @@ stow_dir() {
 	done <all_stowed_files.txt
 
 	echo "All configurations have been stowed."
+}
+
+install_Vencord() {
+	sudo VencordInstaller
 }
 
 main() {
@@ -65,5 +69,6 @@ main() {
 	chsh -s /usr/bin/zsh
 	cd ~/dotfiles
 	stow_dir
+	sudo VencordInstaller
 }
 main

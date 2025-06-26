@@ -9,7 +9,6 @@ rmpc
 cmus
 kitty
 tmux
-eww
 cava
 swaync
 zathura
@@ -43,6 +42,10 @@ swww
 obs-studio
 remmina
 zen-browser-bin
-curseforge-bin
 bibata-cursor-git
 hyprpolkitagent
+bat
+less
+stow
+npm
+ttf-jetbrains-mono-nerd

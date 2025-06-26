@@ -15,3 +15,5 @@ Vencord
 waybar
 waypaper
 zathura
+zsh
+tmux
