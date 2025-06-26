@@ -1,0 +1,17 @@
+btop
+cava
+cmus
+eww
+hypr
+kitty
+mako
+neofetch
+nvim
+nvim_nvchad
+rmpc
+rofi
+swaync
+Vencord
+waybar
+waypaper
+zathura

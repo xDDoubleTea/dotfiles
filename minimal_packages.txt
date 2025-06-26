@@ -44,3 +44,5 @@ obs-studio
 remmina
 zen-browser-bin
 curseforge-bin
+bibata-cursor-git
+hyprpolkitagent

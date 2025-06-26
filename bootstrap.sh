@@ -27,6 +27,23 @@ clone_powerlevel10k() {
 
 stow_dir() {
 	echo "Stowing..."
+	cd ~/.dotfiles || exit 1
+	while read -r package; do
+		# Skip any empty lines in the file
+		if [[ -z "$package" ]]; then
+			continue
+		fi
+
+		# Check if the package directory actually exists before trying to stow it
+		if [ -d "$package" ]; then
+			echo "Stowing '$package'..."
+			stow "$package"
+		else
+			echo "WARNING: Directory for package '$package' not found. Skipping."
+		fi
+	done <all_stowed_files.txt
+
+	echo "All configurations have been stowed."
 }
 
 main() {
