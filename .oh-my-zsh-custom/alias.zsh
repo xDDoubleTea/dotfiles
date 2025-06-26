@@ -1,0 +1,6 @@
+alias vim='nvim'
+alias realvim='/bin/vim'
+alias wheretf='fzf --preview "bat --color=always --style=numbers --line-range :500 {}" --preview-window=up:30% --bind "ctrl-a:select-all+accept" --bind "ctrl-d:toggle-preview" --bind "ctrl-f:page-down" --bind "ctrl-b:page-up"'
+alias wheretfedit='vim $(wheretf)'
+alias lg='lazygit'
+alias la='ls -Al --color=always'
