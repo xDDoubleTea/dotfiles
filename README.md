@@ -95,8 +95,8 @@ These are done through the workspace rules, you can check `~/dotfiles/hypr/.conf
 
 ## Todos
 
--[] Add dock
--[] Add some widgets using eww
+- [ ] Add dock
+- [ ] Add some widgets using eww
 
 ## Assets
 
