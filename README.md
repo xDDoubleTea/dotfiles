@@ -46,4 +46,4 @@ As a user coming from an era where hyprland (uwsm-managed) wasn't a thing, this 
   - [NvChad](https://nvchad.com/)
 
 - Hyprland  
-[hyprland.org/](about:blank)
+[hyprland.org/](https://hypr.land/)
