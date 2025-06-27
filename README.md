@@ -93,6 +93,11 @@ Discord will be automatically opened once you switched to the workspace `Discord
 
 These are done through the workspace rules, you can check `~/dotfiles/hypr/.config/hypr/conf/workspacerules.conf` and [Workspace Rules – Hyprland Wiki](https://wiki.hypr.land/Configuring/Workspace-Rules/).
 
+## Todos
+
+- [] Add dock
+- [] Add some widgets using eww
+
 ## Assets
 
 ## Tips

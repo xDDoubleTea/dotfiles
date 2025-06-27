@@ -19,6 +19,7 @@ fzf
 github-cli
 htop
 hyprland
+hyprshot
 hyprpolkitagent
 kdeconnect
 kitty
