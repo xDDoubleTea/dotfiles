@@ -114,4 +114,4 @@ There are more keyboard shortcuts for group, check it out in the group action se
   - [NvChad](https://nvchad.com/)
 
 - Hyprland  
-[hyprland.org/](about:blank)
+[hyprland.org/](https://hypr.land/)
