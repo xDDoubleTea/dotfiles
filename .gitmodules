@@ -12,3 +12,7 @@
 	path = zsh/.oh-my-zsh
   url = https://github.com/xDDoubleTea/ohmyzsh
   branch = forked
+[submodule "zsh/.oh-my-zsh/custom/plugins/zsh-vi-mode"]
+  path = zsh/.oh-my-zsh/custom/plugins/zsh-vi-mode
+  url = https://github.com/xDDoubleTea/zsh-vi-mode
+  branch = forked
