@@ -38,7 +38,7 @@
   /*
     Main Theme Transparency
   */
-  --theme-transparency: rgba(0, 0, 0, 1);
+  --theme-transparency: rgba(0, 0, 0, 0);
 
   /*
     Home Icon Image
