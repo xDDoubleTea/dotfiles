@@ -13,4 +13,4 @@ pkg/
 src/
 startvnc.sh
 Vencord/.config/Vencord/dist
-Vencord/.config/Vencord/dist
+kitty/.config/kitty/ssh.conf
