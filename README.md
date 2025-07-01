@@ -1,6 +1,6 @@
 # dotfiles
 
-Dotfiles for arch linux (STILL TESTING)
+Dotfiles for arch linux
 
 ## Requirements
 
@@ -16,11 +16,27 @@ Arch linux (minimal setup is prefered)
  ./setup.sh
 ```
 
-Reboot if necessary.
-
 Take a look at the minimal_packages.txt to know what packages were installed.
 
-You're all setup! (STILL TESTING)
+You're all setup!
+
+The install script has been tested on a fresh arch linux install, and should work without issues.
+It has also been tested on wsl with arch linux, and should work without issues as well.
+
+The install script will stow all the directories in this repo, which means it will create symlinks in your home directory to the files in the directories.
+If you don't want to use the install script, you can install a program called `stow`, and then run the following commands:
+
+```bash
+stow package
+```
+
+where `package` is a directory of this repo (you can take a look at `all_stowed_files.txt`). What this does is it will create symlinks in your home directory to the files in the `package` directory. For example, if you run `stow nvim`, it will create symlinks in your home directory to the files in the `nvim` directory. Since `nvim` contains `.config/nvim`, it will create a symlink in your home directory to `~/.config/nvim`.
+
+After creating the symlinks, you can just install and run neovim, and it will use the configuration in `~/.config/nvim`.
+
+Before stowing, make sure to backup your existing configuration files (using `mv ~/.config/nvim ~/.config/nvim_bak` for example), as they will be overwritten by the symlinks created by stow.
+
+All the configurations after stowing should be done through modifying the files in the `~/dotfiles` directory, as the symlinks will point to those files. For example, if you want to modify the neovim configuration, you can edit the file `~/dotfiles/nvim/init.lua`, and it will be reflected in `~/.config/nvim/init.lua`.
 
 ## Notes
 
