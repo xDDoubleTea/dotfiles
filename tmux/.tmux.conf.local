@@ -403,12 +403,12 @@ bind C-a send-prefix
 # if you don't want Oh my tmux! to alter a binding or a setting, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
 
-set -gq allow-passthrough on
-set -g visual-activity off
 
 # move status line to top
-#set -g status-position top
+set -g status-position top
 
+set -gq allow-passthrough on
+set -g visual-activity off
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -452,10 +452,10 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'xamut/tmux-weather'
+# set -g @plugin 'xamut/tmux-weather'
 set -g @plugin 'catppuccin/tmux'
-set-option -g @tmux-weather-interval 15
-set-option -g @tmux-weather-location "Taipei"
+# set-option -g @tmux-weather-interval 15
+# set-option -g @tmux-weather-location "Taipei"
 set -g @continuum-restore 'on'
 # set -g @clima_use_nerd_font 1
 # set -g @plugin 'vascomfnunes/tmux-clima'
@@ -469,8 +469,6 @@ set -g @continuum-restore 'on'
 set -g @catppuccin_flavor "mocha"
 set -g @catppuccin_window_status_style "basic"
 
-# Load catppuccin
-# run ~/.tmux/plugins/tmux/catppuccin.tmux
 # Make the status line pretty and add some modules
 set -g status-right-length 100
 set -g status-left-length 100
@@ -485,7 +483,13 @@ set -ag status-left "#{E:@catppuccin_status_date_time}"
 set -g @catppuccin_window_text " #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
 set -g @catppuccin_window_current_text " #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
 
-# Or, if using TPM, just run TPM
+# Settings for tmux-resurrect
+set -g @resurrect-processes 'ssh lazygit btop'
+
+
+
+
+
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
