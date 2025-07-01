@@ -4,9 +4,11 @@ Dotfiles for arch linux
 
 ## Requirements
 
-Arch linux (minimal setup is prefered)
+Arch linux (minimal setup with a user (other than root) is prefered)
 
 ## Installation
+
+Remember to switch to the user you want to install the dotfiles for and ensure that you have sudo privileges (and, of course, sudo is installed).
 
 ```bash
  sudo pacman -S git
