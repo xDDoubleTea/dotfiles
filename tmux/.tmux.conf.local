@@ -484,7 +484,7 @@ set -g @catppuccin_window_text " #W#{?#{||:#{window_bell_flag},#{window_zoomed_f
 set -g @catppuccin_window_current_text " #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
 
 # Settings for tmux-resurrect
-set -g @resurrect-processes 'ssh lazygit btop rmpc'
+set -g @resurrect-processes 'ssh lazygit btop rmpc cmus'
 
 
 
