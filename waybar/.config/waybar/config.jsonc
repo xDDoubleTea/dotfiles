@@ -157,6 +157,18 @@
     "return-type": "json",
     "interval": 2
   },
+  "bluetooth": {
+    "on-click": "overskride",
+    "format-disabled": "󰂲 {status}",
+    "format-off": "󰂲 {status}",
+    "format-on": " {status}",
+    "format-connected": "󰂱 {num_connections} device(s) connected",
+    "tooltip-format-off": "",
+    "tooltip-format-on": "Nothing is connected",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t {device_battery_percentage}%"
+  },
   "power-profiles-daemon": {
     "format": "  {icon}  ",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
