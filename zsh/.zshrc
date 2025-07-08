@@ -152,4 +152,6 @@ rm-nvim-cache(){
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+. "$HOME/.local/bin/env"
