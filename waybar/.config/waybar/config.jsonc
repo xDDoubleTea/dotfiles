@@ -22,6 +22,10 @@
   "hyprland/workspaces": {
     "show-special": true,
   },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10,
+  },
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -108,10 +112,6 @@
     // "tooltip-format-wifi": "Signal Strength: {signalStrength}%",
     "tooltip-format-ethernet": "IP: {ipaddr}, {bandwidthDownBytes}￬ {bandwidthUpBytes}↑",
     "on-click": "nm-connection-editor"
-  },
-  "tray": {
-    "icon-size": 16,
-    "spacing": 10,
   },
   "cpu": {
     "format": "<span size='13000' foreground='#f5c2e7'>󰘚  </span>{usage}%",
