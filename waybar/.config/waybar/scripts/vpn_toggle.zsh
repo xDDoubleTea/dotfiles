@@ -6,9 +6,9 @@
 # fi
 
 if nmcli device status | grep -i japan >/dev/null; then
-  sudo wg-quick down japan
+  nmcli connection down japan
 else
-  sudo wg-quick up japan
+  nmcli connection up japan
 fi
 echo "Done!"
 sleep 1
