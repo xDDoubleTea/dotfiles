@@ -17,6 +17,7 @@ fcixt5-chewing
 fd
 fzf
 github-cli
+ghostty
 htop
 hyprland
 hyprshot
@@ -47,9 +48,11 @@ uxplay-git
 vencord-installer-bin
 visual-studio-code-bin
 w3m
+uwufetch
 waybar
 waypaper
 wl-clipboard
+yt-dlp
 zathura
 zen-browser-bin
 zsh
