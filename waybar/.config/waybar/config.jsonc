@@ -17,30 +17,30 @@
     "clock",
     "group/hardware",
     "power-profiles-daemon",
-    "group/power",
+    "group/power"
   ],
   "hyprland/workspaces": {
-    "show-special": true,
+    "show-special": true
   },
   "tray": {
     "icon-size": 16,
-    "spacing": 10,
+    "spacing": 10
   },
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "group/hardware": {
     "orientation": "inherit",
     "drawer": {
       "transition-duration": 500,
       "children-class": "no-power",
-      "transition-left-to-right": true,
+      "transition-left-to-right": true
     },
     "modules": [
       "cpu",
       "memory",
-      "custom/nvidia",
+      "custom/nvidia"
     ]
   },
   "group/power": {
@@ -48,19 +48,19 @@
     "drawer": {
       "transition-duration": 500,
       "children-class": "no-power",
-      "transition-left-to-right": false,
+      "transition-left-to-right": false
     },
     "modules": [
       "custom/power",
       "custom/reboot",
       "custom/lock",
-      "custom/quit",
+      "custom/quit"
     ]
   },
   "battery": {
     "states": {
       "warning": 30,
-      "critical": 15,
+      "critical": 15
     },
     "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
     "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
@@ -76,7 +76,7 @@
       "",
       ""
     ],
-    "tooltip-format": "{time}",
+    "tooltip-format": "{time}"
   },
   "custom/quit": {
     "format": "<span size='13000' foreground='#EEc2e7'>󰗼 </span>",
@@ -118,14 +118,14 @@
     "format-icons": [
       "󰘚"
     ],
-    "tooltip-format": "{usage}%",
+    "tooltip-format": "{usage}%"
   },
   "memory": {
     "format": "<span size='13000' foreground='#f5c2e7'>󰍛  </span>{used}MB",
     "format-icons": [
       "󰍛"
     ],
-    "tooltip-format": "{used}/{total}MB",
+    "tooltip-format": "{used}/{total}MB"
   },
   "pulseaudio": {
     "format": "{icon}  {volume}%",
@@ -135,15 +135,15 @@
         "",
         "",
         " "
-      ],
+      ]
     },
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol"
   },
   "custom/vpn": {
     "format": "{icon} VPN",
     "format-icons": {
       "connected": " ",
-      "disconnected": " ",
+      "disconnected": " "
     },
     "exec": "~/.config/waybar/scripts/testvpn.sh",
     "exec-on-event": "~/.config/waybar/scripts/testvpn.sh",
@@ -178,7 +178,7 @@
       "performance": "",
       "balanced": "",
       "power-saver": ""
-    },
+    }
   },
   "custom/notification": {
     "format": "{icon} ",
@@ -198,5 +198,5 @@
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
     "escape": true
-  },
+  }
 }
