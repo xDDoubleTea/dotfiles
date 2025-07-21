@@ -137,7 +137,11 @@ stop-vpn(){
 rm-nvim-cache(){
   rm -rf ~/.local/share/nvim/
 }
-
+fix-clipboard(){
+  clipse -kill
+  clipse -listen
+  clipboard-sync &
+}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
