@@ -11,11 +11,11 @@
   "modules-right": [
     "tray",
     "custom/vpn",
+    "custom/sunset",
     "network",
     "pulseaudio",
     "bluetooth",
     "clock",
-    "group/sunset",
     "group/hardware",
     "power-profiles-daemon",
     "group/power"
@@ -44,33 +44,12 @@
       "custom/nvidia"
     ]
   },
-  "group/sunset": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 500,
-      "children-class": "no-power",
-      "transition-left-to-right": false
-    },
-    "modules": [
-      "custom/hyprsunset-low",
-      "custom/hyprsunset-high",
-      "custom/hyprsunset-sunrise"
-    ]
-  },
-  "custom/hyprsunset-low": {
-    "on-click": "hyprctl hyprsunset temperature 6000",
-    "format": "<span size='13000' foreground='#f5c2e7'>󰃷 </span>{}",
-    "return-type": "json"
-  },
-  "custom/hyprsunset-high": {
-    "on-click": "hyprctl hyprsunset temperature 3000",
-    "format": "<span size='13000' foreground='#f5c2e7'> </span>{}",
-    "return-type": "json"
-  },
-  "custom/hyprsunset-sunrise": {
-    "on-click": "hyprctl hyprsunset identity",
-    "format": "<span size='13000' foreground='#f5c2e7'>󰖜 </span>{}",
-    "return-type": "json"
+  "custom/sunset": {
+    "exec": "~/.config/waybar/scripts/screen_temp.py",
+    "interval": 300,
+    "return-type": "json",
+    "format": "<span foreground='#f5c2e7'>{}</span>",
+    "tooltip": true
   },
   "group/power": {
     "orientation": "inherit",
@@ -174,8 +153,8 @@
       "connected": " ",
       "disconnected": " "
     },
-    "exec": "~/.config/waybar/scripts/testvpn.sh",
-    "exec-on-event": "~/.config/waybar/scripts/testvpn.sh",
+    "exec": "~/.config/waybar/scripts/testvpn.zsh",
+    "exec-on-event": "~/.config/waybar/scripts/testvpn.zsh",
     "on-click": "kitty --class='Auth' -T='Auth_for_waybar' -e ~/.config/waybar/scripts/vpn_toggle.zsh",
     "return-type": "json",
     "interval": 5
