@@ -1,0 +1,5 @@
+--output "%(title)s.%(ext)s"
+--merge-output-format
+--embed-thumbnail
+--add-metadata
+
