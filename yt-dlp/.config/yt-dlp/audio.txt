@@ -1,5 +1,6 @@
 --output "$HOME/Music/%(playlist_index)02d, %(title)s.%(ext)s"
 -x
+--limit-rate 10M
 --audio-format mp3
 --audio-quality 0
 --embed-metadata
