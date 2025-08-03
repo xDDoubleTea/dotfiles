@@ -1,0 +1,6 @@
+--output "$HOME/Music/%(playlist_index)02d, %(title)s.%(ext)s"
+-x
+--audio-format mp3
+--audio-quality 0
+--embed-metadata
+--embed-thumbnail

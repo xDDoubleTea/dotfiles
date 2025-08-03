@@ -1,0 +1,5 @@
+--output "$HOME/Videos/%(playlist_index)02d, %(title)s.%(ext)s"
+--write-subs
+-t mp4
+--embed-metadata
+--embed-thumbnail

@@ -126,14 +126,6 @@ check-sshd(){
   sudo systemctl status sshd
 }
 
-start-vpn(){
-  sudo wg-quick up /etc/wireguard/japan.conf
-}
-
-stop-vpn(){
-  sudo wg-quick down /etc/wireguard/japan.conf
-}
-
 rm-nvim-cache(){
   rm -rf ~/.local/share/nvim/
 }
@@ -142,6 +134,11 @@ fix-clipboard(){
   clipse -listen
   clipboard-sync &
 }
+
+ytdl(){
+  $HOME/.config/yt-dlp/download_scripts.py
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

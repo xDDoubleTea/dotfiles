@@ -1,5 +1,0 @@
---output "$HOME/Music/%(title)s.%(ext)s"
---merge-output-format
---embed-thumbnail
---add-metadata
-

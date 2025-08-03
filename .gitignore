@@ -14,3 +14,6 @@ src/
 startvnc.sh
 Vencord/.config/Vencord/dist
 kitty/.config/kitty/ssh.conf
+naviterm/.config/naviterm/database.bin
+naviterm/.config/naviterm/config.ini
+naviterm/.config/naviterm
