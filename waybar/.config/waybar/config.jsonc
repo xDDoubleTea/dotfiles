@@ -129,7 +129,7 @@
     "tooltip-format": "{usage}%"
   },
   "memory": {
-    "format": "<span size='13000' foreground='#f5c2e7'>󰍛  </span>{used}MB",
+    "format": "<span size='13000' foreground='#f5c2e7'>󰍛  </span>{used}GB",
     "format-icons": [
       "󰍛"
     ],
