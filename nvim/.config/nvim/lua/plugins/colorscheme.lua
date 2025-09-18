@@ -21,15 +21,29 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = {
-      -- flavour = "mocha", -- latte, frappe, macchiato, mocha
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
       transparent_background = true,
-      -- term_colors = true,
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        notify = true,
+        treesitter = true,
+        which_key = true,
+        mason = true,
+        lsp_trouble = true,
+        lsp_saga = true,
+        harpoon = true,
+        symbols_outline = true,
+        neotree = true,
+      },
     },
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "catppuccin",
     },
   },
 }
