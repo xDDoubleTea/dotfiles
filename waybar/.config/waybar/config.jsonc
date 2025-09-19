@@ -46,7 +46,7 @@
   },
   "custom/sunset": {
     "exec": "~/.config/waybar/scripts/screen_temp.py",
-    "interval": 300,
+    "interval": 600,
     "return-type": "json",
     "format": "<span foreground='#f5c2e7'>{}</span>",
     "tooltip": true

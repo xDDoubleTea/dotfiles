@@ -22,9 +22,9 @@ daytime_temp = "identity"
 nighttime_temp = "4500"
 
 if to_sunset >= delta_t and from_sunrise < delta_t:
-    subprocess.run(
-        ["hyprctl", "hyprsunset", daytime_temp], check=True, capture_output=True
-    )
+    # subprocess.run(
+    #     ["hyprctl", "hyprsunset", daytime_temp], check=True, capture_output=True
+    # )
     print(json.dumps({"text": " ", "tooltip": "Day time"}))
 else:
     subprocess.run(
