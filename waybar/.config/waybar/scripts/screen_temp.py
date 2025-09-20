@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import subprocess
 import re
 import json
+import os
 
 stdout = subprocess.run(["daylight", "--short"], check=True, capture_output=True).stdout
 stdout_str = stdout.decode()
@@ -20,16 +21,26 @@ delta_t = timedelta(seconds=0)
 
 daytime_temp = "identity"
 nighttime_temp = "4500"
+temp_conf = {"day": daytime_temp, "night": nighttime_temp}
+
+home_dir = os.getenv("HOME")
+
+
+def set_screen_temp(temp: str):
+    with open(f"{home_dir}/.config/waybar/scripts/last_screen_temp.txt", "r") as f:
+        state = f.readlines()[0].rstrip("\n")
+        if state == temp:
+            return
+    with open(f"{home_dir}/.config/waybar/scripts/last_screen_temp.txt", "w") as f:
+        subprocess.run(
+            ["hyprctl", "hyprsunset", temp_conf[temp]], check=True, capture_output=True
+        )
+        f.write(temp)
+
 
 if to_sunset >= delta_t and from_sunrise < delta_t:
-    subprocess.run(
-        ["hyprctl", "hyprsunset", daytime_temp], check=True, capture_output=True
-    )
+    set_screen_temp("day")
     print(json.dumps({"text": " ", "tooltip": "Day time"}))
 else:
-    subprocess.run(
-        ["hyprctl", "hyprsunset", "temperature", nighttime_temp],
-        check=True,
-        capture_output=True,
-    )
+    set_screen_temp("night")
     print(json.dumps({"text": "󰖔 ", "tooltip": "Night time"}))
