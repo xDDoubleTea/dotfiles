@@ -19,8 +19,8 @@ from_sunrise = sunrisetime - current_time
 
 delta_t = timedelta(seconds=0)
 
-daytime_temp = "identity"
-nighttime_temp = "4500"
+daytime_temp = ["identity"]
+nighttime_temp = ["temperature", "4500"]
 temp_conf = {"day": daytime_temp, "night": nighttime_temp}
 
 home_dir = os.getenv("HOME")
@@ -33,7 +33,7 @@ def set_screen_temp(temp: str):
             return
     with open(f"{home_dir}/.config/waybar/scripts/last_screen_temp.txt", "w") as f:
         subprocess.run(
-            ["hyprctl", "hyprsunset", temp_conf[temp]], check=True, capture_output=True
+            ["hyprctl", "hyprsunset"] + temp_conf[temp], check=True, capture_output=True
         )
         f.write(temp)
 

@@ -17,3 +17,4 @@ kitty/.config/kitty/ssh.conf
 naviterm/.config/naviterm/database.bin
 naviterm/.config/naviterm/config.ini
 naviterm/.config/naviterm
+waybar/.config/waybar/scripts/last_screen_temp.txt
