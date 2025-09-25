@@ -1,6 +1,9 @@
 {
   "position": "top",
-  "output": "DP-1",
+  "output": [
+    "DP-1",
+    "DP-2"
+  ],
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -10,7 +13,7 @@
   ],
   "modules-right": [
     "tray",
-    "custom/vpn",
+    // "custom/vpn",
     "custom/sunset",
     "network",
     "pulseaudio",
