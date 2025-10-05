@@ -453,8 +453,10 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 # set -g @plugin 'xamut/tmux-weather'
+set -g @plugin 'omerxx/tmux-sessionx'
 set -g @plugin 'catppuccin/tmux'
 # set-option -g @tmux-weather-interval 15
+#
 # set-option -g @tmux-weather-location "Taipei"
 set -g @continuum-restore 'on'
 # set -g @clima_use_nerd_font 1
