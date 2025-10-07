@@ -10,7 +10,7 @@ return {
     client_id = "793271441293967371", -- Use your own Discord application client id (not recommended)
     debounce_timeout = 10, -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
     enable_line_number = true, -- Displays the current line number instead of the current project
-    blacklist = {}, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+    blacklist = { ".env", ".flaskenv", "config.yml", "config.yaml" }, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
     buttons = true, -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
     file_assets = {}, -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
     show_time = true, -- Show the timer
