@@ -5,7 +5,8 @@
     "DP-2"
   ],
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/test"
   ],
   "modules-center": [
     "custom/notification",
@@ -23,6 +24,12 @@
     "power-profiles-daemon",
     "group/power"
   ],
+  "custom/test": {
+    "format": "<span foreground='#f5c2e7'>󰝚</span>",
+    "tooltip": true,
+    "tooltip-format": "This is a test tooltip",
+    "on-click": "notify-send 'This is a test notification'"
+  },
   "hyprland/workspaces": {
     "show-special": true
   },
