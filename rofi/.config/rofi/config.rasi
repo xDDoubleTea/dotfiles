@@ -8,7 +8,7 @@
 
 configuration {
 	/*---------- General setting ----------*/
-	modi: "drun,run,filebrowser,window";
+	modi: "drun,run,filebrowser,window,ssh,calc,combi,keys,recursivebrowser";
 	case-sensitive: false;
 	cycle: true;
 	filter: "";
@@ -51,20 +51,20 @@ configuration {
 	run-shell-command: "{terminal} -e {cmd}";
 
 	/*---------- Fallback Icon ----------*/
-	run,drun {
+	run,drun,window {
 		fallback-icon: "application-x-addon";
 	}
 
 	/*---------- Window switcher settings ----------*/
-	window-match-fields: "title,class,role,name,desktop";
+	window-match-fields: "title,class";
 	window-command: "wmctrl -i -R {window}";
 	window-format: "{w} - {c} - {t:0}";
-	window-thumbnail: false;
+	window-thumbnail: true;
 
 	/*---------- Combi settings ----------*/
-/*	combi-modi: "window,run";*/
-/*	combi-hide-mode-prefix: false;*/
-/*	combi-display-format: "{mode} {text}";*/
+  combi-modi: "window,drun,ssh";
+  combi-hide-mode-prefix: false;
+  combi-display-format: "{mode} {text}";
 
 	/*---------- History and Sorting ----------*/
 	disable-history: false;
@@ -80,6 +80,8 @@ configuration {
 	display-combi: "Combi";
 	display-keys: "Keys";
 	display-filebrowser: "Files";
+  display-calc: "Calculator";
+
 
 	/*---------- Misc setting ----------*/
 	terminal: "kitty";
