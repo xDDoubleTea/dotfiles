@@ -7,7 +7,7 @@
   urgent-foreground:           @red;
   alternate-urgent-background: @lightbg;
   lightbg:                     @mantle;
-  background-color:            transparent;
+  background-color:            @base;
   border-color:                @foreground;
   normal-background:           @background;
   selected-urgent-background:  @red;
@@ -17,11 +17,11 @@
   urgent-background:           @background;
   selected-normal-foreground:  @lightbg;
   active-foreground:           @blue;
-  background:                  #1e1e2e22;
+  background:                  #1e1e2e55;
   selected-active-background:  @blue;
   active-background:           @background;
   selected-normal-background:  @lightfg;
-  alternate-normal-background: transparent;
+  alternate-normal-background: @surface0;
   foreground:                  @text;
   selected-urgent-foreground:  @background;
   normal-foreground:           @foreground;
@@ -87,7 +87,7 @@ window {
     padding:          5;
     background-color: @background;
     border:           2;
-    border-radius:    1px;
+    border-radius:    1em;
 }
 mainbox {
     padding: 0;
