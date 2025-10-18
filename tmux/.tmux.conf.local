@@ -454,11 +454,13 @@ set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 # set -g @plugin 'xamut/tmux-weather'
 set -g @plugin 'omerxx/tmux-sessionx'
+set -g @plugin 'omerxx/tmux-floax'
 set -g @plugin 'catppuccin/tmux'
 # set-option -g @tmux-weather-interval 15
 #
 # set-option -g @tmux-weather-location "Taipei"
 set -g @continuum-restore 'on'
+set -g @sessionx-fzf-builtin-tmux 'off'
 # set -g @clima_use_nerd_font 1
 # set -g @plugin 'vascomfnunes/tmux-clima'
 # set -g @plugin "nordtheme/tmux"
