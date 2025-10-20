@@ -8,13 +8,13 @@ return {
     },
   },
   servers = {
-    matlab_ls = {
-      cmd = { "matlab-language-server", "--stdio" },
-      matlab = {
-        indexWorkspace = true,
-        installPath = "",
-      },
-      single_file_support = true,
-    },
+    -- matlab_ls = {
+    --   cmd = { "matlab-language-server", "--stdio" },
+    --   matlab = {
+    --     indexWorkspace = true,
+    --     installPath = "",
+    --   },
+    --   single_file_support = true,
+    -- },
   },
 }
