@@ -154,5 +154,3 @@ export FZF_DEFAULT_OPTS=" \
 --color=border:#6C7086,label:#CDD6F4 \
 --tmux"
 
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
