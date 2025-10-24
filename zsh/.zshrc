@@ -108,7 +108,7 @@ fi
 #alias zshconfig="mate ~/.zshrc"
 #alias ohmyzsh="mate ~/.oh-my-zsh"
 kitty-reload(){
-  kill -SIGUSR1 $(pidof kitty)
+  pkill -SIGUSR1 kitty
 }
 reload-open-with(){
   ~/.config/hypr/scripts/fix_open_with.zsh
@@ -153,3 +153,6 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#45475A \
 --color=border:#6C7086,label:#CDD6F4 \
 --tmux"
+
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
