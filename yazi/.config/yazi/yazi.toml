@@ -4,7 +4,7 @@
 
 [mgr]
 ratio = [1, 4, 3]
-sort_by = "alphabetical"
+sort_by = "natural"
 sort_sensitive = false
 sort_reverse = false
 sort_dir_first = true
@@ -58,6 +58,9 @@ play = [
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 open_pdf = [{ run = 'okular "$@"', desc = "Open with Okular" }]
+open_image = [
+  { run = 'gwenview "$1"', desc = "Open with Gwenview", for = "linux" },
+]
 
 [open]
 rules = [
@@ -81,7 +84,7 @@ rules = [
   ] },
   # Image
   { mime = "image/*", use = [
-    "open",
+    "open_image",
     "reveal",
   ] },
   # Media
@@ -154,8 +157,6 @@ preloaders = [
   # Font
   { mime = "font/*", run = "font" },
   { mime = "application/ms-opentype", run = "font" },
-  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
-  { name = "/run/media/susamogus/**/*", run = "noop" },
 ]
 previewers = [
   { name = "*/", run = "folder" },
@@ -186,13 +187,19 @@ previewers = [
   # Empty file
   { mime = "inode/empty", run = "empty" },
 
-  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
 
-  { name = "/run/media/USER_NAME/**/*", run = "noop" },
   # Fallback
   { name = "*", run = "file" },
 ]
+prepend_preloaders = [
+  # Do not preload files in mounted locations:
+  # Environment variable won't work here.
+  # Using absolute path instead.
+  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
 
+  # For mounted hard disk/drive
+  { name = "/run/media/susamogus/**/*", run = "noop" },
+]
 prepend_previewers = [
   { name = "*.csv", run = "rich-preview" },   # for csv files
   { name = "*.md", run = "rich-preview" },    # for markdown (.md) files
@@ -215,6 +222,9 @@ prepend_previewers = [
   { name = "*.ipynb", run = "nbpreview" },
   { mime = "audio/*", run = "exifaudio" },
   #    { name = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
+  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
+  { name = "/run/media/susamogus/**/*", run = "noop" },
+
 ]
 
 [input]
