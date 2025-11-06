@@ -38,5 +38,10 @@ use = "MasouShizuka/close-and-restore-tab"
 rev = "5047217"
 hash = "bb24648b1f96f1cef8c1543742189aad"
 
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "2093ab7"
+hash = "16a10359fc2a3cd8cc8bcfbe00f744d3"
+
 [flavor]
 deps = []

@@ -128,9 +128,6 @@ prepend_keymap = [
     "<C-w>",
   ], run = "plugin close-and-restore-tab close_to_left", desc = "Close the current tab and turn to left tab, or quit if it is last tab" },
   { on = [
-    "<C-w>",
-  ], run = "plugin close-and-restore-tab close_to_right", desc = "Close the current tab and turn to right tab, or quit if it is last tab" },
-  { on = [
     "<C-t>",
   ], run = "plugin close-and-restore-tab restore", desc = "Restore the closed tab" },
 ]
