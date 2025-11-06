@@ -1,5 +1,5 @@
 nofreeze
-fps 144
+fps 60
 p
 n ArchLinuxAirplayServer
 s 2560x1440
