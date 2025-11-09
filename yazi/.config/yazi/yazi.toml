@@ -54,6 +54,7 @@ extract = [
 ]
 play = [
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix", desc = "Play" },
+  { run = 'vlc "$@"', orphan = true, for = "unix", desc = "Play with VLC" },
   { run = 'mpv --force-window %*', orphan = true, for = "windows" },
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
   { run = 'mpv --force-window --loop "$@"', orphan = true, for = "unix", desc = "Play (loop)" },
