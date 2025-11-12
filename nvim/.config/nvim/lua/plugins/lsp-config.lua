@@ -4,7 +4,7 @@ return {
   opts = {
     ---@type lspconfig.options
     inlay_hints = {
-      enabled = false,
+      enabled = true,
     },
   },
   servers = {
