@@ -5,8 +5,8 @@
     "DP-2"
   ],
   "modules-left": [
-    "hyprland/workspaces",
-    "custom/test"
+    "hyprland/workspaces"
+    // "custom/test"
   ],
   "modules-center": [
     "custom/notification",
