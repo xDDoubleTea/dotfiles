@@ -119,6 +119,9 @@ rules = [
     "edit",
     "reveal",
   ] },
+  { name = "*.{xlsx,xls}", use = [
+    "xleak",
+  ] },
   # Fallback
   { name = "*", use = [
     "open",
