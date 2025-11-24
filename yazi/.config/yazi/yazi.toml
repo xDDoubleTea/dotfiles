@@ -59,7 +59,13 @@ play = [
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
   { run = 'mpv --force-window --loop "$@"', orphan = true, for = "unix", desc = "Play (loop)" },
 ]
-open_pdf = [{ run = 'okular "$@"', desc = "Open with Okular" }]
+xleak = [
+  { run = 'xleak "$@"', desc = "View Excel Files in Terminal", for = "linux" },
+]
+open_pdf = [
+  { run = 'okular "$@"', desc = "Open with Okular" },
+  { run = 'zathura "$@"', desc = "Open with Zathura", for = "linux" },
+]
 open_image = [
   { run = 'gwenview "$1"', desc = "Open with Gwenview", for = "linux" },
 ]
