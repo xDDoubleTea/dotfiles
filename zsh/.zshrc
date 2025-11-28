@@ -138,6 +138,10 @@ ytdl(){
   $HOME/.config/yt-dlp/download_scripts.py
 }
 
+get-weather(){
+  curl wttr.in/$1
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
