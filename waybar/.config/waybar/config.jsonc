@@ -43,11 +43,6 @@
   },
   "group/hardware": {
     "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 500,
-      "children-class": "no-power",
-      "transition-left-to-right": true
-    },
     "modules": [
       "cpu",
       "memory",
