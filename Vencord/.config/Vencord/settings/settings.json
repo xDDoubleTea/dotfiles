@@ -8,13 +8,13 @@
     ],
     "enableReactDevtools": false,
     "frameless": false,
-    "transparent": false,
+    "transparent": true,
     "winCtrlQ": false,
     "disableMinSize": false,
     "winNativeTitleBar": false,
     "plugins": {
         "ChatInputButtonAPI": {
-            "enabled": false
+            "enabled": true
         },
         "CommandsAPI": {
             "enabled": true
@@ -38,10 +38,10 @@
             "enabled": false
         },
         "MessageUpdaterAPI": {
-            "enabled": false
+            "enabled": true
         },
         "ServerListAPI": {
-            "enabled": false
+            "enabled": true
         },
         "UserSettingsAPI": {
             "enabled": true
@@ -71,7 +71,7 @@
             "enabled": false
         },
         "BetterFolders": {
-            "enabled": false
+            "enabled": true
         },
         "BetterGifAltText": {
             "enabled": true
@@ -94,7 +94,8 @@
         "BetterSettings": {
             "enabled": true,
             "disableFade": true,
-            "eagerLoad": true
+            "eagerLoad": true,
+            "organizeMenu": true
         },
         "BetterUploadButton": {
             "enabled": false
@@ -139,7 +140,7 @@
             "enabled": false
         },
         "CustomRPC": {
-            "enabled": false,
+            "enabled": true,
             "type": 0
         },
         "CustomIdle": {
@@ -185,7 +186,7 @@
             "enabled": false
         },
         "FixImagesQuality": {
-            "enabled": false
+            "enabled": true
         },
         "FixSpotifyEmbeds": {
             "enabled": true
@@ -207,7 +208,8 @@
         },
         "GameActivityToggle": {
             "enabled": true,
-            "oldIcon": false
+            "oldIcon": false,
+            "location": "PANEL"
         },
         "GifPaste": {
             "enabled": false
@@ -257,7 +259,7 @@
             "enabled": false
         },
         "MessageLinkEmbeds": {
-            "enabled": false
+            "enabled": true
         },
         "MessageLogger": {
             "enabled": false
@@ -383,7 +385,7 @@
             "enabled": false
         },
         "oneko": {
-            "enabled": false
+            "enabled": true
         },
         "OpenInApp": {
             "enabled": false
@@ -407,7 +409,7 @@
             "enabled": false
         },
         "PictureInPicture": {
-            "enabled": false
+            "enabled": true
         },
         "PinDMs": {
             "enabled": false
@@ -431,13 +433,14 @@
             "enabled": false
         },
         "ReadAllNotificationsButton": {
-            "enabled": false
+            "enabled": true
         },
         "RelationshipNotifier": {
             "enabled": false
         },
         "ReplaceGoogleSearch": {
-            "enabled": false
+            "enabled": true,
+            "replacementEngine": "DuckDuckGo"
         },
         "ReplyTimestamp": {
             "enabled": false
@@ -452,7 +455,7 @@
             "enabled": false
         },
         "RoleColorEverywhere": {
-            "enabled": false
+            "enabled": true
         },
         "SecretRingToneEnabler": {
             "enabled": false
@@ -476,7 +479,7 @@
             "enabled": false
         },
         "ShowConnections": {
-            "enabled": false
+            "enabled": true
         },
         "ShowHiddenChannels": {
             "enabled": false
@@ -494,16 +497,16 @@
             "enabled": false
         },
         "SilentTyping": {
-            "enabled": false
+            "enabled": true
         },
         "SortFriendRequests": {
             "enabled": false
         },
         "SpotifyControls": {
-            "enabled": false
+            "enabled": true
         },
         "SpotifyCrack": {
-            "enabled": false
+            "enabled": true
         },
         "SpotifyShareCommands": {
             "enabled": false
@@ -633,6 +636,15 @@
         },
         "ExpressionCloner": {
             "enabled": false
+        },
+        "AutoDNDWhilePlaying": {
+            "enabled": true
+        },
+        "CopyStickerLinks": {
+            "enabled": false
+        },
+        "ImageFilename": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -645,7 +657,11 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1750612277129
+        "settingsSyncVersion": 1764910992371
     },
-    "eagerPatches": false
+    "eagerPatches": false,
+    "uiElements": {
+        "chatBarButtons": {},
+        "messagePopoverButtons": {}
+    }
 }
