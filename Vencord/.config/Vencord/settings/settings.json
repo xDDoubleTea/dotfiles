@@ -71,7 +71,14 @@
             "enabled": false
         },
         "BetterFolders": {
-            "enabled": true
+            "enabled": true,
+            "sidebar": true,
+            "showFolderIcon": 1,
+            "keepIcons": false,
+            "closeAllHomeButton": false,
+            "closeAllFolders": false,
+            "forceOpen": false,
+            "sidebarAnim": true
         },
         "BetterGifAltText": {
             "enabled": true
@@ -259,7 +266,10 @@
             "enabled": false
         },
         "MessageLinkEmbeds": {
-            "enabled": true
+            "enabled": true,
+            "listMode": "blacklist",
+            "idList": "",
+            "automodEmbeds": "never"
         },
         "MessageLogger": {
             "enabled": false
@@ -329,7 +339,7 @@
             "enabled": false
         },
         "NoBlockedMessages": {
-            "enabled": true,
+            "enabled": false,
             "ignoreMessages": false,
             "applyToIgnoredUsers": true
         },
@@ -358,7 +368,8 @@
             "enabled": true,
             "userList": "1234567890123445,1234567890123445",
             "shouldPingListed": true,
-            "inverseShiftReply": false
+            "inverseShiftReply": false,
+            "roleList": "1234567890123445,1234567890123445"
         },
         "NoScreensharePreview": {
             "enabled": false
@@ -455,7 +466,13 @@
             "enabled": false
         },
         "RoleColorEverywhere": {
-            "enabled": true
+            "enabled": true,
+            "chatMentions": true,
+            "memberList": true,
+            "voiceUsers": true,
+            "reactorsList": true,
+            "pollResults": true,
+            "colorChatMessages": false
         },
         "SecretRingToneEnabler": {
             "enabled": false
@@ -479,7 +496,9 @@
             "enabled": false
         },
         "ShowConnections": {
-            "enabled": true
+            "enabled": true,
+            "iconSpacing": 1,
+            "iconSize": 32
         },
         "ShowHiddenChannels": {
             "enabled": false
@@ -497,16 +516,22 @@
             "enabled": false
         },
         "SilentTyping": {
-            "enabled": true
+            "enabled": true,
+            "isEnabled": true,
+            "showIcon": false,
+            "contextMenu": true
         },
         "SortFriendRequests": {
             "enabled": false
         },
         "SpotifyControls": {
-            "enabled": true
+            "enabled": true,
+            "hoverControls": false
         },
         "SpotifyCrack": {
-            "enabled": true
+            "enabled": true,
+            "noSpotifyAutoPause": true,
+            "keepSpotifyActivityOnIdle": false
         },
         "SpotifyShareCommands": {
             "enabled": false
@@ -644,7 +669,8 @@
             "enabled": false
         },
         "ImageFilename": {
-            "enabled": true
+            "enabled": true,
+            "showFullUrl": false
         }
     },
     "notifications": {
@@ -657,7 +683,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1764910992371
+        "settingsSyncVersion": 1765731924284
     },
     "eagerPatches": false,
     "uiElements": {
