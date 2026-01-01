@@ -158,3 +158,4 @@ export FZF_DEFAULT_OPTS=" \
 --color=border:#6C7086,label:#CDD6F4 \
 --tmux"
 
+eval "$(thefuck --alias)"
