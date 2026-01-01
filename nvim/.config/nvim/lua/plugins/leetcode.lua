@@ -8,7 +8,8 @@ return {
       "MunifTanjim/nui.nvim",
     },
     opts = {
-      -- configuration goes here
+      ---@type lc.lang
+      lang = "java",
     },
   },
 }
