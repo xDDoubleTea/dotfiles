@@ -5,18 +5,18 @@ hash = "498bda3e06d793f79fe1df7b28fc14a1"
 
 [[plugin.deps]]
 use = "boydaihungst/gvfs"
-rev = "9046dd8"
-hash = "3d31be8146da9555d48b1a731bf195dd"
+rev = "d9e3e0d"
+hash = "3768782f4ecce890d79628cafdcdfa5f"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
-rev = "831234e"
-hash = "ed3363e256e210593f0f8e4cec3e36a9"
+rev = "573b275"
+hash = "c3e2871c9ef244fd181f203791f9b0d2"
 
 [[plugin.deps]]
 use = "uhs-robert/sshfs"
-rev = "75a025c"
-hash = "e1cebecfee70daef1f97aa083209340c"
+rev = "5edff3b"
+hash = "e92138f6eb884bef96d92b2d114ac927"
 
 [[plugin.deps]]
 use = "Sonico98/exifaudio"
@@ -25,7 +25,7 @@ hash = "4761fffb60a12d37096c34a356380cdf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "03cdd4b"
+rev = "68f7d48"
 hash = "e2d4bfccf31e5ab05f46fee4797c5215"
 
 [[plugin.deps]]
@@ -35,13 +35,25 @@ hash = "bb24648b1f96f1cef8c1543742189aad"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "90a1652"
-hash = "7a83bfab51d1d2ba6558cc56bd52539a"
+rev = "7cd6b04"
+hash = "98b8276aa076284f5c4a5260cbe08549"
 
 [[plugin.deps]]
-use = "imsi32/yatline"
-rev = "88bd1c5"
-hash = "981acbe9b758b1af3a8154c932bb936d"
+use = "imsi32/yatline-catppuccin"
+rev = "8cc4773"
+hash = "fd03fb015a28040bca0c0f9a8fe6fd8d"
 
-[flavor]
-deps = []
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "68f7d48"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "68f7d48"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "4a1802a"
+hash = "b951d27afe197d154f6da9683b46c5f8"

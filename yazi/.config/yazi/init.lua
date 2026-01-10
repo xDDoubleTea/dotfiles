@@ -1,4 +1,5 @@
-local catppuccin_theme = require("yatline-catppuccin"):setup("mocha")
+-- local catppuccin_theme = require("yatline-catppuccin"):setup("mocha")
+require("full-border"):setup({ type = ui.Border.PLAIN })
 require("sshfs"):setup()
 require("gvfs"):setup({
 	-- (Optional) Allowed keys to select device.
@@ -50,9 +51,10 @@ require("gvfs"):setup({
 
 -- require("yatline"):setup({
 -- 	theme = catppuccin_theme,
+-- 	section_separator = { open = "", close = "" },
 -- 	part_separator = { open = "", close = "" },
 -- 	inverse_separator = { open = "", close = "" },
---
+-- 	--
 -- 	-- style_a = {
 -- 	-- 	fg = "black",
 -- 	-- 	bg_mode = {
