@@ -1,187 +1,155 @@
-@define-color rosewater #dc8a78;
-@define-color flamingo #dd7878;
-@define-color pink #ea76cb;
-@define-color mauve #8839ef;
-@define-color red #d20f39;
-@define-color maroon #e64553;
-@define-color peach #fe640b;
-@define-color yellow #df8e1d;
-@define-color green #40a02b;
-@define-color teal #179299;
-@define-color sky #04a5e5;
-@define-color sapphire #209fb5;
-@define-color blue #1e66f5;
-@define-color lavender #7287fd;
-@define-color text #4c4f69;
-@define-color subtext1 #5c5f77;
-@define-color subtext0 #6c6f85;
-@define-color overlay2 #7c7f93;
-@define-color overlay1 #8c8fa1;
-@define-color overlay0 #9ca0b0;
-@define-color surface3 #3d4047;
-@define-color surface2 #acb0be;
-@define-color surface1 #bcc0cc;
-@define-color surface0 #ccd0da;
-@define-color base #eff1f5;
-@define-color mantle #e6e9ef;
-@define-color crust #00aae8;
+@import "mocha.css";
 
 * {
-    /* reference the color by using @color-name */
-    color: @text;
-    font-size:20px;
-    font-family: "JetBrainsMono Nerd Font";
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+  min-height: 0;
+  font-weight: bold;
 }
 
-#waybar {
-    /* you can also GTK3 CSS functions! */
-    background-color: rgba(0,0,0,0.7);
-    font-weight:bold;
+window#waybar {
+  background: transparent;
+  background-color: @crust;
+  color: @overlay0;
+  transition-property: background-color;
+  transition-duration: 0.1s;
+  border-bottom: 1px solid @overlay1;
 }
 
-#workspaces {
-border-radius: 1rem;
-margin: 5px;
-background-color: @surface0;
-margin-left: 1rem;
+#window {
+  margin: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+button {
+  box-shadow: inset 0 -3px transparent;
+  border: none;
+  border-radius: 0;
+}
+
+button:hover {
+  background: inherit;
+  color: @mauve;
+  border-top: 2px solid @mauve;
 }
 
 #workspaces button {
-color: @lavender;
-border-radius: 1rem;
-padding: 0.7rem;
+  padding: 0 4px;
+}
+
+#workspaces button.focused {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: @rosewater;
+  border-top: 2px solid @rosewater;
 }
 
 #workspaces button.active {
-border-radius: 1rem;
-background-color: #aaaaaa;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: @mauve;
+  border-top: 2px solid @mauve;
 }
 
-#workspaces button:hover {
-color: @sapphire;
-background-color:@surface2;
-border-radius: 1rem;
+#workspaces button.urgent {
+  background-color: #eb4d4b;
 }
 
-#custom-musicdisplay,
-#tray,
-#backlight,
-#clock,
-#battery,
 #pulseaudio,
+#clock,
+#bluetooth,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#wireplumber,
+#tray,
+#network,
+#mode,
+#power,
+#power-profiles-daemon,
+#scratchpad,
+#custom-test,
 #custom-lock,
-#custom-power,
-#custom-fileManager,
-#custom-WallPaper,
-#custom-NsfwWallPaper,
-#custom-ResetWallPaper,
-#custom-bluetooth{
-background-color: @surface0;
-padding: 0.5rem 1rem;
-margin: 5px 0;
+#custom-shutdown,
+#custom-quit, 
+#custom-reboot{
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
-
-#custom-fileManager{
-  font-size:32px;
-  border-radius: 1rem 0rem 0rem 1rem;
-}
-
-#custom-NsfwWallPaper,
-#custom-ResetWallPaper{
-  font-size:32px;
-}
-
-#custom-ResetWallPaper{
-  border-radius:0px 1rem 1rem 0px;
-}
-
-
-#custom-launcher{
-  padding: 0.5rem 0.3rem;
-  margin-top:5px;
-  margin-bottom:5px;
-  margin-left: 25px;
-  margin-right: 10px;
-  font-size:24px;
-  background-color: @surface0;
-  border-radius:1rem;
-}
-
-
-#custom-musicprev,
-#custom-musicpause,
-#custom-musicnext{
-background-color: @surface0;
-padding: 0.2rem 0.3rem;
-margin: 1px 0;
-}
-
 
 #clock {
-color: @blue;
-border-radius: 0px 1rem 1rem 0px;
-margin-right: 1rem;
+  color: @maroon;
+  border-bottom: 2px solid @maroon;
 }
 
-
-#backlight {
-color: @yellow;
-}
-
-#backlight, #battery {
-border-radius: 0;
+#clock.date {
+  color: @mauve;
+  border-bottom: 2px solid @mauve;
 }
 
 #pulseaudio {
-color: @maroon;
-border-radius: 1rem 0px 0px 1rem;
-margin-left: 1rem;
-}
-
-#custom-musicdisplay {
-color: @mauve;
-border-radius: 1rem;
-}
-
-#custom-musicprev{
-color: @mauve;
-border-radius: 1rem 0px 0px 1rem;
-}
-
-#custom-musicpause{
-color: @mauve;
-border-radius: 0px;
-}
-
-#custom-musicnext {
-color: @mauve;
-border-radius: 0px 1rem 1rem 0px;
-}
-
-#custom-bluetooth{
-  font-size:24px;
-  border-radius: 1rem 0px 0px 1rem;
-}
-
-#custom-lock {
-color: @lavender;
-}
-
-#custom-power {
-margin-right: 1rem;
-border-radius: 0px 1rem 1rem 0px;
-color: @red;
+  color: @blue;
+  border-bottom: 2px solid @blue;
 }
 
 
-tooltip {
-  color: black;
-  background-color: @surface0;
-  text-shadow: none;
+#tray{
+  color: white;
+}
+
+#network {
+  color: @yellow;
+  border-bottom: 2px solid @yellow;
+}
+#power-profiles-daemon.performance {
+  color: @yellow;
+}
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+#power-profiles-daemon.balanced {
+  color: @blue;
+}
+#idle_inhibitor {
+  margin-right: 12px;
+  color: #7cb342;
 }
 
 
-#tray {
-margin-right: 1rem;
-border-radius: 1rem;
+#idle_inhibitor.activated {
+  color: @red;
 }
+
+#bluetooth{
+  color: @sky;
+  border-bottom: 2px solid @sky;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#custom-vpn {
+  color: @lavender;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-bottom: 2px solid @lavender;
+}
+
+
+/* #custom-test.spin { */
+/*   animation: spin_clockwise 2s linear infinite; */
+/* } */
+
+
