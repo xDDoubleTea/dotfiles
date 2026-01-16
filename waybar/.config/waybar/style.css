@@ -106,11 +106,6 @@ tooltip {
     min-height: 10px
 }
 
-#pulseaudio-slider {
-    padding: 0;
-    margin: 0;
-    background: @main-bg;
-}
 #pulseaudio-slider slider {
     min-height: 0px;
     min-width: 0px;
@@ -141,6 +136,7 @@ tooltip {
 #custom-capslock,
 #custom-volume,
 #custom-l_end,
+#pulseaudio-slider,
 #custom-r_end {
     color: @main-fg;
     background: @main-bg;
