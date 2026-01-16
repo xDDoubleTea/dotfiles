@@ -236,6 +236,7 @@
     "interval": 1,
     "rotate": 0,
     "on-click": "sh ${XDG_BIN_HOME:-$HOME/.local/bin}/volume.sh --device output --action toggle",
+    "on-click-middle": "pavucontrol",
     "on-scroll-up": "sh ${XDG_BIN_HOME:-$HOME/.local/bin}/volume.sh --device output --action increase",
     "on-scroll-down": "sh ${XDG_BIN_HOME:-$HOME/.local/bin}/volume.sh --device output --action decrease",
     "scroll-step": 5,
