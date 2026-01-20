@@ -17,7 +17,7 @@
     "wlr/taskbar",
     "custom/r_end",
     "custom/l_end",
-    "mpris",
+    // "mpris",
     "custom/r_end",
     // "custom/l_end",
     // "custom/media",
@@ -135,9 +135,9 @@
     "status-icons": {
       "paused": ""
     },
-    "ignored-players": [
-      "kdeconnect"
-    ],
+    // "ignored-players": [
+    //   "kdeconnect"
+    // ],
     "title-len": 30,
     "interval": 1
   },
