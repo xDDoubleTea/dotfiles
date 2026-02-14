@@ -159,3 +159,5 @@ export FZF_DEFAULT_OPTS=" \
 --tmux"
 
 eval "$(thefuck --alias)"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
