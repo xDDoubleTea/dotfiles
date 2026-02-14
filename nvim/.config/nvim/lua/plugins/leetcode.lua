@@ -9,7 +9,7 @@ return {
     },
     opts = {
       ---@type lc.lang
-      lang = "java",
+      lang = "cpp",
     },
   },
 }
