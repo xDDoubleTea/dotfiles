@@ -1,4 +1,4 @@
--- local catppuccin_theme = require("yatline-catppuccin"):setup("mocha")
+local catppuccin_theme = require("yatline-catppuccin"):setup("mocha")
 require("full-border"):setup({ type = ui.Border.PLAIN })
 require("sshfs"):setup()
 require("gvfs"):setup({
@@ -48,7 +48,9 @@ require("gvfs"):setup({
 	-- Use command `ps aux | grep gvfs` to search for gvfs process and get the mountpoint path.
 	-- root_mountpoint = (os.getenv("XDG_RUNTIME_DIR") or ("/run/user/" .. ya.uid())) .. "/gvfs"
 })
-
+require("yatline"):setup({
+	theme = catppuccin_theme,
+})
 -- require("yatline"):setup({
 -- 	theme = catppuccin_theme,
 -- 	section_separator = { open = "", close = "" },

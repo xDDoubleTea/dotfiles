@@ -5,18 +5,18 @@ hash = "498bda3e06d793f79fe1df7b28fc14a1"
 
 [[plugin.deps]]
 use = "boydaihungst/gvfs"
-rev = "d9e3e0d"
-hash = "3768782f4ecce890d79628cafdcdfa5f"
+rev = "30440c7"
+hash = "211b7d22478b907e5f6fd4fe27a923e"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
-rev = "573b275"
-hash = "c3e2871c9ef244fd181f203791f9b0d2"
+rev = "7d616ad"
+hash = "d64feec9761392cbc250d199ab4b8a3a"
 
 [[plugin.deps]]
 use = "uhs-robert/sshfs"
-rev = "5edff3b"
-hash = "e92138f6eb884bef96d92b2d114ac927"
+rev = "4070c8e"
+hash = "a4cd81fe60c350c3f0fde9957f4a4bb9"
 
 [[plugin.deps]]
 use = "Sonico98/exifaudio"
@@ -25,8 +25,8 @@ hash = "4761fffb60a12d37096c34a356380cdf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "68f7d48"
-hash = "e2d4bfccf31e5ab05f46fee4797c5215"
+rev = "88990a6"
+hash = "9ad20d763df07ce40fd09de549d914b0"
 
 [[plugin.deps]]
 use = "MasouShizuka/close-and-restore-tab"
@@ -35,25 +35,35 @@ hash = "bb24648b1f96f1cef8c1543742189aad"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "7cd6b04"
-hash = "98b8276aa076284f5c4a5260cbe08549"
+rev = "8ab04b2"
+hash = "bdd196f71aa3e6aa02d1b1d6cad22424"
 
 [[plugin.deps]]
 use = "imsi32/yatline-catppuccin"
-rev = "8cc4773"
-hash = "fd03fb015a28040bca0c0f9a8fe6fd8d"
+rev = "6c3f166"
+hash = "e1d5b1c34c53c4c4661d910eb3a6fd95"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "68f7d48"
+rev = "88990a6"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "68f7d48"
+rev = "88990a6"
 hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "0e56060"
+hash = "ab2e66065a94cca4886b303518e44bd8"
+
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "c5d4b48"
+hash = "e6e98d12b1648d1894c2b560d85eeaa7"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "4a1802a"
-hash = "b951d27afe197d154f6da9683b46c5f8"
+rev = "4c57537"
+hash = "8eabb4e88096f10905a6df62cfaadbf4"
