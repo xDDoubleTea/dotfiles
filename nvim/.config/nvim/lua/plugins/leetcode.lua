@@ -8,7 +8,16 @@ return {
       "MunifTanjim/nui.nvim",
     },
     opts = {
-      -- configuration goes here
+      lang = "cpp",
+      injector = {
+        ["cpp"] = {
+          imports = function()
+            -- return a different list to omit default imports
+            return { "#include <bits/stdc++.h>", "using namespace std;" }
+          end,
+          after = "int main() {}",
+        },
+      },
     },
   },
 }

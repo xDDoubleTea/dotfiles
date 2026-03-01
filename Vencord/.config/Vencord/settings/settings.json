@@ -8,13 +8,13 @@
     ],
     "enableReactDevtools": false,
     "frameless": false,
-    "transparent": false,
+    "transparent": true,
     "winCtrlQ": false,
     "disableMinSize": false,
     "winNativeTitleBar": false,
     "plugins": {
         "ChatInputButtonAPI": {
-            "enabled": false
+            "enabled": true
         },
         "CommandsAPI": {
             "enabled": true
@@ -38,10 +38,10 @@
             "enabled": false
         },
         "MessageUpdaterAPI": {
-            "enabled": false
+            "enabled": true
         },
         "ServerListAPI": {
-            "enabled": false
+            "enabled": true
         },
         "UserSettingsAPI": {
             "enabled": true
@@ -71,7 +71,14 @@
             "enabled": false
         },
         "BetterFolders": {
-            "enabled": false
+            "enabled": true,
+            "sidebar": true,
+            "showFolderIcon": 1,
+            "keepIcons": false,
+            "closeAllHomeButton": false,
+            "closeAllFolders": false,
+            "forceOpen": false,
+            "sidebarAnim": true
         },
         "BetterGifAltText": {
             "enabled": true
@@ -94,7 +101,8 @@
         "BetterSettings": {
             "enabled": true,
             "disableFade": true,
-            "eagerLoad": true
+            "eagerLoad": true,
+            "organizeMenu": true
         },
         "BetterUploadButton": {
             "enabled": false
@@ -139,7 +147,7 @@
             "enabled": false
         },
         "CustomRPC": {
-            "enabled": false,
+            "enabled": true,
             "type": 0
         },
         "CustomIdle": {
@@ -185,7 +193,7 @@
             "enabled": false
         },
         "FixImagesQuality": {
-            "enabled": false
+            "enabled": true
         },
         "FixSpotifyEmbeds": {
             "enabled": true
@@ -207,7 +215,8 @@
         },
         "GameActivityToggle": {
             "enabled": true,
-            "oldIcon": false
+            "oldIcon": false,
+            "location": "PANEL"
         },
         "GifPaste": {
             "enabled": false
@@ -257,7 +266,10 @@
             "enabled": false
         },
         "MessageLinkEmbeds": {
-            "enabled": false
+            "enabled": true,
+            "listMode": "blacklist",
+            "idList": "",
+            "automodEmbeds": "never"
         },
         "MessageLogger": {
             "enabled": false
@@ -327,7 +339,7 @@
             "enabled": false
         },
         "NoBlockedMessages": {
-            "enabled": true,
+            "enabled": false,
             "ignoreMessages": false,
             "applyToIgnoredUsers": true
         },
@@ -356,7 +368,8 @@
             "enabled": true,
             "userList": "1234567890123445,1234567890123445",
             "shouldPingListed": true,
-            "inverseShiftReply": false
+            "inverseShiftReply": false,
+            "roleList": "1234567890123445,1234567890123445"
         },
         "NoScreensharePreview": {
             "enabled": false
@@ -383,7 +396,7 @@
             "enabled": false
         },
         "oneko": {
-            "enabled": false
+            "enabled": true
         },
         "OpenInApp": {
             "enabled": false
@@ -407,7 +420,7 @@
             "enabled": false
         },
         "PictureInPicture": {
-            "enabled": false
+            "enabled": true
         },
         "PinDMs": {
             "enabled": false
@@ -431,13 +444,14 @@
             "enabled": false
         },
         "ReadAllNotificationsButton": {
-            "enabled": false
+            "enabled": true
         },
         "RelationshipNotifier": {
             "enabled": false
         },
         "ReplaceGoogleSearch": {
-            "enabled": false
+            "enabled": true,
+            "replacementEngine": "DuckDuckGo"
         },
         "ReplyTimestamp": {
             "enabled": false
@@ -452,7 +466,13 @@
             "enabled": false
         },
         "RoleColorEverywhere": {
-            "enabled": false
+            "enabled": true,
+            "chatMentions": true,
+            "memberList": true,
+            "voiceUsers": true,
+            "reactorsList": true,
+            "pollResults": true,
+            "colorChatMessages": false
         },
         "SecretRingToneEnabler": {
             "enabled": false
@@ -476,7 +496,9 @@
             "enabled": false
         },
         "ShowConnections": {
-            "enabled": false
+            "enabled": true,
+            "iconSpacing": 1,
+            "iconSize": 32
         },
         "ShowHiddenChannels": {
             "enabled": false
@@ -494,16 +516,22 @@
             "enabled": false
         },
         "SilentTyping": {
-            "enabled": false
+            "enabled": true,
+            "isEnabled": true,
+            "showIcon": false,
+            "contextMenu": true
         },
         "SortFriendRequests": {
             "enabled": false
         },
         "SpotifyControls": {
-            "enabled": false
+            "enabled": true,
+            "hoverControls": false
         },
         "SpotifyCrack": {
-            "enabled": false
+            "enabled": true,
+            "noSpotifyAutoPause": true,
+            "keepSpotifyActivityOnIdle": false
         },
         "SpotifyShareCommands": {
             "enabled": false
@@ -633,6 +661,16 @@
         },
         "ExpressionCloner": {
             "enabled": false
+        },
+        "AutoDNDWhilePlaying": {
+            "enabled": true
+        },
+        "CopyStickerLinks": {
+            "enabled": false
+        },
+        "ImageFilename": {
+            "enabled": true,
+            "showFullUrl": false
         }
     },
     "notifications": {
@@ -645,7 +683,11 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1750612277129
+        "settingsSyncVersion": 1765731924284
     },
-    "eagerPatches": false
+    "eagerPatches": false,
+    "uiElements": {
+        "chatBarButtons": {},
+        "messagePopoverButtons": {}
+    }
 }

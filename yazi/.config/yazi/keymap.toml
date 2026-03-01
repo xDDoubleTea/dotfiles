@@ -48,6 +48,7 @@ prepend_keymap = [
     "U",
   ], run = "plugin gvfs -- select-then-unmount --eject --force", desc = "Select device then force to eject/unmount" },
 
+  { on = "<enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
   # Add Scheme/Mount URI:
   #   -> Available schemes: mtp, gphoto2, smb, sftp, ftp, nfs, dns-sd, dav, davs, dav+sd, davs+sd, afp, afc, sshfs
   #   -> Read more about the schemes here: https://wiki.gnome.org/Projects(2f)gvfs(2f)schemes.html

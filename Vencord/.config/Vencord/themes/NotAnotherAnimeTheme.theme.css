@@ -28,7 +28,7 @@
     /*Kanata https://imgur.com/duN6gfS.jpg*/
     /*Towa https://imgur.com/7G3z8Yu.jpg*/
     /*Hosimati suisei hosizora https://imgur.com/RoihDOa.jpg*/
-  /* --theme-background-image: url(https://i.imgur.com/gSriFFT.png); */
+  --theme-background-image: url(https://i.imgur.com/gSriFFT.png);
 
   /*
     Main Theme Color
@@ -38,7 +38,7 @@
   /*
     Main Theme Transparency
   */
-  --theme-transparency: rgba(0, 0, 0, 0);
+  --theme-transparency: rgba(0, 0, 0, 0.85);
 
   /*
     Home Icon Image

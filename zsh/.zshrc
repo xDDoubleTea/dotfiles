@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -136,6 +136,10 @@ fix-clipboard(){
 
 ytdl(){
   $HOME/.config/yt-dlp/download_scripts.py
+}
+
+get-weather(){
+  curl wttr.in/$1
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
