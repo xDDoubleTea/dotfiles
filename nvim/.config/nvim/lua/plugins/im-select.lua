@@ -1,7 +1,7 @@
 return {
   "keaising/im-select.nvim",
   opts = {
-    default_im_select = "keyboard-us",
-    default_command = "fcitx5-remote",
+    default_im_select = "com.apple.keylayout.ABC",
+    default_command = "macism",
   },
 }
