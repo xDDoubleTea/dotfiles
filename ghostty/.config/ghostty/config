@@ -1,5 +1,5 @@
 font-family = JetBrainsMono Nerd Font
-font-size = 16
+font-size = 13
 
 theme = catppuccin-mocha
 font-feature = +calt, +liga, +dlig
@@ -12,3 +12,5 @@ window-theme = ghostty
 window-decoration = false
 cursor-style-blink = true
 mouse-hide-while-typing
+shell-integration-features = ssh-terminfo
+shell-integration-features = sudo
