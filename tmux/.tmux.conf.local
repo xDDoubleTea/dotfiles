@@ -477,6 +477,10 @@ catppuccin/tmux              \
 # set-option -g @tmux-weather-location "Taipei"
 set -g @continuum-restore 'on'
 set -g @sessionx-fzf-builtin-tmux 'off'
+set -g @sessionx-window-mode 'on'
+set -g @sessionx-tree-mode 'off'
+
+set -g @sessionx-window-height '90%'
 # set -g @clima_use_nerd_font 1
 # set -g @plugin 'vascomfnunes/tmux-clima'
 # set -g @plugin "nordtheme/tmux"
