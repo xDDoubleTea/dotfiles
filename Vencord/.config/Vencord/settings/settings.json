@@ -23,13 +23,13 @@
             "enabled": false
         },
         "MemberListDecoratorsAPI": {
-            "enabled": false
+            "enabled": true
         },
         "MessageAccessoriesAPI": {
             "enabled": true
         },
         "MessageDecorationsAPI": {
-            "enabled": false
+            "enabled": true
         },
         "MessageEventsAPI": {
             "enabled": true
@@ -96,7 +96,9 @@
             "enabled": false
         },
         "BetterSessions": {
-            "enabled": false
+            "enabled": false,
+            "backgroundCheck": false,
+            "checkInterval": 20
         },
         "BetterSettings": {
             "enabled": true,
@@ -111,13 +113,13 @@
             "enabled": false
         },
         "BlurNSFW": {
-            "enabled": false
+            "enabled": true
         },
         "CallTimer": {
             "enabled": false
         },
         "ClearURLs": {
-            "enabled": false
+            "enabled": true
         },
         "ClientTheme": {
             "enabled": false
@@ -184,7 +186,7 @@
             "enabled": false
         },
         "FavoriteEmojiFirst": {
-            "enabled": false
+            "enabled": true
         },
         "FavoriteGifSearch": {
             "enabled": false
@@ -349,7 +351,8 @@
             "enabled": false
         },
         "NoMosaic": {
-            "enabled": false
+            "enabled": false,
+            "inlineVideo": true
         },
         "NoOnboardingDelay": {
             "enabled": false
@@ -374,7 +377,7 @@
             "enabled": false
         },
         "NoTypingAnimation": {
-            "enabled": false
+            "enabled": true
         },
         "NoUnblockToJump": {
             "enabled": false
@@ -383,7 +386,8 @@
             "enabled": false
         },
         "NotificationVolume": {
-            "enabled": false
+            "enabled": false,
+            "notificationVolume": 100
         },
         "NSFWGateBypass": {
             "enabled": false
@@ -407,13 +411,15 @@
             "enabled": false
         },
         "PermissionFreeWill": {
-            "enabled": false
+            "enabled": false,
+            "lockout": true,
+            "onboarding": true
         },
         "PermissionsViewer": {
             "enabled": false
         },
         "petpet": {
-            "enabled": false
+            "enabled": true
         },
         "PictureInPicture": {
             "enabled": true
@@ -422,10 +428,10 @@
             "enabled": false
         },
         "PlainFolderIcon": {
-            "enabled": false
+            "enabled": true
         },
         "PlatformIndicators": {
-            "enabled": false
+            "enabled": true
         },
         "PreviewMessage": {
             "enabled": false
@@ -572,19 +578,22 @@
             "enabled": false
         },
         "UserVoiceShow": {
-            "enabled": false
+            "enabled": false,
+            "showInUserProfileModal": true,
+            "showInMemberList": true,
+            "showInMessages": true
         },
         "USRBG": {
             "enabled": false
         },
         "ValidReply": {
-            "enabled": false
+            "enabled": true
         },
         "ValidUser": {
             "enabled": true
         },
         "VoiceChatDoubleClick": {
-            "enabled": false
+            "enabled": true
         },
         "VcNarrator": {
             "enabled": false
@@ -596,10 +605,11 @@
             "enabled": false
         },
         "ViewRaw": {
-            "enabled": false
+            "enabled": false,
+            "clickMethod": "Left"
         },
         "VoiceDownload": {
-            "enabled": false
+            "enabled": true
         },
         "VoiceMessages": {
             "enabled": false
@@ -671,6 +681,12 @@
         "CustomCommands": {
             "enabled": true,
             "tagsList": {}
+        },
+        "CharacterCounter": {
+            "enabled": true
+        },
+        "MoreQuickReactions": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -683,7 +699,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1774377275818
+        "settingsSyncVersion": 1776424293087
     },
     "eagerPatches": false,
     "uiElements": {
