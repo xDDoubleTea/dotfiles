@@ -1,4 +1,4 @@
-font-family = JetBrainsMono Nerd Font
+font-family = Monocraft
 font-size = 13
 
 theme = catppuccin-mocha
@@ -14,3 +14,4 @@ cursor-style-blink = true
 mouse-hide-while-typing
 shell-integration-features = ssh-terminfo
 shell-integration-features = sudo
+
