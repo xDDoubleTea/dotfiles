@@ -113,7 +113,8 @@
             "enabled": false
         },
         "BlurNSFW": {
-            "enabled": true
+            "enabled": false,
+            "blurAmount": 10
         },
         "CallTimer": {
             "enabled": false
@@ -195,7 +196,8 @@
             "enabled": false
         },
         "FixImagesQuality": {
-            "enabled": true
+            "enabled": true,
+            "originalImagesInChat": false
         },
         "FixSpotifyEmbeds": {
             "enabled": true
@@ -431,7 +433,11 @@
             "enabled": true
         },
         "PlatformIndicators": {
-            "enabled": true
+            "enabled": true,
+            "colorMobileIndicator": true,
+            "list": true,
+            "badges": true,
+            "messages": true
         },
         "PreviewMessage": {
             "enabled": false
@@ -642,7 +648,8 @@
         },
         "Settings": {
             "enabled": true,
-            "settingsLocation": "aboveNitro"
+            "settingsLocation": "aboveNitro",
+            "includeVencordInfoWhenCopying": true
         },
         "SupportHelper": {
             "enabled": true
@@ -683,10 +690,17 @@
             "tagsList": {}
         },
         "CharacterCounter": {
-            "enabled": true
+            "enabled": true,
+            "colorEffects": true
         },
         "MoreQuickReactions": {
             "enabled": false
+        },
+        "NoMiddleClickPaste": {
+            "enabled": false
+        },
+        "ConcatenatedComponentExtractor": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -696,14 +710,15 @@
         "logLimit": 50
     },
     "cloud": {
-        "authenticated": false,
+        "authenticated": true,
         "url": "https://api.vencord.dev/",
-        "settingsSync": false,
-        "settingsSyncVersion": 1776424293087
+        "settingsSync": true,
+        "settingsSyncVersion": 1779368385256
     },
     "eagerPatches": false,
     "uiElements": {
         "chatBarButtons": {},
         "messagePopoverButtons": {}
-    }
+    },
+    "windowsMaterial": "none"
 }
