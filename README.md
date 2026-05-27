@@ -54,9 +54,9 @@ I use Zen-browser as my main browser, it is a fork of firefox with some privacy 
 
 ## Workspaces and Windows rules
 
-You can switch between workspaces using `super+{number}`, the first `6` workspaces are named, with their name being:  
-`Zen-browser, Coding, Discord, Media, Games, VScode`.  
-Discord will be automatically opened once you switched to the workspace `Discord`, and VScode will also be opened once you switched to the workspace `VScode`.  
+You can switch between workspaces using `super+{number}`, the first `6` workspaces are named, with their name being:
+`Zen-browser, Coding, Discord, Media, Games, VScode`.
+Discord will be automatically opened once you switched to the workspace `Discord`, and VScode will also be opened once you switched to the workspace `VScode`.
 
 > I use VScode mainly for git stuff (mainly using AI to generate commit messages) and viewing sql databases. I code on neovim. This is why the Coding workspace and the VScode workspace are seperated.
 
@@ -83,10 +83,12 @@ There are more keyboard shortcuts for group, check it out in the group action se
 
 - hyprland and waybar configurations were built on top of that of this repo: [typecraft-dev/dotfiles](https://github.com/typecraft-dev/dotfiles)
 
-- Neovim configurations  
-  - For the main config I use lazyvim:  
-    [🚀 Getting Started | LazyVim](https://www.lazyvim.org/)  
+- Neovim configurations
+  - For the main config I use the following:
+    [ntk148v/neovim-config: A minimal neovim configuration written in Lua](https://github.com/ntk148v/neovim-config/tree/master?tab=readme-ov-file)
   - [NvChad](https://nvchad.com/)
+  - [🚀 Getting Started | LazyVim](https://www.lazyvim.org/)
+  - [LunarVim/Launch.nvim: 🚀 Launch.nvim is modular starter for Neovim.](https://github.com/LunarVim/Launch.nvim)
 
-- Hyprland  
-[hyprland.org/](https://hypr.land/)
+- Hyprland
+  [hyprland.org/](https://hypr.land/)
