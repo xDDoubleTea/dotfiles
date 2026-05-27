@@ -82,3 +82,6 @@ map("n", "<M-k>", "ddkP", { desc = "Move line up" })
 map("v", "<M-k>", "ddkP", { desc = "Move line up" })
 map("n", "<M-j>", "ddp", { desc = "Move line down" })
 map("v", "<M-j>", "ddp", { desc = "Move line down" })
+
+-- ─── Coding ─────────────────────────────────────────────────────────────
+-- map("n", "<leader>cr", "IncRename", { desc = "Rename Symbol" })

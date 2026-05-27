@@ -164,7 +164,35 @@ local mini_pick = {
         },
     },
 }
-
+local mini_files = {
+    "nvim-mini/mini.files",
+    keys = {
+        {
+            "<leader>e",
+            function()
+                require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+            end,
+            desc = "Open mini.files (current file dir)",
+        },
+        {
+            "<leader>E",
+            function()
+                require("mini.files").open(vim.uv.cwd(), true)
+            end,
+            desc = "Open mini.files (cwd)",
+        },
+    },
+    config = function()
+        require("mini.files").setup(require("plugins.configs.mini-files"))
+        -- Disable treesitter for mini.files buffers to prevent errors
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "MiniFilesBufferCreate",
+            callback = function(args)
+                pcall(vim.treesitter.stop, args.data.buf_id)
+            end,
+        })
+    end,
+}
 -- ─── Statusline ──────────────────────────────────────────────────────────
 local lualine = {
     "nvim-lualine/lualine.nvim",
@@ -270,6 +298,7 @@ local specs = {
     treesitter,
     mini_pick,
     lualine,
+    mini_files,
     mason,
     mason_lspconfig,
     none_ls,
