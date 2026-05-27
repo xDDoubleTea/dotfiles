@@ -39,7 +39,7 @@ rmpc
 rofi
 stow
 swaync
-swww
+awww
 tmux
 ttf-jetbrains-mono-nerd
 unzip
