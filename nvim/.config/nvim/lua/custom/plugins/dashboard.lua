@@ -4,8 +4,9 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("dashboard").setup({
-            theme = "doom",
+            theme = "hyper",
             config = {
+                weak_header = { enable = true },
                 header = {
                     "",
                     " ███╗   ██║███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
@@ -16,7 +17,7 @@ return {
                     " ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
                     "",
                 },
-                center = {
+                shortcut = {
                     {
                         action = 'lua require("persistence").load()',
                         desc = " Restore Session",
@@ -36,9 +37,21 @@ return {
                         key = "r",
                     },
                     {
+                        action = "Lazy update",
+                        desc = "Update",
+                        icon = "󰚰 ",
+                        key = "l",
+                    },
+                    {
+                        action = "Leet",
+                        desc = "Leet code",
+                        icon = " ",
+                        key = "n",
+                    },
+                    {
                         action = "qa",
                         desc = " Quit",
-                        icon = " ",
+                        icon = "",
                         key = "q",
                     },
                 },
