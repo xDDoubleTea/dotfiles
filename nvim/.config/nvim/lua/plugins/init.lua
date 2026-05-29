@@ -95,20 +95,6 @@ local mini_pick = {
             desc = "[S]earch [K]eymaps",
         },
         {
-            "<leader>sf",
-            function()
-                require("mini.pick").builtin.files({})
-            end,
-            desc = "[S]earch [F]iles",
-        },
-        {
-            "<leader>sg",
-            function()
-                require("mini.pick").builtin.grep_live({})
-            end,
-            desc = "[S]earch by [G]rep",
-        },
-        {
             "<leader>sd",
             function()
                 require("mini.extra").pickers.diagnostic({})
@@ -128,13 +114,6 @@ local mini_pick = {
                 require("mini.extra").pickers.oldfiles({})
             end,
             desc = "[S]earch Recent Files",
-        },
-        {
-            "<leader><leader>",
-            function()
-                require("mini.pick").builtin.buffers({})
-            end,
-            desc = "[ ] Find existing buffers",
         },
         {
             "<leader>sr",

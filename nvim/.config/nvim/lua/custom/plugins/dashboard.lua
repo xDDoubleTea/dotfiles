@@ -24,13 +24,13 @@ return {
                         key = "s",
                     },
                     {
-                        action = 'lua require("mini.pick").builtin.files()',
+                        action = 'lua require("telescope.builtin").find_files({ hidden = true})',
                         desc = " Find File",
                         icon = " ",
                         key = "f",
                     },
                     {
-                        action = 'lua require("mini.extra").pickers.oldfiles()',
+                        action = 'lua require("telescope.builtin").old_files()',
                         desc = " Recent Files",
                         icon = " ",
                         key = "r",
