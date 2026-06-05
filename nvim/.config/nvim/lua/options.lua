@@ -18,9 +18,9 @@ vim.wo.cursorline = true
 
 -- ─── Clipboard ───────────────────────────────────────────────────────────
 -- Schedule to avoid slowing up startup
-vim.schedule(function()
-    vim.o.clipboard = "unnamedplus"
-end)
+-- vim.schedule(function()
+--     vim.o.clipboard = "unnamedplus"
+-- end)
 
 -- ─── General ─────────────────────────────────────────────────────────────
 opt.backup = false
@@ -79,6 +79,7 @@ opt.splitright = true
 opt.winborder = "rounded"
 opt.winminwidth = 5
 opt.wrap = true
+vim.opt.fillchars:append({ eob = " " })
 
 -- ─── List chars ──────────────────────────────────────────────────────────
 opt.list = true

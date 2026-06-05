@@ -76,7 +76,7 @@ local config = {
         lualine_y = {},
         lualine_z = {},
         lualine_c = {
-            { mode },
+            { "mode" },
             {
                 "branch",
                 icon = " ",
@@ -87,7 +87,7 @@ local config = {
                 symbols = { added = " ", modified = "󰝤 ", removed = " " },
                 cond = conditions.hide_in_width,
             },
-            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+            { "filetype", icon_only = false, separator = "", padding = { left = 1, right = 0 } },
             {
                 "filename",
                 path = 1, -- 0: Just the filename, 1: Relative path, 2: Absolute path

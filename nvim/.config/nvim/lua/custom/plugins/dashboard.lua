@@ -1,22 +1,31 @@
+local ascii = require("ascii")
+local custom_header = ascii.art.planets.planets.saturn
 return {
     "nvimdev/dashboard-nvim",
+    lazy = false,
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("dashboard").setup({
             theme = "hyper",
+            hide = {
+                statusline = true, -- hide statusline default is true
+                tabline = true, -- hide the tabline
+                winbar = true, -- hide winbar
+            },
             config = {
-                weak_header = { enable = true },
-                header = {
-                    "",
-                    " ███╗   ██║███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-                    " ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-                    " ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-                    " ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-                    " ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-                    " ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-                    "",
-                },
+                -- week_header = { enable = true },
+                header = custom_header,
+                -- header = {
+                --     "",
+                --     " ███╗   ██║███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+                --     " ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+                --     " ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+                --     " ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+                --     " ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+                --     " ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+                --     "",
+                -- },
                 shortcut = {
                     {
                         action = 'lua require("persistence").load()',
