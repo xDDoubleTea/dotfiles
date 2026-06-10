@@ -64,7 +64,7 @@ end
 -- Config
 local config = {
     options = {
-        theme = auto,
+        theme = "iceberg",
         component_separators = "",
         section_separators = "",
         disabled_filetypes = { "Lazy", "NvimTree" },

@@ -4,9 +4,8 @@ return {
     lazy = false,
     opts = {
         picker = { enabled = true },
-        image = { enabled = true },
+        image = { enabled = false },
         explorer = { enabled = false },
-
         dashboard = { enabled = false },
         notifier = { enabled = false },
         statuscolumn = { enabled = false },

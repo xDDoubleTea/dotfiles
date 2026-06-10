@@ -21,7 +21,7 @@ return {
             always_show_bufferline = true,
             diagnostics = "nvim_lsp",
             color_icons = true,
-            separator_style = "thick",
+            separator_style = "slope",
             show_close_icon = true,
             show_tab_indicators = true,
             show_buffer_close_icons = true,
