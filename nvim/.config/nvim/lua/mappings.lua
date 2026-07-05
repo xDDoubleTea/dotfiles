@@ -70,7 +70,7 @@ end, { desc = "Toggle terminal" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- ─── Diagnostics ────────────────────────────────────────────────────────
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<leader>qq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- ─── Save file ──────────────────────────────────────────────────────────
 

@@ -31,20 +31,14 @@ autocmd("TextYankPost", {
 autocmd("BufWritePre", {
     group = grp.general,
     pattern = "*",
-    callback = function()
+    callback = function(args)
+        if vim.b[args.buf].autoformat == false then
+            return
+        end
         -- Remove trailing whitespace using Lua (faster than %s)
         local view = vim.fn.winsaveview()
         vim.cmd([[silent! %s/\s\+$//e]])
         vim.fn.winrestview(view)
-    end,
-})
-
--- ─── Format on Save ─────────────────────────────────────────────────────
-autocmd("BufWritePre", {
-    group = grp.general,
-    pattern = "*",
-    callback = function()
-        require("conform").format({ lsp_fallback = true })
     end,
 })
 
@@ -70,10 +64,19 @@ autocmd("FileType", {
 
 autocmd("FileType", {
     group = grp.ft,
-    pattern = { "gitcommit", "markdown", "text" },
+    pattern = { "gitcommit", "text" },
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
+    end,
+})
+
+autocmd("FileType", {
+    group = grp.ft,
+    pattern = { "markdown", "md" },
+    callback = function()
+        vim.b.autoformat = false
+        vim.opt_local.wrap = true
     end,
 })
 

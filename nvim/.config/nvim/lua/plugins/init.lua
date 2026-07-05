@@ -49,7 +49,12 @@ local conform = {
     cmd = "ConformInfo",
     opts = {
         formatters_by_ft = { lua = { "stylua" } },
-        format_on_save = { timeout_ms = 1000, lsp_fallback = true },
+        format_on_save = function(bufnr)
+            if vim.b[bufnr].autoformat == false then
+                return nil
+            end
+            return { timeout_ms = 500, lsp_fallback = true }
+        end,
     },
 }
 
@@ -121,20 +126,6 @@ local mini_pick = {
                 require("mini.pick").builtin.resume({})
             end,
             desc = "[S]earch [R]esume",
-        },
-        {
-            "<leader>ss",
-            function()
-                require("mini.extra").pickers.lsp({ scope = "document_symbol" })
-            end,
-            desc = "[S]earch [S]ymbols",
-        },
-        {
-            "<leader>sS",
-            function()
-                require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
-            end,
-            desc = "[S]earch Workspace [S]ymbols",
         },
     },
     opts = {
