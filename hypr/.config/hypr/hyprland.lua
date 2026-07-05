@@ -16,12 +16,19 @@ require("mocha")
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-	output = "",
-	mode = "2560x1440@144.01",
-	position = "auto",
+	output = "DP-1",
+	mode = "2560x1440@200.00",
+	position = "auto-right",
 	scale = "auto",
 })
 
+hl.monitor({
+	output = "DP-2",
+	mode = "2560x1440@144.00",
+	position = "auto-left",
+	scale = "auto",
+	transform = 1,
+})
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -40,11 +47,11 @@ require("conf.autostart")
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_SIZE", "32")
+hl.env("HYPRCURSOR_SIZE", "32")
 
-hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
-hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
+hl.env("XCURSOR_THEME", "shiro")
+hl.env("HYPRCURSOR_THEME", "shiro")
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
@@ -115,7 +122,7 @@ hl.config({
 	animations = {
 		enabled = true,
 	},
-	cursor = { inactive_timeout = 5 },
+	cursor = { inactive_timeout = -1 },
 })
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
