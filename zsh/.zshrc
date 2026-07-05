@@ -161,3 +161,4 @@ export FZF_DEFAULT_OPTS=" \
 eval "$(thefuck --alias)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
+eval "$(direnv hook zsh)"
