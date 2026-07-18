@@ -14,7 +14,7 @@ local opt = vim.opt
 local g = vim.g
 
 vim.wo.relativenumber = true
-vim.wo.cursorline = true
+vim.wo.cursorline = false
 
 -- ─── Clipboard ───────────────────────────────────────────────────────────
 -- Schedule to avoid slowing up startup

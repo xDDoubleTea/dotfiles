@@ -26,11 +26,10 @@ if not fd_found then
     vim.cmd([[quit]])
 end
 
-vim.opt.termguicolors = true
+vim.opt.termguicolors = false
 -- ─── Leader ──────────────────────────────────────────────────────────────
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

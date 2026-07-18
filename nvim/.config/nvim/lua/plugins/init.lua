@@ -184,6 +184,31 @@ local rosepine = {
     end,
 }
 
+local tokyonight = {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+        style = "moon",
+        transparent = true,
+        styles = {
+            -- Style to be applied to different syntax groups
+            -- Value is any valid attr-list value for `:help nvim_set_hl`
+            comments = { italic = true },
+            keywords = { italic = true },
+            functions = {},
+            variables = {},
+            -- Background styles. Can be "dark", "transparent" or "normal"
+            sidebars = "transparent", -- style for sidebars, see below
+            floats = "transparent", -- style for floating windows
+        },
+    },
+    config = function(_, opts)
+        require("tokyonight").setup(opts)
+        vim.cmd([[colorscheme tokyonight]])
+    end,
+}
+
 -- ─── Mason ───────────────────────────────────────────────────────────────
 local mason = {
     "mason-org/mason.nvim",
@@ -258,7 +283,8 @@ local exist, custom = pcall(require, "custom")
 local custom_plugins = exist and type(custom) == "table" and custom.plugins or {}
 
 local specs = {
-    rosepine,
+    -- rosepine,
+    tokyonight,
     colorizer,
     which_key,
     plenary,
