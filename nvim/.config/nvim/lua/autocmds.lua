@@ -56,11 +56,11 @@ autocmd("FileType", {
     command = "setlocal shiftwidth=2 tabstop=2",
 })
 
-autocmd("FileType", {
-    group = grp.ft,
-    pattern = { "python", "rst", "c", "cpp" },
-    command = "setlocal colorcolumn=80",
-})
+-- autocmd("FileType", {
+--     group = grp.ft,
+--     pattern = { "python", "rst", "c", "cpp" },
+--     command = "setlocal colorcolumn=80",
+-- })
 
 autocmd("FileType", {
     group = grp.ft,
