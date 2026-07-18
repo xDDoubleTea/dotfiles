@@ -97,7 +97,7 @@ hl.bind(supershift .. " + CTRL + O", hl.dsp.window.move({ out_of_group = true })
 
 -- Misc
 
-hl.bind(mainMod .. " + equal", hl.dsp.exec_cmd("rofi -show calc --no-show-match --no-sort"))
+hl.bind(mainMod .. " + equal", hl.dsp.exec_cmd("env LC_ALL= LC_MONETARY=zh_TW.UTF-8 rofi -show calc -modi calc"))
 hl.bind(mainMod .. " + semicolon", hl.dsp.exec_cmd("rofimoji"))
 
 -- Reload waybar
