@@ -5,3 +5,6 @@
 --audio-quality 0
 --embed-metadata
 --embed-thumbnail
+--write-subs
+--embed-subs
+--sub-langs all,-live_chat

@@ -64,9 +64,10 @@ xleak = [
 open_pdf = [
     { run = 'okular %s', desc = "Open with Okular", orphan = true },
     { run = 'zathura %s', desc = "Open with Zathura", for = "linux", orphan = true },
+    { run = 'qpdfview --unique %s', desc = "Open with qpdfview", for = "linux", orphan = true },
 ]
 open_image = [
-    { run = 'gwenview %s', desc = "Open with Gwenview", for = "linux" },
+    { run = 'gwenview %s', desc = "Open with Gwenview", for = "linux", orphan = true },
 ]
 
 [open]

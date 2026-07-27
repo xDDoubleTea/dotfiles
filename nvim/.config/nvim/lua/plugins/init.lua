@@ -48,12 +48,12 @@ local conform = {
     event = { "BufReadPre", "BufNewFile" },
     cmd = "ConformInfo",
     opts = {
-        formatters_by_ft = { lua = { "stylua" } },
+        formatters_by_ft = { lua = { "stylua" }, markdown = { "prettier" } },
         format_on_save = function(bufnr)
             if vim.b[bufnr].autoformat == false then
                 return nil
             end
-            return { timeout_ms = 500, lsp_fallback = true }
+            return { timeout_ms = 500, lsp_fallback = true, lsp_format = "fallback" }
         end,
     },
 }

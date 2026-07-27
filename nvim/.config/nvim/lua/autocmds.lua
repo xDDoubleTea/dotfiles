@@ -71,14 +71,14 @@ autocmd("FileType", {
     end,
 })
 
-autocmd("FileType", {
-    group = grp.ft,
-    pattern = { "markdown", "md" },
-    callback = function()
-        vim.b.autoformat = false
-        vim.opt_local.wrap = true
-    end,
-})
+-- autocmd("FileType", {
+--     group = grp.ft,
+--     pattern = { "markdown", "md" },
+--     callback = function()
+--         vim.b.autoformat = false
+--         vim.opt_local.wrap = true
+--     end,
+-- })
 
 -- ─── Colorscheme tweaks ─────────────────────────────────────────────────
 autocmd("ColorScheme", {
