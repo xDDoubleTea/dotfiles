@@ -162,3 +162,4 @@ eval "$(thefuck --alias)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 eval "$(direnv hook zsh)"
+export LIBVIRT_DEFAULT_URI=qemu:///system

@@ -7,7 +7,7 @@
         "NotAnotherAnimeTheme.theme.css"
     ],
     "enableReactDevtools": false,
-    "frameless": false,
+    "frameless": true,
     "transparent": true,
     "winCtrlQ": false,
     "disableMinSize": false,
@@ -566,7 +566,10 @@
             "enabled": false
         },
         "TypingTweaks": {
-            "enabled": true
+            "enabled": true,
+            "alternativeFormatting": true,
+            "showRoleColors": true,
+            "showAvatars": true
         },
         "Unindent": {
             "enabled": false
@@ -701,6 +704,9 @@
         },
         "MusicRichPresence": {
             "enabled": false
+        },
+        "TenorGifSearch": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -713,7 +719,7 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1784473560744
+        "settingsSyncVersion": 1785487763555
     },
     "eagerPatches": false,
     "uiElements": {

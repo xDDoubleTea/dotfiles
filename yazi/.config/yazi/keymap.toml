@@ -3,379 +3,383 @@
 #:schema https://yazi-rs.github.io/schemas/keymap.json
 [mgr]
 prepend_keymap = [
-  { on = [
-    "M",
-    "s",
-  ], run = "plugin mount", desc = "Open mount manager" },
-  # Mount
-  { on = [
-    "M",
-    "m",
-  ], run = "plugin gvfs -- select-then-mount", desc = "Select device then mount" },
-  # or this if you want to jump to mountpoint after mounted
-  # { on = [
-  #   "M",
-  #   "m",
-  # ], run = "plugin gvfs -- select-then-mount --jump", desc = "Select device to mount and jump to its mount point" },
-  #
-  # This will remount device under current working directory (cwd)
-  #   -> cwd = /run/user/1000/gvfs/DEVICE_1/FOLDER_A
-  #   -> device mountpoint = /run/user/1000/gvfs/DEVICE_1
-  #   -> remount this DEVIEC_1 if needed
-  { on = [
-    "M",
-    "R",
-  ], run = "plugin gvfs -- remount-current-cwd-device", desc = "Remount device under cwd" },
+    { on = [
+        "M",
+        "S",
+    ], run = "plugin sshfs -- menu", desc = "Open SSHFS options" },
+    { on = [
+        "M",
+        "s",
+    ], run = "plugin mount", desc = "Open mount manager" },
+    # Mount
+    { on = [
+        "M",
+        "m",
+    ], run = "plugin gvfs -- select-then-mount", desc = "Select device then mount" },
+    # or this if you want to jump to mountpoint after mounted
+    # { on = [
+    #   "M",
+    #   "m",
+    # ], run = "plugin gvfs -- select-then-mount --jump", desc = "Select device to mount and jump to its mount point" },
+    #
+    # This will remount device under current working directory (cwd)
+    #   -> cwd = /run/user/1000/gvfs/DEVICE_1/FOLDER_A
+    #   -> device mountpoint = /run/user/1000/gvfs/DEVICE_1
+    #   -> remount this DEVIEC_1 if needed
+    { on = [
+        "M",
+        "R",
+    ], run = "plugin gvfs -- remount-current-cwd-device", desc = "Remount device under cwd" },
 
-  { on = [
-    "M",
-    "u",
-  ], run = "plugin gvfs -- select-then-unmount", desc = "Select device then unmount" },
-  # Or this if you want to unmount and eject device.
-  #   -> Ejected device can safely be removed.
-  #   -> Ejecting a device will unmount all paritions/volumes under it.
-  #   -> Fallback to normal unmount if not supported by device.
-  # { on = [
-  #   "M",
-  #   "u",
-  # ], run = "plugin gvfs -- select-then-unmount --eject", desc = "Select device then eject" },
+    { on = [
+        "M",
+        "u",
+    ], run = "plugin gvfs -- select-then-unmount", desc = "Select device then unmount" },
+    # Or this if you want to unmount and eject device.
+    #   -> Ejected device can safely be removed.
+    #   -> Ejecting a device will unmount all paritions/volumes under it.
+    #   -> Fallback to normal unmount if not supported by device.
+    # { on = [
+    #   "M",
+    #   "u",
+    # ], run = "plugin gvfs -- select-then-unmount --eject", desc = "Select device then eject" },
 
-  # Also support force unmount/eject.
-  #   -> Ignore outstanding file operations when unmounting or ejecting
-  { on = [
-    "M",
-    "U",
-  ], run = "plugin gvfs -- select-then-unmount --eject --force", desc = "Select device then force to eject/unmount" },
+    # Also support force unmount/eject.
+    #   -> Ignore outstanding file operations when unmounting or ejecting
+    { on = [
+        "M",
+        "U",
+    ], run = "plugin gvfs -- select-then-unmount --eject --force", desc = "Select device then force to eject/unmount" },
 
-  { on = "<enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
-  # Add Scheme/Mount URI:
-  #   -> Available schemes: mtp, gphoto2, smb, sftp, ftp, nfs, dns-sd, dav, davs, dav+sd, davs+sd, afp, afc, sshfs
-  #   -> Read more about the schemes here: https://wiki.gnome.org/Projects(2f)gvfs(2f)schemes.html
-  #   -> Explain about the scheme:
-  #       -> If it shows like this: {ftp,ftps,ftpis}://[user@]host[:port]
-  #       -> All of the value within [] is optional. For values within {}, you must choose exactly one. All others are required.
-  #       -> Example: {ftp,ftps,ftpis}://[user@]host[:port] => ip and port: "ftp://myusername@192.168.1.2:9999" or domain: "ftps://myusername@github.com"
-  #       -> More examples: smb://user@192.168.1.2/share, smb://WORKGROUP;user@192.168.1.2/share, sftp://user@192.168.1.2/, ftp://192.168.1.2/
-  # !WARNING: - Scheme/Mount URI shouldn't contain password.
-  #           - Google Drive, One drive are listed automatically via GNOME Online Accounts (GOA). Avoid adding them.
-  #           - MTP, GPhoto2, AFC, Hard disk/drive, fstab with x-gvfs-show are also listed automatically. Avoid adding them.
-  #           - SSH, SFTP, FTP(s), AFC, DNS_SD now support [/share]. For example: sftp://user@192.168.1.2/home/user_name -> /share = /home/user_name
-  #           - ssh:// is alias for sftp://.
-  #             -> {sftp,ssh}://[user@]host[:port]. Host can be Host alias in .ssh/config file, ip or domain.
-  #             -> For example (home is Host alias in .ssh/config file: Host home):
-  #                  -> ssh://user_name@home/home/user_name -> this will mount root path, but jump to subfolder /home/user_name
-  #                  -> sftp://user_name@192.168.1.2/home/user_name -> same as above but with ip
-  #                  -> sftp://user_name@192.168.1.2:9999/home/user_name -> same as above but with ip and port
-  { on = [
-    "M",
-    "a",
-  ], run = "plugin gvfs -- add-mount", desc = "Add a GVFS mount URI" },
+    { on = "<enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+    # Add Scheme/Mount URI:
+    #   -> Available schemes: mtp, gphoto2, smb, sftp, ftp, nfs, dns-sd, dav, davs, dav+sd, davs+sd, afp, afc, sshfs
+    #   -> Read more about the schemes here: https://wiki.gnome.org/Projects(2f)gvfs(2f)schemes.html
+    #   -> Explain about the scheme:
+    #       -> If it shows like this: {ftp,ftps,ftpis}://[user@]host[:port]
+    #       -> All of the value within [] is optional. For values within {}, you must choose exactly one. All others are required.
+    #       -> Example: {ftp,ftps,ftpis}://[user@]host[:port] => ip and port: "ftp://myusername@192.168.1.2:9999" or domain: "ftps://myusername@github.com"
+    #       -> More examples: smb://user@192.168.1.2/share, smb://WORKGROUP;user@192.168.1.2/share, sftp://user@192.168.1.2/, ftp://192.168.1.2/
+    # !WARNING: - Scheme/Mount URI shouldn't contain password.
+    #           - Google Drive, One drive are listed automatically via GNOME Online Accounts (GOA). Avoid adding them.
+    #           - MTP, GPhoto2, AFC, Hard disk/drive, fstab with x-gvfs-show are also listed automatically. Avoid adding them.
+    #           - SSH, SFTP, FTP(s), AFC, DNS_SD now support [/share]. For example: sftp://user@192.168.1.2/home/user_name -> /share = /home/user_name
+    #           - ssh:// is alias for sftp://.
+    #             -> {sftp,ssh}://[user@]host[:port]. Host can be Host alias in .ssh/config file, ip or domain.
+    #             -> For example (home is Host alias in .ssh/config file: Host home):
+    #                  -> ssh://user_name@home/home/user_name -> this will mount root path, but jump to subfolder /home/user_name
+    #                  -> sftp://user_name@192.168.1.2/home/user_name -> same as above but with ip
+    #                  -> sftp://user_name@192.168.1.2:9999/home/user_name -> same as above but with ip and port
+    { on = [
+        "M",
+        "a",
+    ], run = "plugin gvfs -- add-mount", desc = "Add a GVFS mount URI" },
 
-  # Edit a Scheme/Mount URI
-  #   -> Will clear saved passwords for that mount URI.
-  { on = [
-    "M",
-    "e",
-  ], run = "plugin gvfs -- edit-mount", desc = "Edit a GVFS mount URI" },
+    # Edit a Scheme/Mount URI
+    #   -> Will clear saved passwords for that mount URI.
+    { on = [
+        "M",
+        "e",
+    ], run = "plugin gvfs -- edit-mount", desc = "Edit a GVFS mount URI" },
 
-  # Remove a Scheme/Mount URI
-  #   -> Will clear saved passwords for that mount URI.
-  { on = [
-    "M",
-    "r",
-  ], run = "plugin gvfs -- remove-mount", desc = "Remove a GVFS mount URI" },
+    # Remove a Scheme/Mount URI
+    #   -> Will clear saved passwords for that mount URI.
+    { on = [
+        "M",
+        "r",
+    ], run = "plugin gvfs -- remove-mount", desc = "Remove a GVFS mount URI" },
 
-  # Jump
-  { on = [
-    "g",
-    "m",
-  ], run = "plugin gvfs -- jump-to-device", desc = "Select device then jump to its mount point" },
-  # If you use `x-systemd.automount` in /etc/fstab or manually added automount unit,
-  # If you use `x-systemd.automount` in /etc/fstab or manually added automount unit,
-  # then you can use `--automount` argument to auto mount device before jump.
-  # Otherwise it won't show up in the jump list.
-  # { on = [
-  #   "g",
-  #   "m",
-  # ], run = "plugin gvfs -- jump-to-device --automount", desc = "Automount then select device to jump to its mount point" },
-  { on = [
-    "`",
-    "`",
-  ], run = "plugin gvfs -- jump-back-prev-cwd", desc = "Jump back to the position before jumped to device" },
+    # Jump
+    { on = [
+        "g",
+        "m",
+    ], run = "plugin gvfs -- jump-to-device", desc = "Select device then jump to its mount point" },
+    # If you use `x-systemd.automount` in /etc/fstab or manually added automount unit,
+    # If you use `x-systemd.automount` in /etc/fstab or manually added automount unit,
+    # then you can use `--automount` argument to auto mount device before jump.
+    # Otherwise it won't show up in the jump list.
+    # { on = [
+    #   "g",
+    #   "m",
+    # ], run = "plugin gvfs -- jump-to-device --automount", desc = "Automount then select device to jump to its mount point" },
+    { on = [
+        "`",
+        "`",
+    ], run = "plugin gvfs -- jump-back-prev-cwd", desc = "Jump back to the position before jumped to device" },
 
-  # Automount (This is different from `x-systemd.automount` in /etc/fstab)
-  #   -> Hover over any file/folder under a mounted device then run `automount-when-cd` action to enable automount when cd/jump for that device.
-  #   -> When you cd/jump to unmounted device mountpoint or its sub folder, this will auto-mount the device before jump.
-  #   -> Works with any command or any bookmark plugin that change cwd. For example, use `yamb` to add bookmarks and jump to them, use yazi's built-in `cd` `back` `forward` commands:
+    # Automount (This is different from `x-systemd.automount` in /etc/fstab)
+    #   -> Hover over any file/folder under a mounted device then run `automount-when-cd` action to enable automount when cd/jump for that device.
+    #   -> When you cd/jump to unmounted device mountpoint or its sub folder, this will auto-mount the device before jump.
+    #   -> Works with any command or any bookmark plugin that change cwd. For example, use `yamb` to add bookmarks and jump to them, use yazi's built-in `cd` `back` `forward` commands:
 
-  #   -> { on = [ "m", "a" ], run = [ "plugin yamb -- save", "plugin gvfs -- automount-when-cd" ], desc = "Add bookmark and enable automount when cd"}
-  { on = [
-    "M",
-    "t",
-  ], run = "plugin gvfs -- automount-when-cd", desc = "Enable automount when cd to device under cwd" },
-  { on = [
-    "M",
-    "T",
-  ], run = "plugin gvfs -- automount-when-cd --disabled", desc = "Disable automount when cd to device under cwd" },
-  { on = [
-    "<C-s>",
-  ], run = "plugin kdeconnect-send", desc = "Send selected files via KDE Connect" },
-  { on = [
-    "g",
-    "i",
-  ], run = "plugin lazygit", desc = "run lazygit" },
-  { on = [
-    "<C-w>",
-  ], run = "plugin close-and-restore-tab close_to_left", desc = "Close the current tab and turn to left tab, or quit if it is last tab" },
-  { on = [
-    "<C-t>",
-  ], run = "plugin close-and-restore-tab restore", desc = "Restore the closed tab" },
+    #   -> { on = [ "m", "a" ], run = [ "plugin yamb -- save", "plugin gvfs -- automount-when-cd" ], desc = "Add bookmark and enable automount when cd"}
+    { on = [
+        "M",
+        "t",
+    ], run = "plugin gvfs -- automount-when-cd", desc = "Enable automount when cd to device under cwd" },
+    { on = [
+        "M",
+        "T",
+    ], run = "plugin gvfs -- automount-when-cd --disabled", desc = "Disable automount when cd to device under cwd" },
+    { on = [
+        "<C-s>",
+    ], run = "plugin kdeconnect-send", desc = "Send selected files via KDE Connect" },
+    { on = [
+        "g",
+        "i",
+    ], run = "plugin lazygit", desc = "run lazygit" },
+    { on = [
+        "<C-w>",
+    ], run = "plugin close-and-restore-tab close_to_left", desc = "Close the current tab and turn to left tab, or quit if it is last tab" },
+    { on = [
+        "<C-t>",
+    ], run = "plugin close-and-restore-tab restore", desc = "Restore the closed tab" },
 ]
 
 
 [tasks]
 
 keymap = [
-  { on = "<Esc>", run = "close", desc = "Close task manager" },
-  { on = "<C-[>", run = "close", desc = "Close task manager" },
-  { on = "<C-c>", run = "close", desc = "Close task manager" },
-  { on = "w", run = "close", desc = "Close task manager" },
+    { on = "<Esc>", run = "close", desc = "Close task manager" },
+    { on = "<C-[>", run = "close", desc = "Close task manager" },
+    { on = "<C-c>", run = "close", desc = "Close task manager" },
+    { on = "w", run = "close", desc = "Close task manager" },
 
-  { on = "k", run = "arrow prev", desc = "Previous task" },
-  { on = "j", run = "arrow next", desc = "Next task" },
+    { on = "k", run = "arrow prev", desc = "Previous task" },
+    { on = "j", run = "arrow next", desc = "Next task" },
 
-  { on = "<Up>", run = "arrow prev", desc = "Previous task" },
-  { on = "<Down>", run = "arrow next", desc = "Next task" },
+    { on = "<Up>", run = "arrow prev", desc = "Previous task" },
+    { on = "<Down>", run = "arrow next", desc = "Next task" },
 
-  { on = "<Enter>", run = "inspect", desc = "Inspect the task" },
-  { on = "x", run = "cancel", desc = "Cancel the task" },
+    { on = "<Enter>", run = "inspect", desc = "Inspect the task" },
+    { on = "x", run = "cancel", desc = "Cancel the task" },
 
-  # Help
-  { on = "~", run = "help", desc = "Open help" },
-  { on = "<F1>", run = "help", desc = "Open help" },
+    # Help
+    { on = "~", run = "help", desc = "Open help" },
+    { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
 [spot]
 
 keymap = [
-  { on = "<Esc>", run = "close", desc = "Close the spot" },
-  { on = "<C-[>", run = "close", desc = "Close the spot" },
-  { on = "<C-c>", run = "close", desc = "Close the spot" },
-  { on = "<Tab>", run = "close", desc = "Close the spot" },
+    { on = "<Esc>", run = "close", desc = "Close the spot" },
+    { on = "<C-[>", run = "close", desc = "Close the spot" },
+    { on = "<C-c>", run = "close", desc = "Close the spot" },
+    { on = "<Tab>", run = "close", desc = "Close the spot" },
 
-  { on = "k", run = "arrow prev", desc = "Previous line" },
-  { on = "j", run = "arrow next", desc = "Next line" },
-  { on = "h", run = "swipe prev", desc = "Swipe to previous file" },
-  { on = "l", run = "swipe next", desc = "Swipe to next file" },
+    { on = "k", run = "arrow prev", desc = "Previous line" },
+    { on = "j", run = "arrow next", desc = "Next line" },
+    { on = "h", run = "swipe prev", desc = "Swipe to previous file" },
+    { on = "l", run = "swipe next", desc = "Swipe to next file" },
 
-  { on = "<Up>", run = "arrow prev", desc = "Previous line" },
-  { on = "<Down>", run = "arrow next", desc = "Next line" },
-  { on = "<Left>", run = "swipe prev", desc = "Swipe to previous file" },
-  { on = "<Right>", run = "swipe next", desc = "Swipe to next file" },
+    { on = "<Up>", run = "arrow prev", desc = "Previous line" },
+    { on = "<Down>", run = "arrow next", desc = "Next line" },
+    { on = "<Left>", run = "swipe prev", desc = "Swipe to previous file" },
+    { on = "<Right>", run = "swipe next", desc = "Swipe to next file" },
 
-  # Copy
-  { on = ["c", "c"], run = "copy cell", desc = "Copy selected cell" },
+    # Copy
+    { on = ["c", "c"], run = "copy cell", desc = "Copy selected cell" },
 
-  # Help
-  { on = "~", run = "help", desc = "Open help" },
-  { on = "<F1>", run = "help", desc = "Open help" },
+    # Help
+    { on = "~", run = "help", desc = "Open help" },
+    { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
 [pick]
 
 keymap = [
-  { on = "<Esc>", run = "close", desc = "Cancel pick" },
-  { on = "<C-[>", run = "close", desc = "Cancel pick" },
-  { on = "<C-c>", run = "close", desc = "Cancel pick" },
-  { on = "<Enter>", run = "close --submit", desc = "Submit the pick" },
+    { on = "<Esc>", run = "close", desc = "Cancel pick" },
+    { on = "<C-[>", run = "close", desc = "Cancel pick" },
+    { on = "<C-c>", run = "close", desc = "Cancel pick" },
+    { on = "<Enter>", run = "close --submit", desc = "Submit the pick" },
 
-  { on = "k", run = "arrow prev", desc = "Previous option" },
-  { on = "j", run = "arrow next", desc = "Next option" },
+    { on = "k", run = "arrow prev", desc = "Previous option" },
+    { on = "j", run = "arrow next", desc = "Next option" },
 
-  { on = "<Up>", run = "arrow prev", desc = "Previous option" },
-  { on = "<Down>", run = "arrow next", desc = "Next option" },
+    { on = "<Up>", run = "arrow prev", desc = "Previous option" },
+    { on = "<Down>", run = "arrow next", desc = "Next option" },
 
-  # Help
-  { on = "~", run = "help", desc = "Open help" },
-  { on = "<F1>", run = "help", desc = "Open help" },
+    # Help
+    { on = "~", run = "help", desc = "Open help" },
+    { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
 [input]
 
 keymap = [
-  { on = "<C-c>", run = "close", desc = "Cancel input" },
-  { on = "<Enter>", run = "close --submit", desc = "Submit input" },
-  { on = "<Esc>", run = "escape", desc = "Back to normal mode, or cancel input" },
-  { on = "<C-[>", run = "escape", desc = "Back to normal mode, or cancel input" },
+    { on = "<C-c>", run = "close", desc = "Cancel input" },
+    { on = "<Enter>", run = "close --submit", desc = "Submit input" },
+    { on = "<Esc>", run = "escape", desc = "Back to normal mode, or cancel input" },
+    { on = "<C-[>", run = "escape", desc = "Back to normal mode, or cancel input" },
 
-  # Mode
-  { on = "i", run = "insert", desc = "Enter insert mode" },
-  { on = "I", run = [
-    "move first-char",
-    "insert",
-  ], desc = "Move to the BOL, and enter insert mode" },
-  { on = "a", run = "insert --append", desc = "Enter append mode" },
-  { on = "A", run = [
-    "move eol",
-    "insert --append",
-  ], desc = "Move to the EOL, and enter append mode" },
-  { on = "v", run = "visual", desc = "Enter visual mode" },
-  { on = "r", run = "replace", desc = "Replace a single character" },
+    # Mode
+    { on = "i", run = "insert", desc = "Enter insert mode" },
+    { on = "I", run = [
+        "move first-char",
+        "insert",
+    ], desc = "Move to the BOL, and enter insert mode" },
+    { on = "a", run = "insert --append", desc = "Enter append mode" },
+    { on = "A", run = [
+        "move eol",
+        "insert --append",
+    ], desc = "Move to the EOL, and enter append mode" },
+    { on = "v", run = "visual", desc = "Enter visual mode" },
+    { on = "r", run = "replace", desc = "Replace a single character" },
 
-  # Selection
-  { on = "V", run = [
-    "move bol",
-    "visual",
-    "move eol",
-  ], desc = "Select from BOL to EOL" },
-  { on = "<C-A>", run = [
-    "move eol",
-    "visual",
-    "move bol",
-  ], desc = "Select from EOL to BOL" },
-  { on = "<C-E>", run = [
-    "move bol",
-    "visual",
-    "move eol",
-  ], desc = "Select from BOL to EOL" },
+    # Selection
+    { on = "V", run = [
+        "move bol",
+        "visual",
+        "move eol",
+    ], desc = "Select from BOL to EOL" },
+    { on = "<C-A>", run = [
+        "move eol",
+        "visual",
+        "move bol",
+    ], desc = "Select from EOL to BOL" },
+    { on = "<C-E>", run = [
+        "move bol",
+        "visual",
+        "move eol",
+    ], desc = "Select from BOL to EOL" },
 
-  # Character-wise movement
-  { on = "h", run = "move -1", desc = "Move back a character" },
-  { on = "l", run = "move 1", desc = "Move forward a character" },
-  { on = "<Left>", run = "move -1", desc = "Move back a character" },
-  { on = "<Right>", run = "move 1", desc = "Move forward a character" },
-  { on = "<C-b>", run = "move -1", desc = "Move back a character" },
-  { on = "<C-f>", run = "move 1", desc = "Move forward a character" },
+    # Character-wise movement
+    { on = "h", run = "move -1", desc = "Move back a character" },
+    { on = "l", run = "move 1", desc = "Move forward a character" },
+    { on = "<Left>", run = "move -1", desc = "Move back a character" },
+    { on = "<Right>", run = "move 1", desc = "Move forward a character" },
+    { on = "<C-b>", run = "move -1", desc = "Move back a character" },
+    { on = "<C-f>", run = "move 1", desc = "Move forward a character" },
 
-  # Word-wise movement
-  { on = "b", run = "backward", desc = "Move back to the start of the current or previous word" },
-  { on = "B", run = "backward --far", desc = "Move back to the start of the current or previous WORD" },
-  { on = "w", run = "forward", desc = "Move forward to the start of the next word" },
-  { on = "W", run = "forward --far", desc = "Move forward to the start of the next WORD" },
-  { on = "e", run = "forward --end-of-word", desc = "Move forward to the end of the current or next word" },
-  { on = "E", run = "forward --far --end-of-word", desc = "Move forward to the end of the current or next WORD" },
-  { on = "<A-b>", run = "backward", desc = "Move back to the start of the current or previous word" },
-  { on = "<A-f>", run = "forward --end-of-word", desc = "Move forward to the end of the current or next word" },
+    # Word-wise movement
+    { on = "b", run = "backward", desc = "Move back to the start of the current or previous word" },
+    { on = "B", run = "backward --far", desc = "Move back to the start of the current or previous WORD" },
+    { on = "w", run = "forward", desc = "Move forward to the start of the next word" },
+    { on = "W", run = "forward --far", desc = "Move forward to the start of the next WORD" },
+    { on = "e", run = "forward --end-of-word", desc = "Move forward to the end of the current or next word" },
+    { on = "E", run = "forward --far --end-of-word", desc = "Move forward to the end of the current or next WORD" },
+    { on = "<A-b>", run = "backward", desc = "Move back to the start of the current or previous word" },
+    { on = "<A-f>", run = "forward --end-of-word", desc = "Move forward to the end of the current or next word" },
 
-  # Line-wise movement
-  { on = "0", run = "move bol", desc = "Move to the BOL" },
-  { on = "$", run = "move eol", desc = "Move to the EOL" },
-  { on = "_", run = "move first-char", desc = "Move to the first non-whitespace character" },
-  { on = "^", run = "move first-char", desc = "Move to the first non-whitespace character" },
-  { on = "<C-a>", run = "move bol", desc = "Move to the BOL" },
-  { on = "<C-e>", run = "move eol", desc = "Move to the EOL" },
-  { on = "<Home>", run = "move bol", desc = "Move to the BOL" },
-  { on = "<End>", run = "move eol", desc = "Move to the EOL" },
+    # Line-wise movement
+    { on = "0", run = "move bol", desc = "Move to the BOL" },
+    { on = "$", run = "move eol", desc = "Move to the EOL" },
+    { on = "_", run = "move first-char", desc = "Move to the first non-whitespace character" },
+    { on = "^", run = "move first-char", desc = "Move to the first non-whitespace character" },
+    { on = "<C-a>", run = "move bol", desc = "Move to the BOL" },
+    { on = "<C-e>", run = "move eol", desc = "Move to the EOL" },
+    { on = "<Home>", run = "move bol", desc = "Move to the BOL" },
+    { on = "<End>", run = "move eol", desc = "Move to the EOL" },
 
-  # Delete
-  { on = "<Backspace>", run = "backspace", desc = "Delete the character before the cursor" },
-  { on = "<Delete>", run = "backspace --under", desc = "Delete the character under the cursor" },
-  { on = "<C-h>", run = "backspace", desc = "Delete the character before the cursor" },
-  { on = "<C-d>", run = "backspace --under", desc = "Delete the character under the cursor" },
+    # Delete
+    { on = "<Backspace>", run = "backspace", desc = "Delete the character before the cursor" },
+    { on = "<Delete>", run = "backspace --under", desc = "Delete the character under the cursor" },
+    { on = "<C-h>", run = "backspace", desc = "Delete the character before the cursor" },
+    { on = "<C-d>", run = "backspace --under", desc = "Delete the character under the cursor" },
 
-  # Kill
-  { on = "<C-u>", run = "kill bol", desc = "Kill backwards to the BOL" },
-  { on = "<C-k>", run = "kill eol", desc = "Kill forwards to the EOL" },
-  { on = "<C-w>", run = "kill backward", desc = "Kill backwards to the start of the current word" },
-  { on = "<A-d>", run = "kill forward", desc = "Kill forwards to the end of the current word" },
+    # Kill
+    { on = "<C-u>", run = "kill bol", desc = "Kill backwards to the BOL" },
+    { on = "<C-k>", run = "kill eol", desc = "Kill forwards to the EOL" },
+    { on = "<C-w>", run = "kill backward", desc = "Kill backwards to the start of the current word" },
+    { on = "<A-d>", run = "kill forward", desc = "Kill forwards to the end of the current word" },
 
-  # Cut/Yank/Paste
-  { on = "d", run = "delete --cut", desc = "Cut selected characters" },
-  { on = "D", run = [
-    "delete --cut",
-    "move eol",
-  ], desc = "Cut until EOL" },
-  { on = "c", run = "delete --cut --insert", desc = "Cut selected characters, and enter insert mode" },
-  { on = "C", run = [
-    "delete --cut --insert",
-    "move eol",
-  ], desc = "Cut until EOL, and enter insert mode" },
-  { on = "s", run = [
-    "delete --cut --insert",
-    "move 1",
-  ], desc = "Cut current character, and enter insert mode" },
-  { on = "S", run = [
-    "move bol",
-    "delete --cut --insert",
-    "move eol",
-  ], desc = "Cut from BOL until EOL, and enter insert mode" },
-  { on = "x", run = [
-    "delete --cut",
-    "move 1 --in-operating",
-  ], desc = "Cut current character" },
-  { on = "y", run = "yank", desc = "Copy selected characters" },
-  { on = "p", run = "paste", desc = "Paste copied characters after the cursor" },
-  { on = "P", run = "paste --before", desc = "Paste copied characters before the cursor" },
+    # Cut/Yank/Paste
+    { on = "d", run = "delete --cut", desc = "Cut selected characters" },
+    { on = "D", run = [
+        "delete --cut",
+        "move eol",
+    ], desc = "Cut until EOL" },
+    { on = "c", run = "delete --cut --insert", desc = "Cut selected characters, and enter insert mode" },
+    { on = "C", run = [
+        "delete --cut --insert",
+        "move eol",
+    ], desc = "Cut until EOL, and enter insert mode" },
+    { on = "s", run = [
+        "delete --cut --insert",
+        "move 1",
+    ], desc = "Cut current character, and enter insert mode" },
+    { on = "S", run = [
+        "move bol",
+        "delete --cut --insert",
+        "move eol",
+    ], desc = "Cut from BOL until EOL, and enter insert mode" },
+    { on = "x", run = [
+        "delete --cut",
+        "move 1 --in-operating",
+    ], desc = "Cut current character" },
+    { on = "y", run = "yank", desc = "Copy selected characters" },
+    { on = "p", run = "paste", desc = "Paste copied characters after the cursor" },
+    { on = "P", run = "paste --before", desc = "Paste copied characters before the cursor" },
 
-  # Undo/Redo
-  { on = "u", run = "undo", desc = "Undo the last operation" },
-  { on = "<C-r>", run = "redo", desc = "Redo the last operation" },
+    # Undo/Redo
+    { on = "u", run = "undo", desc = "Undo the last operation" },
+    { on = "<C-r>", run = "redo", desc = "Redo the last operation" },
 
-  # Help
-  { on = "~", run = "help", desc = "Open help" },
-  { on = "<F1>", run = "help", desc = "Open help" },
+    # Help
+    { on = "~", run = "help", desc = "Open help" },
+    { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
 [confirm]
 
 keymap = [
-  { on = "<Esc>", run = "close", desc = "Cancel the confirm" },
-  { on = "<C-[>", run = "close", desc = "Cancel the confirm" },
-  { on = "<C-c>", run = "close", desc = "Cancel the confirm" },
-  { on = "<Enter>", run = "close --submit", desc = "Submit the confirm" },
+    { on = "<Esc>", run = "close", desc = "Cancel the confirm" },
+    { on = "<C-[>", run = "close", desc = "Cancel the confirm" },
+    { on = "<C-c>", run = "close", desc = "Cancel the confirm" },
+    { on = "<Enter>", run = "close --submit", desc = "Submit the confirm" },
 
-  { on = "n", run = "close", desc = "Cancel the confirm" },
-  { on = "y", run = "close --submit", desc = "Submit the confirm" },
+    { on = "n", run = "close", desc = "Cancel the confirm" },
+    { on = "y", run = "close --submit", desc = "Submit the confirm" },
 
-  { on = "k", run = "arrow prev", desc = "Previous line" },
-  { on = "j", run = "arrow next", desc = "Next line" },
+    { on = "k", run = "arrow prev", desc = "Previous line" },
+    { on = "j", run = "arrow next", desc = "Next line" },
 
-  { on = "<Up>", run = "arrow prev", desc = "Previous line" },
-  { on = "<Down>", run = "arrow next", desc = "Next line" },
+    { on = "<Up>", run = "arrow prev", desc = "Previous line" },
+    { on = "<Down>", run = "arrow next", desc = "Next line" },
 
-  # Help
-  { on = "~", run = "help", desc = "Open help" },
-  { on = "<F1>", run = "help", desc = "Open help" },
+    # Help
+    { on = "~", run = "help", desc = "Open help" },
+    { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
 [cmp]
 
 keymap = [
-  { on = "<C-c>", run = "close", desc = "Cancel completion" },
-  { on = "<Tab>", run = "close --submit", desc = "Submit the completion" },
-  { on = "<Enter>", run = [
-    "close --submit",
-    "input:close --submit",
-  ], desc = "Complete and submit the input" },
+    { on = "<C-c>", run = "close", desc = "Cancel completion" },
+    { on = "<Tab>", run = "close --submit", desc = "Submit the completion" },
+    { on = "<Enter>", run = [
+        "close --submit",
+        "input:close --submit",
+    ], desc = "Complete and submit the input" },
 
-  { on = "<A-k>", run = "arrow prev", desc = "Previous item" },
-  { on = "<A-j>", run = "arrow next", desc = "Next item" },
+    { on = "<A-k>", run = "arrow prev", desc = "Previous item" },
+    { on = "<A-j>", run = "arrow next", desc = "Next item" },
 
-  { on = "<Up>", run = "arrow prev", desc = "Previous item" },
-  { on = "<Down>", run = "arrow next", desc = "Next item" },
+    { on = "<Up>", run = "arrow prev", desc = "Previous item" },
+    { on = "<Down>", run = "arrow next", desc = "Next item" },
 
-  { on = "<C-p>", run = "arrow prev", desc = "Previous item" },
-  { on = "<C-n>", run = "arrow next", desc = "Next item" },
+    { on = "<C-p>", run = "arrow prev", desc = "Previous item" },
+    { on = "<C-n>", run = "arrow next", desc = "Next item" },
 
-  # Help
-  { on = "~", run = "help", desc = "Open help" },
-  { on = "<F1>", run = "help", desc = "Open help" },
+    # Help
+    { on = "~", run = "help", desc = "Open help" },
+    { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
 [help]
 
 keymap = [
-  { on = "<Esc>", run = "escape", desc = "Clear the filter, or hide the help" },
-  { on = "<C-[>", run = "escape", desc = "Clear the filter, or hide the help" },
-  { on = "<C-c>", run = "close", desc = "Hide the help" },
+    { on = "<Esc>", run = "escape", desc = "Clear the filter, or hide the help" },
+    { on = "<C-[>", run = "escape", desc = "Clear the filter, or hide the help" },
+    { on = "<C-c>", run = "close", desc = "Hide the help" },
 
-  # Navigation
-  { on = "k", run = "arrow prev", desc = "Previous line" },
-  { on = "j", run = "arrow next", desc = "Next line" },
+    # Navigation
+    { on = "k", run = "arrow prev", desc = "Previous line" },
+    { on = "j", run = "arrow next", desc = "Next line" },
 
-  { on = "<Up>", run = "arrow prev", desc = "Previous line" },
-  { on = "<Down>", run = "arrow next", desc = "Next line" },
+    { on = "<Up>", run = "arrow prev", desc = "Previous line" },
+    { on = "<Down>", run = "arrow next", desc = "Next line" },
 
-  # Filtering
-  { on = "f", run = "filter", desc = "Filter help items" },
+    # Filtering
+    { on = "f", run = "filter", desc = "Filter help items" },
 ]

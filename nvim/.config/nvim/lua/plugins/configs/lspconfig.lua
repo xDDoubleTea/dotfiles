@@ -22,7 +22,17 @@ local server_configs = {
     ruff = {},
     vimls = {},
     yamlls = {},
-    pyright = {},
+    pyright = {
+        settings = {
+            python = {
+                analysis = {
+                    diagnosticMode = "workspace",
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
+                },
+            },
+        },
+    },
     marksman = {},
     lua_ls = {
         settings = {
