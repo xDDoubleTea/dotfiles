@@ -56,7 +56,7 @@ tmux_conf_new_pane_retain_current_path=true
 #   - true
 #   - false (default)
 #   - disabled (do not modify split-window bindings)
-tmux_conf_new_pane_reconnect_ssh=true
+tmux_conf_new_pane_reconnect_ssh=false
 
 
 # -- display -------------------------------------------------------------------
@@ -508,7 +508,7 @@ set -g @catppuccin_window_text " #W#{?#{||:#{window_bell_flag},#{window_zoomed_f
 set -g @catppuccin_window_current_text " #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
 
 # Settings for tmux-resurrect
-set -g @resurrect-processes 'ssh lazygit btop rmpc cmus uxplay'
+set -g @resurrect-processes 'lazygit btop rmpc cmus uxplay lazydocker'
 
 
 

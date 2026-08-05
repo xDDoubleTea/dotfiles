@@ -158,8 +158,16 @@ export FZF_DEFAULT_OPTS=" \
 --color=border:#6C7086,label:#CDD6F4 \
 --tmux"
 
+HISTSIZE=100000
+SAVEHIST=100000
+setopt INC_APPEND_HISTORY SHARE_HISTORY
+
 eval "$(thefuck --alias)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 eval "$(direnv hook zsh)"
 export LIBVIRT_DEFAULT_URI=qemu:///system
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
