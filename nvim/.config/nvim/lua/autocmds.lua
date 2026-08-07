@@ -93,5 +93,6 @@ autocmd("ColorScheme", {
         hi("TabLineFill", { bg = "none" })
         hi("TabLineSel", { bg = "none" })
         hi("TabLine", { bg = "none" })
+        hi("BlinkCmpGhostText", { fg = "#6e7681", italic = true })
     end,
 })

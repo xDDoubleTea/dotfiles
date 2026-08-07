@@ -170,4 +170,6 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 
 . "$HOME/.atuin/bin/env"
 
+eval "$(navi widget zsh)"
+
 eval "$(atuin init zsh)"

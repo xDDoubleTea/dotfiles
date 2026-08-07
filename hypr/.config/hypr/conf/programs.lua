@@ -3,8 +3,8 @@
 ---------------------
 
 -- Set programs that you use
-Terminal = "ghostty"
-FileManager = "ghostty -e yazi"
+Terminal = "kitty"
+FileManager = "kitty -e yazi"
 Menu = "rofi -show combi -modi combi"
 ClipboardManager = "copyq show"
 WallpaperChanger = "waypaper"
