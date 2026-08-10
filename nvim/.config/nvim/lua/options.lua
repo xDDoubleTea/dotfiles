@@ -46,7 +46,7 @@ opt.updatetime = 100
 opt.writebackup = false
 
 -- ─── Indentation ─────────────────────────────────────────────────────────
-local indent = 4
+local indent = 8
 opt.autoindent = true
 opt.expandtab = true
 opt.shiftround = true
