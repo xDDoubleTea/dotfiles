@@ -55,10 +55,9 @@
   "group/control-panel": {
     "orientation": "horizontal",
     "modules": [
-      "custom/system-update",
       "custom/do-not-disturb",
-      "custom/bluetooth",
-      "custom/networkmanager",
+      "custom/wallpaper-cycle",
+      "custom/wallpaper-mode",
       "custom/power",
     ],
   },
@@ -289,6 +288,18 @@
     "format": "<span color=\"#f38ba8\"> </span>",
     "rotate": 0,
     "tooltip": false,
+  },
+  "custom/wallpaper-mode": {
+    "exec": "python3 ~/.local/bin/wallpaper_mode.py --status",
+    "on-click": "python3 ~/.local/bin/wallpaper_mode.py --toggle",
+    "interval": 2,
+    "return-type": "json",
+  },
+  "custom/wallpaper-cycle": {
+    "exec": "python3 ~/.local/bin/wallpaper_cycle.py --status",
+    "on-click": "python3 ~/.local/bin/wallpaper_pick_dir.py",
+    "interval": 5,
+    "return-type": "json",
   },
   //==> Other Modules
   ///////////////////////////////////////////////////////////////

@@ -186,3 +186,26 @@ tooltip {
   background: @main-bg;
   margin: 4px 0px 4px 0px;
 }
+
+#custom-wallpaper-mode,
+#custom-wallpaper-cycle {
+  margin: 4px 0px 4px 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#custom-wallpaper-mode.work {
+  color: #a6e3a1;
+}
+
+#custom-wallpaper-mode.relax {
+  color: #f9e2af;
+}
+
+#custom-wallpaper-cycle.cycling {
+  color: #89b4fa;
+}
+
+#custom-wallpaper-cycle.static {
+  color: #89b4fa;
+}
