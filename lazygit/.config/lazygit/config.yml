@@ -3,7 +3,7 @@ gui:
   screenMode: 'normal' # one of 'normal' | 'half' | 'full' default is 'normal'
   scrollHeight: 2 # how many lines you scroll by
   scrollPastBottom: true # enable scrolling past the bottom
-  sidePanelWidth: 0.333 # number from 0 to 1
+  sidePanelWidth: 0.2 # number from 0 to 1
   expandFocusedSidePanel: false
   mainPanelSplitMode: 'flexible' # one of 'horizontal' | 'flexible' | 'vertical'
   language: 'auto' # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
@@ -38,6 +38,10 @@ gui:
   showCommandLog: true
   showIcons: true
   commandLogSize: 8
-  splitDiff: 'always' # one of 'auto' | 'always'
+  splitDiff: 'auto' # one of 'auto' | 'always'
   skipRewordInEditorWarning: false # for skipping the confirmation before launching the reword editor
   border: 'rounded' # one of 'single' | 'double' | 'rounded' | 'hidden'
+git:
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never --line-numbers --side-by-side
