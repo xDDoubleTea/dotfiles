@@ -48,12 +48,32 @@ local conform = {
     event = { "BufReadPre", "BufNewFile" },
     cmd = "ConformInfo",
     opts = {
-        formatters_by_ft = { lua = { "stylua" }, markdown = { "prettier" } },
+        formatters = {
+            ruff_format = {
+                command = function(_, ctx)
+                    local venv = vim.fs.find(".venv", {
+                        path = ctx.dirname,
+                        upward = true,
+                        type = "directory",
+                    })[1]
+                    local exe = venv and (venv .. "/bin/ruff")
+                    if exe and vim.uv.fs_stat(exe) then
+                        return exe
+                    end
+                    return "ruff" -- global fallback
+                end,
+            },
+        },
+        formatters_by_ft = {
+            lua = { "stylua" },
+            markdown = { "prettier" },
+            python = { "ruff_organize_imports", "ruff_format" },
+        },
         format_on_save = function(bufnr)
             if vim.b[bufnr].autoformat == false then
                 return nil
             end
-            return { timeout_ms = 500, lsp_fallback = true, lsp_format = "fallback" }
+            return { timeout_ms = 500, lsp_format = "fallback" }
         end,
     },
 }

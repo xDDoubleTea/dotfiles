@@ -27,7 +27,6 @@ hl.monitor({
 	mode = "2560x1440@144.00",
 	position = "auto-left",
 	scale = "auto",
-	transform = 1,
 })
 -------------------
 ---- AUTOSTART ----

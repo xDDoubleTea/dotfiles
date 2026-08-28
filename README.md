@@ -1,5 +1,7 @@
 # dotfiles
 
+![Hyprland](https://img.shields.io/badge/Hyprland-%2358E1FF.svg?style=for-the-badge&logo=hyprland&logoColor=black)
+
 Dotfiles for arch linux
 
 ## Requirements
