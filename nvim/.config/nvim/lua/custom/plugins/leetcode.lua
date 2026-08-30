@@ -8,7 +8,7 @@ return {
             "MunifTanjim/nui.nvim",
         },
         opts = {
-            lang = "cpp",
+            lang = "c",
             injector = {
                 ["cpp"] = {
                     imports = function()
