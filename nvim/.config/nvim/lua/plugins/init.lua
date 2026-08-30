@@ -270,7 +270,7 @@ local cmp = {
     event = { "InsertEnter", "LspAttach" },
     dependencies = {
         "rafamadriz/friendly-snippets",
-        "milanglacier/minuet-ai.nvim",
+
         {
             "L3MON4D3/LuaSnip",
             version = "v2.*",

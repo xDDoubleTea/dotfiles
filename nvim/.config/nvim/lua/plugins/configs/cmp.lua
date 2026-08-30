@@ -36,7 +36,7 @@ local options = {
         ["<CR>"] = { "select_and_accept", "fallback" },
         ["<Tab>"] = { "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
-        ["<A-y>"] = require("minuet").make_blink_map(),
+        -- ["<A-y>"] = require("minuet").make_blink_map(),
     },
 
     completion = {
@@ -64,16 +64,7 @@ local options = {
     },
 
     sources = {
-        default = { "lsp", "path", "snippets", "buffer", "minuet" },
-        providers = {
-            minuet = {
-                name = "minuet",
-                module = "minuet.blink",
-                async = true,
-                timeout_ms = 3000,
-                score_offset = 50,
-            },
-        },
+        default = { "lsp", "path", "snippets", "buffer" },
     },
     fuzzy = {
         implementation = "prefer_rust_with_warning",

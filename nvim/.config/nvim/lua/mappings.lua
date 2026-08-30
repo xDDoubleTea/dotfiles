@@ -98,5 +98,5 @@ map("n", "<leader>rr", "<CMD>Leet run<CR>", { desc = "Leetcode test" })
 map("n", "<leader>rs", "<CMD>Leet submit<CR>", { desc = "Leetcode submit" })
 map("n", "<leader>r<tab>", "<CMD>Leet tabs<CR>", { desc = "Leetcode tabs" })
 
-vim.keymap.set("n", "<leader>mg", "<cmd>Minuet change_preset gemini_strong<cr>", { desc = "Minuet: use Gemini" })
-vim.keymap.set("n", "<leader>ml", "<cmd>Minuet change_preset local_fast<cr>", { desc = "Minuet: use local Ollama" })
+map("n", "<leader>mg", "<cmd>Minuet change_preset gemini_strong<cr>", { desc = "Minuet: use Gemini" })
+map("n", "<leader>ml", "<cmd>Minuet change_preset local_fast<cr>", { desc = "Minuet: use local Ollama" })
