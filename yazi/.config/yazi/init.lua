@@ -50,4 +50,30 @@ require("gvfs"):setup({
 })
 require("yatline"):setup({
 	theme = catppuccin_theme,
+	status_line = {
+		left = {
+			section_a = {
+				{ type = "string", name = "tab_mode" },
+			},
+			section_b = {
+				{ type = "string", name = "hovered_size" },
+			},
+			section_c = {
+				{ type = "string", name = "hovered_path" },
+				{ type = "coloreds", name = "count" },
+			},
+		},
+		right = {
+			section_a = {
+				{ type = "string", name = "cursor_position" },
+			},
+			section_b = {
+				{ type = "string", name = "cursor_percentage" },
+			},
+			section_c = {
+				{ type = "string", name = "hovered_file_extension", params = { false } },
+				{ type = "coloreds", name = "permissions" },
+			},
+		},
+	},
 })
