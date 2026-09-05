@@ -162,7 +162,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt INC_APPEND_HISTORY SHARE_HISTORY
 
-eval "$(thefuck --alias)"
+# eval "$(thefuck --alias)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 eval "$(direnv hook zsh)"
