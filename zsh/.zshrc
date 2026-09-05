@@ -168,7 +168,6 @@ fpath+=~/.zfunc; autoload -Uz compinit; compinit
 eval "$(direnv hook zsh)"
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
-. "$HOME/.atuin/bin/env"
 
 eval "$(navi widget zsh)"
 
