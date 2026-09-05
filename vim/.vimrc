@@ -6,7 +6,7 @@ Plug 'catppuccin/vim', { 'as': 'catppuccin', 'branch': 'main' }
 Plug 'preservim/nerdtree'
 call plug#end()
 
-colorscheme catppuccin
+colorscheme catppuccin_mocha
 set expandtab
 set enc=utf8
 set hls
