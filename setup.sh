@@ -1,93 +1,71 @@
-#!/usr/bin/sh
+#!/bin/sh
+#
+# Bootstrap for this dotfiles repo.
+#
+# Strict POSIX sh -- no [[ ]], no =~, no arrays. This file has to run under
+# FreeBSD's /bin/sh (ash), which is not bash. Verify with:
+#     sh -n setup.sh && checkbashisms setup.sh
+#
+# All it does is find a Python 3 and hand over to tools/install.py, which does
+# the real work. Run `./setup.sh --help` for the available flags.
+#
+# You do not need this script to use the repo: `stow <package>` on its own is
+# the normal workflow, especially on CLI-only machines.
 
-get_pkgs() {
-	cd ~/dotfiles
-	echo "Validating package list..."
-	while read -r package; do
-		if [[ -z "$package" ]]; then
-			continue
-		fi
-		echo $package
-		if ! yay -Ss "^$package$" >/dev/null; then
-			echo "ERROR: Package '$package' not found. Please check your list and spelling."
-			exit 1
-		fi
-	done <minimal_packages.txt
+set -eu
 
-	echo "Package list validation successful."
+REPO=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+INSTALLER="$REPO/tools/install.py"
 
-	echo "Installing all packages..."
-	yay -S --needed --noconfirm - <minimal_packages.txt
+die() {
+	printf 'xx %s\n' "$*" >&2
+	exit 1
 }
 
-clone_powerlevel10k() {
-	echo "Cloning powerlevel10k zsh theme..."
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-}
-
-stow_dir() {
-	echo "Stowing..."
-	cd ~/dotfiles || exit 1
-	while read -r package; do
-		# Skip any empty lines in the file
-		if [[ -z "$package" ]]; then
-			continue
-		fi
-
-		# Check if the package directory actually exists before trying to stow it
-		if [ -d "$package" ]; then
-			echo "Stowing '$package'..."
-			if ! ls ~/.config/$package >/dev/null; then
-				echo "Backing up existing configuration for '$package'..."
-				# Backup the existing configuration directory
-				mv ~/.config/$package ~/.config/${package}_bak
+# Identify the package manager by probing for its binary. uname alone is not
+# enough: every Linux distro reports "Linux".
+detect_manager() {
+	case "$(uname -s)" in
+	FreeBSD)
+		command -v pkg >/dev/null 2>&1 && echo pkg && return
+		;;
+	Darwin)
+		command -v brew >/dev/null 2>&1 && echo brew && return
+		;;
+	Linux)
+		for mgr in pacman apt-get dnf emerge; do
+			if command -v "$mgr" >/dev/null 2>&1; then
+				echo "$mgr"
+				return
 			fi
-			stow "$package"
-		else
-			echo "WARNING: Directory for package '$package' not found. Skipping."
-		fi
-	done <all_stowed_files.txt
-
-	echo "All configurations have been stowed."
+		done
+		;;
+	esac
+	echo ""
 }
 
-install_Vencord() {
-	sudo VencordInstaller
+# Install Python 3 and nothing else; install.py handles every other package.
+install_python() {
+	mgr=$1
+	printf ':: Python 3 not found, installing it with %s...\n' "$mgr"
+	case "$mgr" in
+	pacman) sudo pacman -S --needed --noconfirm python ;;
+	pkg) sudo pkg install -y python3 ;;
+	brew) brew install python3 ;;
+	apt-get) sudo apt-get update && sudo apt-get install -y python3 ;;
+	dnf) sudo dnf install -y python3 ;;
+	emerge) sudo emerge --noreplace dev-lang/python ;;
+	*) die "no supported package manager found; install Python 3 manually and re-run" ;;
+	esac
 }
 
-main() {
-	exec_at=$(pwd)
-	if ! which yay >/dev/null; then
-		echo "yay is not installed, installing..."
-		sudo pacman -S --needed git base-devel
-		cd /tmp
-		git clone https://aur.archlinux.org/yay.git /tmp/yay
-		cd yay
-		makepkg -si
-	fi
-	cd ${exec_at}
-	get_pkgs
-	if ! which zsh >/dev/null; then
-		echo "Something went worng with the zsh installation"
-		echo "Since we uses oh-my-zsh, the installation will be aborted..."
-		sleep 1
-		exit 1
-	fi
-	chsh -s /usr/bin/zsh
-	clone_powerlevel10k
-	cd ${exec_at}
+[ -f "$INSTALLER" ] || die "missing $INSTALLER (is the repo complete?)"
 
-	echo "We are about to stow the dotfiles, but this will overwrite your current dotfiles."
-	echo "(You should have read the README.md file in the dotfiles repository to understand what stowing means.)"
-	echo "Do you want to stow the dotfiles? (y/n)"
-	read -r answer
-  if [[ "$answer" =~ ^([Yy][Ee][Ss]|[Yy])$ ]]; then
-		echo "Stowing dotfiles..."
-		stow_dir
-	else
-		echo "Skipping stow."
-	fi
-  install_Vencord
-	echo "The installation completed, please reboot your computer."
-}
-main
+if ! command -v python3 >/dev/null 2>&1; then
+	install_python "$(detect_manager)"
+fi
+
+command -v python3 >/dev/null 2>&1 ||
+	die "Python 3 still not on PATH after install; cannot continue"
+
+exec python3 "$INSTALLER" "$@"

@@ -4,6 +4,7 @@ cava
 cmus
 eww
 hypr
+hyprland-preview-share-picker
 kitty
 mako
 neofetch
@@ -13,8 +14,9 @@ rmpc
 rofi
 swaync
 tmux
+vim
 waybar
 waypaper
+yazi
 zathura
 zsh
-hyprland-preview-share-picker
