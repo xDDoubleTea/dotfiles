@@ -79,6 +79,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-vi-mode golang archlinux docker docker-compose gitignore)
 
+# Customisations live in the dotfiles repo (stowed to ~/.zsh_custom), not in
+# $ZSH/custom -- oh-my-zsh's own .gitignore ignores custom/, so anything left
+# in there is tracked by no repository at all.
+export ZSH_CUSTOM="$HOME/.zsh_custom"
+
 source $ZSH/oh-my-zsh.sh
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
