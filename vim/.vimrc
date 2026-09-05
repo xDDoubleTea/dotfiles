@@ -2,8 +2,7 @@ call plug#begin()
 
 " List your plugins here
 Plug 'jserv/nyancat.vim'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-
+Plug 'catppuccin/vim', { 'as': 'catppuccin', 'branch': 'main' }
 Plug 'preservim/nerdtree'
 call plug#end()
 
@@ -28,7 +27,7 @@ set wildmenu         " Shows a visual autocomplete menu for command line actions
 set incsearch        " Highlights search results AS you type them
 set ignorecase       " Searches ignore capitalization...
 set smartcase        " ...UNLESS you type a capital letter
-set fillchars=eob:\ 
+set fillchars=eob:\
 
 " Set the Leader key to Space (like LazyVim)
 let mapleader = " "
