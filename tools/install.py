@@ -169,9 +169,8 @@ def resolve(manifest, manager, want_desktop):
 def validate(manifest, manager, resolved):
     """Check every resolved name against the local package manager.
 
-    Collects all failures and reports them together. The old setup.sh
-    validation loop exited on the first bad name, which meant fixing the
-    package list one round-trip at a time.
+    Collects all failures and reports them together, so a package list with
+    several bad names takes one round-trip to fix rather than one per name.
     """
     cfg = manifest["managers"][manager]
     base = cfg["query"]
@@ -222,8 +221,8 @@ def install_packages(manifest, manager, resolved):
 def init_submodules():
     """Fetch oh-my-zsh, ohmytmux, powerlevel10k and zsh-vi-mode.
 
-    Replaces the old clone_powerlevel10k() special case: p10k and zsh-vi-mode
-    are now real submodules under zsh/.zsh_custom.
+    All four are submodules, so this is the whole of the shell setup -- there
+    is nothing to clone by hand.
     """
     if not shutil.which("git"):
         warn("git not found; skipping submodule init")
@@ -238,10 +237,9 @@ def init_submodules():
 def stow_packages(only=None):
     """Stow each package listed in all_stowed_files.txt, backing up conflicts.
 
-    The old shell version tested `ls ~/.config/$package` for every package,
-    which is wrong for home-level packages like zsh (~/.zshrc, not
-    ~/.config/zsh) and treated a missing directory as "needs backup". Here
-    stow itself reports the conflicts and only those paths are backed up.
+    Conflicts come from stow itself rather than from probing ~/.config: a
+    package need not live there at all (zsh owns ~/.zshrc), so guessing the
+    target path both misses conflicts and invents ones that do not exist.
     """
     if not shutil.which("stow"):
         die("stow is not installed -- it is the whole point of this repo")
@@ -302,8 +300,9 @@ def stow_conflicts(pkg):
             continue
         if path.is_symlink():
             try:
+                # Already a link into this repo, so re-stowing is a no-op.
                 if REPO in path.resolve().parents:
-                    continue  # already ours
+                    continue
             except OSError:
                 pass
         conflicts.append(path)
@@ -315,7 +314,8 @@ def stow_conflicts(pkg):
 def set_login_shell():
     """chsh to whichever zsh this OS actually has.
 
-    The old script hardcoded /usr/bin/zsh; FreeBSD puts it in /usr/local/bin.
+    The path is not portable: /usr/bin/zsh on Arch, /usr/local/bin/zsh on
+    FreeBSD, and a Homebrew prefix on macOS.
     """
     zsh = shutil.which("zsh")
     if not zsh:

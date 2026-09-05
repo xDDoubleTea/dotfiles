@@ -4,7 +4,9 @@
 #
 # Strict POSIX sh -- no [[ ]], no =~, no arrays. This file has to run under
 # FreeBSD's /bin/sh (ash), which is not bash. Verify with:
-#     sh -n setup.sh && checkbashisms setup.sh
+#     zsh --emulate sh -n setup.sh
+# Plain `sh -n` proves nothing on Arch, where /bin/sh is bash and accepts the
+# bashisms this script must avoid.
 #
 # All it does is find a Python 3 and hand over to tools/install.py, which does
 # the real work. Run `./setup.sh --help` for the available flags.
