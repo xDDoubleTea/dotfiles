@@ -104,6 +104,13 @@
       "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
     },
     {
+      "id": "fastfetch",
+      "group": "core",
+      "name": "fastfetch",
+      "overrides": {},
+      "unverified": ["freebsd", "macos", "fedora", "gentoo"]
+    },
+    {
       "id": "stow",
       "group": "core",
       "name": "stow",
