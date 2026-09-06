@@ -191,7 +191,7 @@
       "id": "bat",
       "group": "core",
       "name": "bat",
-      "note": "On Debian the binary is batcat, but the package name is bat.",
+      "note": "On Debian and Ubuntu the package is bat but the binary is batcat, because the name bat belongs to bacula-console-qt. zsh/.zsh_custom/alias.zsh detects this and aliases it back.",
       "overrides": {
         "gentoo": "sys-apps/bat"
       },

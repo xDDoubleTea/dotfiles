@@ -1,4 +1,17 @@
-alias fzf='fzf --preview "bat --color=always --style=numbers --line-range :500 {}" --preview-window=up:30% --bind "ctrl-a:select-all+accept" --bind "ctrl-d:toggle-preview" --bind "ctrl-f:page-down" --bind "ctrl-b:page-up"'
+# Debian and Ubuntu install bat's binary as `batcat`, because the name `bat`
+# belongs to bacula-console-qt there. Resolve it once: the fzf preview below
+# runs through `sh -c`, where the alias would not apply.
+if (( $+commands[bat] )); then
+	_bat=bat
+elif (( $+commands[batcat] )); then
+	_bat=batcat
+	alias bat='batcat'
+else
+	_bat=cat
+fi
+
+alias fzf="fzf --preview '$_bat --color=always --style=numbers --line-range :500 {}' --preview-window=up:30% --bind 'ctrl-a:select-all+accept' --bind 'ctrl-d:toggle-preview' --bind 'ctrl-f:page-down' --bind 'ctrl-b:page-up'"
+unset _bat
 alias fzfe='vim $(wheretf)'
 alias lg='lazygit'
 alias tmuxa='tmux attach || tmux new-session -s default'
