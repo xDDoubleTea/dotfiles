@@ -15,7 +15,7 @@
                 "full list rather than silently installing the wrong thing. Once you have",
                 "confirmed a name on a real box, drop that manager from the list.",
                 "",
-                "Only 'arch' names are fully verified (checked with `pacman -Si` on the Arch box).",
+                "The 'arch' and 'freebsd' columns are fully verified against a real package manager on the respective box. The others are not.",
                 "'gentoo' is the least trustworthy column: atoms need a category prefix and none",
                 "of them have been checked. Packages with no known gentoo atom omit the key",
                 "entirely, which install.py reports as unmapped.",
@@ -496,14 +496,13 @@
                         "id": "nodejs",
                         "group": "core",
                         "name": "nodejs",
-                        "note": "Homebrew's 'node' formula bundles npm, so macOS needs one entry where Arch has two. FreeBSD also names it 'node' -- 'nodejs' is not a port. See the separate npm entry.",
+                        "note": "Homebrew's 'node' formula bundles npm, so macOS needs one entry where Arch has two. FreeBSD also names it 'node' -- 'nodejs' is not a port, but www/npm is, so FreeBSD still needs both entries.",
                         "overrides": {
                                 "macos": "node",
                                 "gentoo": "net-libs/nodejs",
                                 "freebsd": "node"
                         },
                         "unverified": [
-                                "freebsd",
                                 "macos",
                                 "debian",
                                 "fedora",

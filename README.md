@@ -69,8 +69,9 @@ names from there; `minimal_packages.txt` is a generated Arch-only view of it.
 | Gentoo | `emerge` | core |
 
 Names are **not** 1:1 across managers — e.g. `fd` is `fd-find` on FreeBSD/Debian/Fedora,
-and `github-cli` on Arch is `gh` everywhere else. Only the Arch names are fully
-verified; entries elsewhere are marked `unverified` in the manifest. The installer
+`github-cli` on Arch is `gh` everywhere else, and FreeBSD calls Node `node` while
+still packaging `npm` separately. The Arch and FreeBSD columns are verified against
+a real package manager; entries elsewhere are marked `unverified` in the manifest. The installer
 checks every name against the local package manager *before* installing anything
 and reports all bad names at once, so an unverified name fails loudly rather than
 silently doing the wrong thing. When you confirm a name on a real box, drop that
