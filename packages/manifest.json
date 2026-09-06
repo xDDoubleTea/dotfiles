@@ -24,7 +24,9 @@
                 "group 'desktop' = Arch/Hyprland only, opt-in via --desktop, never on a headless",
                 "target. Desktop entries carry \"os\": [\"arch\"].",
                 "",
-                "\"aur\": true means the Arch name lives in the AUR and needs an AUR helper (yay)."
+                "\"aur\": true means the Arch name lives in the AUR and needs an AUR helper (yay).",
+  "",
+  "Each manager's 'query' must exit 0 for a real package and non-zero for a fake one. That is easy to get wrong and the failure looks like every package name being invalid at once. Verified so far: arch, debian, freebsd. NOT yet verified: macos, fedora, gentoo -- if one of those reports that every name is missing, suspect the query command before the names."
         ],
         "managers": {
                 "arch": {
@@ -69,9 +71,9 @@
                                 "pkg",
                                 "search",
                                 "-e",
-                                "-Q",
+                                "-S",
                                 "name",
-                                "--"
+                                "-q"
                         ],
                         "sudo": true
                 },
