@@ -150,9 +150,30 @@ and aliases `bat` to it, and points fzf's `--preview` at the same binary.
 Neovim is the main editor (`nvim/`), with NvChad and LazyVim variants in
 `nvim_nvchad/` and `nvim_lazy/`.
 
+### First run on a new machine
+
+nvim-treesitter compiles parsers on demand, and lazy.nvim needs the `vimdoc`
+parser to generate helptags — so the first sync has to install that parser
+partway through:
+
+```bash
+nvim --headless -c 'Lazy! restore' -c qa
+nvim --headless -c 'TSInstall vimdoc' -c qa
+nvim --headless -c 'Lazy! restore' -c qa
+```
+
+Once per machine. Afterwards `Lazy restore` alone is enough.
+
+`Lazy restore` pins every plugin to `lazy-lock.json`. `Lazy update` and
+`Lazy sync` rewrite that file to the latest upstream commits — run those on one
+machine, commit the lockfile, and `Lazy restore` on the others.
+
+### Input method
+
 `im-select.nvim` switches the system input method on mode changes, and picks its
 backend from the OS: `macism` with `com.apple.keylayout.ABC` on macOS,
-`fcitx5-remote` with `keyboard-us` elsewhere. Stow `nvim` on macOS to get it.
+`fcitx5-remote` with `keyboard-us` elsewhere. It loads only when that backend is
+on `PATH`, so it stays out of the way on headless boxes reached over SSH.
 
 `macism` lives in a tap rather than homebrew-core, so install it separately:
 
