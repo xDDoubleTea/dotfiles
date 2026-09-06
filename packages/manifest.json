@@ -205,6 +205,39 @@
                         ]
                 },
                 {
+                        "id": "gcc",
+                        "group": "core",
+                        "name": "gcc",
+                        "note": "nvim-treesitter compiles each parser with a C compiler, and telescope-fzf-native has build = \"make\". FreeBSD and macOS have a compiler in base, so both are skipped there.",
+                        "overrides": {
+                                "freebsd": null,
+                                "macos": null,
+                                "debian": "build-essential",
+                                "ubuntu": "build-essential",
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "make",
+                        "group": "core",
+                        "name": "make",
+                        "note": "Needed by telescope-fzf-native's build step. Included in build-essential on Debian and Ubuntu, and in base on FreeBSD and macOS.",
+                        "overrides": {
+                                "debian": null,
+                                "ubuntu": null,
+                                "freebsd": null,
+                                "macos": null,
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "fedora"
+                        ]
+                },
+                {
                         "id": "fastfetch",
                         "group": "core",
                         "name": "fastfetch",

@@ -24,11 +24,20 @@ local basic_parsers = {
     "json",
     "yaml",
     "markdown",
+    -- render-markdown highlights fenced spans through markdown_inline
+    "markdown_inline",
     "html",
     "css",
     "vim",
+    -- lazy.nvim generates helptags for every plugin's doc/ directory, and
+    -- Neovim parses those with the vimdoc parser. Without it :Lazy sync
+    -- aborts on the first plugin it tries to index.
+    "vimdoc",
     "lua",
     "luadoc",
+    "query",
+    "c",
+    "bash",
 }
 
 local parsers = vim.tbl_deep_extend("force", basic_parsers, custom_parsers)

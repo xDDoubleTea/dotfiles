@@ -19,6 +19,7 @@ eza
 fastfetch
 fd
 fzf
+gcc
 git
 github-cli
 htop
@@ -26,6 +27,7 @@ keychain
 lazygit
 less
 lsd
+make
 mpv
 navi
 neofetch
