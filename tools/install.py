@@ -214,7 +214,18 @@ def install_packages(manifest, manager, resolved):
 
     names = sorted(r.name for r in resolved)
     info("Installing %d package(s) with %s..." % (len(names), cmd[0]))
-    run(cmd + names)
+    try:
+        run(cmd + names)
+    except subprocess.CalledProcessError as exc:
+        # Every name was checked in the validate phase, so reaching here means
+        # the names are real but cannot be installed together -- a conflict or
+        # an unsatisfiable dependency, which no name check can predict.
+        die("%s exited %d; its output is above.\n"
+            "   The package names were all validated, so this is a conflict or a\n"
+            "   broken dependency rather than a typo. Re-run the command by hand\n"
+            "   with fewer packages to find the one at fault:\n"
+            "     %s <a few names>"
+            % (cmd[0], exc.returncode, " ".join(cmd)))
 
 
 # ─── phase 4: submodules ─────────────────────────────────────────────────
