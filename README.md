@@ -202,11 +202,17 @@ fatal — run `:PlugInstall` inside vim if the download fails.
 
 ## Yazi plugins
 
-The plugins shell out to external tools. `sshfs` is in the core package group
-for `sshfs.yazi`; on macOS it also needs macFUSE, which is a cask:
+The plugins shell out to external tools. `sshfs`, `mediainfo` and `exiftool` are
+in the core package group for `sshfs.yazi`, `mediainfo.yazi` and
+`exifaudio.yazi`.
+
+macOS has no sshfs package: homebrew-core dropped it because macFUSE stopped
+being open source, and the `gromgit/fuse` replacement was disabled in February
+2026. Use FUSE-T, which needs no kernel extension:
 
 ```bash
-brew install --cask macfuse
+brew install macos-fuse-t/homebrew-cask/fuse-t
+brew install macos-fuse-t/homebrew-cask/sshfs-fuse-t
 ```
 
 Plugins under `yazi/.config/yazi/plugins/` are tracked as plain files, so a clone

@@ -28,6 +28,7 @@ lazygit
 less
 lsd
 make
+mediainfo
 mpv
 navi
 neofetch
@@ -35,6 +36,7 @@ neovim
 nodejs
 npm
 openssh
+perl-image-exiftool
 python
 ripgrep
 rmpc
