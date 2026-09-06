@@ -15,7 +15,7 @@
                 "full list rather than silently installing the wrong thing. Once you have",
                 "confirmed a name on a real box, drop that manager from the list.",
                 "",
-                "The 'arch' and 'freebsd' columns are fully verified against a real package manager on the respective box. The others are not.",
+                "The 'arch', 'freebsd' and 'debian' columns are fully verified against a real package manager on the respective box. The others are not.",
                 "'gentoo' is the least trustworthy column: atoms need a category prefix and none",
                 "of them have been checked. Packages with no known gentoo atom omit the key",
                 "entirely, which install.py reports as unmapped.",
@@ -151,7 +151,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -165,7 +164,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -181,7 +179,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -206,7 +203,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -220,7 +216,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -234,7 +229,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -249,7 +243,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -264,7 +257,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -278,7 +270,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -295,7 +286,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -309,7 +299,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -324,7 +313,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -339,7 +327,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -354,7 +341,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -370,7 +356,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -414,7 +399,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -429,7 +413,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -473,7 +456,6 @@
                                 "gentoo": "net-misc/openssh"
                         },
                         "unverified": [
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -487,7 +469,6 @@
                                 "gentoo": "net-misc/keychain"
                         },
                         "unverified": [
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -504,7 +485,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -519,7 +499,6 @@
                                 "gentoo": null
                         },
                         "unverified": [
-                                "debian",
                                 "fedora"
                         ]
                 },
@@ -532,7 +511,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -546,7 +524,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -561,7 +538,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -575,7 +551,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -589,7 +564,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -603,7 +577,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -617,7 +590,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -631,7 +603,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -645,7 +616,6 @@
                         },
                         "unverified": [
                                 "macos",
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -675,7 +645,6 @@
                                 "gentoo": "app-text/zathura"
                         },
                         "unverified": [
-                                "debian",
                                 "fedora",
                                 "gentoo"
                         ]
