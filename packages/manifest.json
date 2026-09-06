@@ -15,7 +15,7 @@
                 "full list rather than silently installing the wrong thing. Once you have",
                 "confirmed a name on a real box, drop that manager from the list.",
                 "",
-                "The 'arch', 'freebsd', 'debian' and 'macos' columns are fully verified against a real package manager on the respective box. The others are not.",
+                "The 'arch', 'freebsd', 'debian', 'ubuntu' and 'macos' columns are fully verified against a real package manager on the respective box. The others are not.",
                 "'gentoo' is the least trustworthy column: atoms need a category prefix and none",
                 "of them have been checked. Packages with no known gentoo atom omit the key",
                 "entirely, which install.py reports as unmapped.",
@@ -26,7 +26,9 @@
                 "",
                 "\"aur\": true means the Arch name lives in the AUR and needs an AUR helper (yay).",
                 "",
-                "Each manager's 'query' must exit 0 for a real package and non-zero for a fake one. That is easy to get wrong and the failure looks like every package name being invalid at once. Verified so far: arch, debian, freebsd, macos. NOT yet verified: fedora, gentoo -- if one of those reports that every name is missing, suspect the query command before the names."
+                "Each manager's 'query' must exit 0 for a real package and non-zero for a fake one. That is easy to get wrong and the failure looks like every package name being invalid at once. Verified so far: arch, debian, ubuntu, freebsd, macos. NOT yet verified: fedora, gentoo -- if one of those reports that every name is missing, suspect the query command before the names.",
+                "",
+                "Managers that share a package manager binary are told apart by 'os_release_id', matched against ID in /etc/os-release. ubuntu and debian both use apt-get but ship different package sets: Ubuntu 24.04 predates the Debian uploads of lazygit and atuin. An apt distro that matches neither ID falls back to debian."
         ],
         "managers": {
                 "arch": {
@@ -106,7 +108,29 @@
                                 "show",
                                 "--"
                         ],
-                        "sudo": true
+                        "sudo": true,
+                        "os_release_id": [
+                                "debian"
+                        ]
+                },
+                "ubuntu": {
+                        "os": "Linux",
+                        "detect": "apt-get",
+                        "install": [
+                                "sudo",
+                                "apt-get",
+                                "install",
+                                "-y"
+                        ],
+                        "query": [
+                                "apt-cache",
+                                "show",
+                                "--"
+                        ],
+                        "sudo": true,
+                        "os_release_id": [
+                                "ubuntu"
+                        ]
                 },
                 "fedora": {
                         "os": "Linux",
@@ -348,9 +372,10 @@
                         "id": "lazygit",
                         "group": "core",
                         "name": "lazygit",
-                        "note": "",
+                        "note": "not in Ubuntu 24.04; Debian trixie has it.",
                         "overrides": {
-                                "gentoo": "dev-vcs/lazygit"
+                                "gentoo": "dev-vcs/lazygit",
+                                "ubuntu": null
                         },
                         "unverified": [
                                 "fedora",
@@ -364,7 +389,8 @@
                         "note": "FreeBSD has sysutils/yazi. Not in Debian apt, and no confirmed Gentoo atom. Plugins are re-fetched with `ya pkg install` from yazi/.config/yazi/package.toml.",
                         "overrides": {
                                 "debian": null,
-                                "gentoo": null
+                                "gentoo": null,
+                                "ubuntu": null
                         },
                         "unverified": [
                                 "fedora",
@@ -404,7 +430,8 @@
                         "note": "zsh/.zshrc line 172 runs `eval \"$(navi widget zsh)\"` unconditionally. No known Debian package, and no confirmed Gentoo atom, so both are skipped.",
                         "overrides": {
                                 "debian": null,
-                                "gentoo": null
+                                "gentoo": null,
+                                "ubuntu": null
                         },
                         "unverified": [
                                 "fedora"
@@ -414,9 +441,10 @@
                         "id": "atuin",
                         "group": "core",
                         "name": "atuin",
-                        "note": "Called from zsh/.zshrc, behind a command check. Confirmed present in Debian and FreeBSD; no confirmed Gentoo atom, so Gentoo is skipped.",
+                        "note": "Called from zsh/.zshrc, behind a command check. Confirmed present in Debian and FreeBSD; no confirmed Gentoo atom, so Gentoo is skipped. not in Ubuntu 24.04; Debian trixie has it.",
                         "overrides": {
-                                "gentoo": null
+                                "gentoo": null,
+                                "ubuntu": null
                         },
                         "unverified": [
                                 "fedora"
@@ -474,7 +502,8 @@
                         "overrides": {
                                 "macos": null,
                                 "gentoo": null,
-                                "debian": null
+                                "debian": null,
+                                "ubuntu": null
                         },
                         "unverified": [
                                 "fedora"
@@ -598,7 +627,8 @@
                                 "debian": null,
                                 "fedora": null,
                                 "gentoo": null,
-                                "freebsd": null
+                                "freebsd": null,
+                                "ubuntu": null
                         },
                         "unverified": []
                 },
@@ -625,7 +655,8 @@
                                 "fedora": null,
                                 "gentoo": null,
                                 "freebsd": null,
-                                "macos": null
+                                "macos": null,
+                                "ubuntu": null
                         },
                         "unverified": []
                 },
@@ -637,7 +668,8 @@
                         "aur": true,
                         "overrides": {
                                 "gentoo": null,
-                                "debian": null
+                                "debian": null,
+                                "ubuntu": null
                         },
                         "unverified": [
                                 "fedora"

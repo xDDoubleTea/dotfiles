@@ -62,7 +62,8 @@ there. `minimal_packages.txt` is a generated Arch view of the same data.
 | Arch | `yay`, falling back to `pacman` when no AUR package is in scope | core + desktop |
 | FreeBSD | `pkg` | core |
 | macOS | `brew` | core |
-| Ubuntu / Debian | `apt-get` | core |
+| Debian | `apt-get` | core |
+| Ubuntu | `apt-get` | core |
 | Fedora | `dnf` | core |
 | Gentoo | `emerge` | core |
 
@@ -70,8 +71,13 @@ Package names differ between managers: `fd` is `fd-find` on FreeBSD, Debian and
 Fedora; Arch's `github-cli` is `gh` elsewhere; FreeBSD calls Node `node` and
 packages `npm` separately.
 
-The Arch, FreeBSD, Debian and macOS columns are verified against a live package
-manager. Fedora and Gentoo entries carry an `unverified` marker. `install.py`
+Ubuntu and Debian have separate columns. Both use apt, and `install.py` tells
+them apart by the `ID` field in `/etc/os-release`; an apt distro matching neither
+falls back to the Debian column. Their package sets differ — Ubuntu 24.04
+predates the Debian uploads of `lazygit` and `atuin`, so both are skipped there.
+
+The Arch, FreeBSD, Debian, Ubuntu and macOS columns are verified against a live
+package manager. Fedora and Gentoo entries carry an `unverified` marker. `install.py`
 checks every name against the local package manager before installing anything
 and reports all failures at once. Clear the marker for a manager once a real
 machine confirms the name.

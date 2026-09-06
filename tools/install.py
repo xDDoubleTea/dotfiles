@@ -94,6 +94,19 @@ def load_manifest():
         return json.load(fh)
 
 
+def os_release_id():
+    """The ID field from /etc/os-release, lowercased, or None."""
+    for path in ("/etc/os-release", "/usr/lib/os-release"):
+        try:
+            with open(path) as fh:
+                for line in fh:
+                    if line.startswith("ID="):
+                        return line.split("=", 1)[1].strip().strip('"\'').lower()
+        except OSError:
+            continue
+    return None
+
+
 def detect_manager(manifest, override=None):
     """Resolve which package manager key applies to this machine."""
     managers = manifest["managers"]
@@ -107,6 +120,22 @@ def detect_manager(manifest, override=None):
     # Match on OS first so a Linux box with brew installed is not mistaken
     # for macOS, then on which manager binary actually exists.
     candidates = [k for k, m in managers.items() if m.get("os") == uname]
+
+    # Several distros share a package manager, so the binary alone cannot
+    # separate them: Ubuntu and Debian both have apt-get but ship different
+    # package sets. Prefer a manager that names this distro in os-release.
+    distro = os_release_id()
+    if distro:
+        for key in candidates:
+            ids = managers[key].get("os_release_id") or []
+            if distro in ids and shutil.which(managers[key]["detect"]):
+                return key
+
+    for key in candidates:
+        if managers[key].get("os_release_id"):
+            continue  # only reachable via the id match above
+        if shutil.which(managers[key]["detect"]):
+            return key
     for key in candidates:
         if shutil.which(managers[key]["detect"]):
             return key
