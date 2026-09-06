@@ -174,6 +174,12 @@ eval "$(direnv hook zsh)"
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
 
-eval "$(navi widget zsh)"
+# navi and atuin are not packaged for Debian or Ubuntu, so guard both rather
+# than error on every prompt there.
+if (( $+commands[navi] )); then
+	eval "$(navi widget zsh)"
+fi
 
-eval "$(atuin init zsh)"
+if (( $+commands[atuin] )); then
+	eval "$(atuin init zsh)"
+fi
