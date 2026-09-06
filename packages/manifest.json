@@ -1,737 +1,1096 @@
 {
-  "schema_version": 1,
-  "_readme": [
-    "Package manifest for tools/install.py. JSON rather than TOML on purpose:",
-    "tomllib is Python 3.11+ and Ubuntu 22.04 still ships 3.10, which would break",
-    "the stdlib-only constraint.",
-    "",
-    "Each package has a default 'name' used for every manager. 'overrides' gives a",
-    "per-manager name; an override of null means the package is not available there",
-    "and is skipped silently.",
-    "",
-    "'unverified' lists managers whose resolved name has NOT been confirmed against a",
-    "real package manager. install.py validates every name against the local package",
-    "manager before installing anything, so a wrong name here fails loudly with the",
-    "full list rather than silently installing the wrong thing. Once you have",
-    "confirmed a name on a real box, drop that manager from the list.",
-    "",
-    "Only 'arch' names are fully verified (checked with `pacman -Si` on the Arch box).",
-    "'gentoo' is the least trustworthy column: atoms need a category prefix and none",
-    "of them have been checked. Packages with no known gentoo atom omit the key",
-    "entirely, which install.py reports as unmapped.",
-    "",
-    "group 'core' = CLI tools, installed everywhere.",
-    "group 'desktop' = Arch/Hyprland only, opt-in via --desktop, never on a headless",
-    "target. Desktop entries carry \"os\": [\"arch\"].",
-    "",
-    "\"aur\": true means the Arch name lives in the AUR and needs an AUR helper (yay)."
-  ],
-  "managers": {
-    "arch": {
-      "os": "Linux",
-      "detect": "pacman",
-      "helper": "yay",
-      "install": ["yay", "-S", "--needed", "--noconfirm"],
-      "install_no_aur": ["sudo", "pacman", "-S", "--needed", "--noconfirm"],
-      "query": ["pacman", "-Si", "--"],
-      "aur_query": ["yay", "-Si", "--"],
-      "sudo": false
-    },
-    "freebsd": {
-      "os": "FreeBSD",
-      "detect": "pkg",
-      "install": ["sudo", "pkg", "install", "-y"],
-      "query": ["pkg", "search", "-e", "-Q", "name", "--"],
-      "sudo": true
-    },
-    "macos": {
-      "os": "Darwin",
-      "detect": "brew",
-      "install": ["brew", "install"],
-      "query": ["brew", "info", "--formula", "--"],
-      "sudo": false
-    },
-    "debian": {
-      "os": "Linux",
-      "detect": "apt-get",
-      "install": ["sudo", "apt-get", "install", "-y"],
-      "query": ["apt-cache", "show", "--"],
-      "sudo": true
-    },
-    "fedora": {
-      "os": "Linux",
-      "detect": "dnf",
-      "install": ["sudo", "dnf", "install", "-y"],
-      "query": ["dnf", "info", "--"],
-      "sudo": true
-    },
-    "gentoo": {
-      "os": "Linux",
-      "detect": "emerge",
-      "install": ["sudo", "emerge", "--noreplace"],
-      "query": ["emerge", "--pretend", "--quiet", "--"],
-      "sudo": true
-    }
-  },
-  "packages": [
-    {
-      "id": "git",
-      "group": "core",
-      "name": "git",
-      "overrides": {
-        "gentoo": "dev-vcs/git"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "curl",
-      "group": "core",
-      "name": "curl",
-      "overrides": {
-        "gentoo": "net-misc/curl"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "python",
-      "group": "core",
-      "name": "python3",
-      "note": "Arch calls it 'python'; python3 is not a valid Arch package name.",
-      "overrides": {
-        "arch": "python",
-        "gentoo": "dev-lang/python"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "fastfetch",
-      "group": "core",
-      "name": "fastfetch",
-      "overrides": {},
-      "unverified": ["freebsd", "macos", "fedora", "gentoo"]
-    },
-    {
-      "id": "stow",
-      "group": "core",
-      "name": "stow",
-      "overrides": {
-        "gentoo": "app-admin/stow"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "zsh",
-      "group": "core",
-      "name": "zsh",
-      "overrides": {
-        "gentoo": "app-shells/zsh"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "tmux",
-      "group": "core",
-      "name": "tmux",
-      "overrides": {
-        "gentoo": "app-misc/tmux"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "neovim",
-      "group": "core",
-      "name": "neovim",
-      "note": "Was 'nvim' in minimal_packages.txt, which is not a real Arch package.",
-      "overrides": {
-        "gentoo": "app-editors/neovim"
-      },
-      "unverified": ["macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "vim",
-      "group": "core",
-      "name": "vim",
-      "note": "FreeBSD base ships neither vim nor nvim; vim/.vimrc is the config used there.",
-      "overrides": {
-        "gentoo": "app-editors/vim"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "ripgrep",
-      "group": "core",
-      "name": "ripgrep",
-      "overrides": {
-        "gentoo": "sys-apps/ripgrep"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "fd",
-      "group": "core",
-      "name": "fd-find",
-      "note": "Arch and macOS call it 'fd'. FreeBSD sysutils/fd installs as 'fd-find' (verified via ports.freebsd.org); Debian and Fedora also use fd-find.",
-      "overrides": {
-        "arch": "fd",
-        "macos": "fd",
-        "gentoo": "sys-apps/fd"
-      },
-      "unverified": ["macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "fzf",
-      "group": "core",
-      "name": "fzf",
-      "overrides": {
-        "gentoo": "app-shells/fzf"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "bat",
-      "group": "core",
-      "name": "bat",
-      "note": "On Debian and Ubuntu the package is bat but the binary is batcat, because the name bat belongs to bacula-console-qt. zsh/.zsh_custom/alias.zsh detects this and aliases it back.",
-      "overrides": {
-        "gentoo": "sys-apps/bat"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "eza",
-      "group": "core",
-      "name": "eza",
-      "note": "Used by the ls/ll/la/l aliases in zsh/.zsh_custom/alias.zsh. Not in Debian bookworm; trixie and later have it.",
-      "overrides": {
-        "gentoo": "sys-apps/eza"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "lsd",
-      "group": "core",
-      "name": "lsd",
-      "note": "Used by the lt/lta aliases.",
-      "overrides": {
-        "gentoo": "sys-apps/lsd"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "gh",
-      "group": "core",
-      "name": "gh",
-      "note": "Arch names it github-cli. FreeBSD devel/gh installs as 'gh' (verified).",
-      "overrides": {
-        "arch": "github-cli",
-        "gentoo": "dev-util/gh"
-      },
-      "unverified": ["macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "lazygit",
-      "group": "core",
-      "name": "lazygit",
-      "note": "",
-      "overrides": {
-        "gentoo": "dev-vcs/lazygit"
-      },
-      "unverified": ["freebsd", "macos", "fedora", "gentoo"]
-    },
-    {
-      "id": "yazi",
-      "group": "core",
-      "name": "yazi",
-      "note": "FreeBSD has sysutils/yazi. Not in Debian apt, and no confirmed Gentoo atom. Plugins are re-fetched with `ya pkg install` from yazi/.config/yazi/package.toml.",
-      "overrides": {
-        "debian": null,
-        "gentoo": null
-      },
-      "unverified": ["freebsd", "macos", "fedora", "gentoo"]
-    },
-    {
-      "id": "zoxide",
-      "group": "core",
-      "name": "zoxide",
-      "note": "zsh/.zshrc line 152 runs `eval \"$(zoxide init zsh)\"` unconditionally.",
-      "overrides": {
-        "gentoo": "app-shells/zoxide"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "direnv",
-      "group": "core",
-      "name": "direnv",
-      "note": "zsh/.zshrc line 168 runs `eval \"$(direnv hook zsh)\"` unconditionally.",
-      "overrides": {
-        "gentoo": "dev-util/direnv"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "navi",
-      "group": "core",
-      "name": "navi",
-      "note": "zsh/.zshrc line 172 runs `eval \"$(navi widget zsh)\"` unconditionally. No known Debian package, and no confirmed Gentoo atom, so both are skipped.",
-      "overrides": {
-        "debian": null,
-        "gentoo": null
-      },
-      "unverified": ["freebsd", "macos", "fedora"]
-    },
-    {
-      "id": "atuin",
-      "group": "core",
-      "name": "atuin",
-      "note": "zsh/.zshrc line 174 runs `eval \"$(atuin init zsh)\"` unconditionally. No known Debian package, and no confirmed Gentoo atom, so both are skipped.",
-      "overrides": {
-        "debian": null,
-        "gentoo": null
-      },
-      "unverified": ["freebsd", "macos", "fedora"]
-    },
-    {
-      "id": "openssh",
-      "group": "core",
-      "name": "openssh-server",
-      "note": "Arch ships client and server in one 'openssh' package. FreeBSD and macOS have sshd in the base system, so nothing is installed there -- FreeBSD enables it with sshd_enable=YES in /etc/rc.conf, macOS with Remote Login. Note that Debian and Fedora start and enable sshd on install, while Arch only installs the unit.",
-      "overrides": {
-        "arch": "openssh",
-        "freebsd": null,
-        "macos": null,
-        "gentoo": "net-misc/openssh"
-      },
-      "unverified": ["debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "keychain",
-      "group": "core",
-      "name": "keychain",
-      "note": "Required by the SSH_AUTH_SOCK fallback in zsh/.zprofile on FreeBSD and macOS, where no agent socket is preset. Confirmed present in Homebrew.",
-      "overrides": {
-        "gentoo": "net-misc/keychain"
-      },
-      "unverified": ["freebsd", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "nodejs",
-      "group": "core",
-      "name": "nodejs",
-      "note": "Homebrew's 'node' formula bundles npm, so macOS needs one entry where Arch has two. See the separate npm entry.",
-      "overrides": {
-        "macos": "node",
-        "gentoo": "net-libs/nodejs"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "npm",
-      "group": "core",
-      "name": "npm",
-      "note": "Skipped on macOS and Gentoo, where it ships with the node package.",
-      "overrides": {
-        "macos": null,
-        "gentoo": null
-      },
-      "unverified": ["freebsd", "debian", "fedora"]
-    },
-    {
-      "id": "htop",
-      "group": "core",
-      "name": "htop",
-      "overrides": {
-        "gentoo": "sys-process/htop"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "btop",
-      "group": "core",
-      "name": "btop",
-      "overrides": {
-        "gentoo": "sys-process/btop"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "less",
-      "group": "core",
-      "name": "less",
-      "note": "Present in FreeBSD base, so the pkg install is a no-op there.",
-      "overrides": {
-        "gentoo": "sys-apps/less"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "unzip",
-      "group": "core",
-      "name": "unzip",
-      "overrides": {
-        "gentoo": "app-arch/unzip"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "wget",
-      "group": "core",
-      "name": "wget",
-      "overrides": {
-        "gentoo": "net-misc/wget"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "w3m",
-      "group": "core",
-      "name": "w3m",
-      "overrides": {
-        "gentoo": "www-client/w3m"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "yt-dlp",
-      "group": "core",
-      "name": "yt-dlp",
-      "overrides": {
-        "gentoo": "net-misc/yt-dlp"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "mpv",
-      "group": "core",
-      "name": "mpv",
-      "overrides": {
-        "gentoo": "media-video/mpv"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "cmus",
-      "group": "core",
-      "name": "cmus",
-      "overrides": {
-        "gentoo": "media-sound/cmus"
-      },
-      "unverified": ["freebsd", "macos", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "rmpc",
-      "group": "core",
-      "name": "rmpc",
-      "note": "In Arch extra. Unlikely to be packaged elsewhere; skipped where absent.",
-      "overrides": {
-        "debian": null,
-        "fedora": null,
-        "gentoo": null
-      },
-      "unverified": ["freebsd", "macos"]
-    },
-    {
-      "id": "zathura",
-      "group": "core",
-      "name": "zathura",
-      "note": "Homebrew has no zathura formula (formulae.brew.sh returns 404), so macOS is skipped.",
-      "overrides": {
-        "macos": null,
-        "gentoo": "app-text/zathura"
-      },
-      "unverified": ["freebsd", "debian", "fedora", "gentoo"]
-    },
-    {
-      "id": "uwufetch",
-      "group": "core",
-      "name": "uwufetch",
-      "overrides": {
-        "debian": null,
-        "fedora": null,
-        "gentoo": null
-      },
-      "unverified": ["freebsd", "macos"]
-    },
-    {
-      "id": "neofetch",
-      "group": "core",
-      "name": "neofetch",
-      "note": "Discontinued upstream and dropped from the Arch repos, so it is AUR-only there. Still packaged on some other systems.",
-      "aur": true,
-      "overrides": {
-        "gentoo": null,
-        "debian": null
-      },
-      "unverified": ["freebsd", "macos", "fedora"]
-    },
-    {
-      "id": "hyprland",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "hyprland"
-    },
-    {
-      "id": "hyprshot",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "hyprshot"
-    },
-    {
-      "id": "hyprpolkitagent",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "hyprpolkitagent"
-    },
-    {
-      "id": "waybar",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "waybar"
-    },
-    {
-      "id": "mako",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "mako"
-    },
-    {
-      "id": "swaync",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "swaync"
-    },
-    {
-      "id": "rofi",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "rofi"
-    },
-    {
-      "id": "kitty",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "kitty"
-    },
-    {
-      "id": "ghostty",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "ghostty"
-    },
-    {
-      "id": "awww",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "awww",
-      "note": "Not a typo for swww: swww was renamed to awww and is in extra."
-    },
-    {
-      "id": "cava",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "cava"
-    },
-    {
-      "id": "wl-clipboard",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "wl-clipboard"
-    },
-    {
-      "id": "pavucontrol",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "pavucontrol"
-    },
-    {
-      "id": "kdeconnect",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "kdeconnect"
-    },
-    {
-      "id": "remmina",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "remmina"
-    },
-    {
-      "id": "obs-studio",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "obs-studio"
-    },
-    {
-      "id": "discord",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "discord"
-    },
-    {
-      "id": "scrcpy",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "scrcpy",
-      "note": "Used by the phonemirror alias."
-    },
-    {
-      "id": "mpvpaper",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "mpvpaper",
-      "aur": true
-    },
-    {
-      "id": "waypaper",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "waypaper",
-      "aur": true
-    },
-    {
-      "id": "clipse",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "clipse",
-      "aur": true
-    },
-    {
-      "id": "clipboard-sync",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "clipboard-sync",
-      "aur": true,
-      "note": "Used by the fix-clipboard function in zsh/.zshrc."
-    },
-    {
-      "id": "parui",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "parui",
-      "aur": true,
-      "note": "Used by the parui alias."
-    },
-    {
-      "id": "bibata-cursor",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "bibata-cursor-git",
-      "aur": true
-    },
-    {
-      "id": "lunar-client",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "lunar-client",
-      "aur": true
-    },
-    {
-      "id": "uxplay",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "uxplay-git",
-      "aur": true
-    },
-    {
-      "id": "vencord-installer",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "vencord-installer-bin",
-      "aur": true
-    },
-    {
-      "id": "vscode",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "visual-studio-code-bin",
-      "aur": true
-    },
-    {
-      "id": "zen-browser",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "zen-browser-bin",
-      "aur": true
-    },
-    {
-      "id": "fcitx5",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5"
-    },
-    {
-      "id": "fcitx5-anthy",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-anthy"
-    },
-    {
-      "id": "fcitx5-configtool",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-configtool"
-    },
-    {
-      "id": "fcitx5-gtk",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-gtk"
-    },
-    {
-      "id": "fcitx5-kkc",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-kkc"
-    },
-    {
-      "id": "fcitx5-lua",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-lua"
-    },
-    {
-      "id": "fcitx5-qt",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-qt"
-    },
-    {
-      "id": "fcitx5-chewing",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-chewing",
-      "note": "Was misspelled 'fcixt5-chewing' in minimal_packages.txt."
-    },
-    {
-      "id": "fcitx5-mcbopomofo",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "fcitx5-mcbopomofo-git",
-      "aur": true
-    },
-    {
-      "id": "ttf-jetbrains-mono-nerd",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "ttf-jetbrains-mono-nerd"
-    },
-    {
-      "id": "noto-fonts",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "noto-fonts"
-    },
-    {
-      "id": "noto-fonts-cjk",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "noto-fonts-cjk"
-    },
-    {
-      "id": "noto-fonts-emoji",
-      "group": "desktop",
-      "os": ["arch"],
-      "name": "noto-fonts-emoji"
-    }
-  ]
+        "schema_version": 1,
+        "_readme": [
+                "Package manifest for tools/install.py. JSON rather than TOML on purpose:",
+                "tomllib is Python 3.11+ and Ubuntu 22.04 still ships 3.10, which would break",
+                "the stdlib-only constraint.",
+                "",
+                "Each package has a default 'name' used for every manager. 'overrides' gives a",
+                "per-manager name; an override of null means the package is not available there",
+                "and is skipped silently.",
+                "",
+                "'unverified' lists managers whose resolved name has NOT been confirmed against a",
+                "real package manager. install.py validates every name against the local package",
+                "manager before installing anything, so a wrong name here fails loudly with the",
+                "full list rather than silently installing the wrong thing. Once you have",
+                "confirmed a name on a real box, drop that manager from the list.",
+                "",
+                "Only 'arch' names are fully verified (checked with `pacman -Si` on the Arch box).",
+                "'gentoo' is the least trustworthy column: atoms need a category prefix and none",
+                "of them have been checked. Packages with no known gentoo atom omit the key",
+                "entirely, which install.py reports as unmapped.",
+                "",
+                "group 'core' = CLI tools, installed everywhere.",
+                "group 'desktop' = Arch/Hyprland only, opt-in via --desktop, never on a headless",
+                "target. Desktop entries carry \"os\": [\"arch\"].",
+                "",
+                "\"aur\": true means the Arch name lives in the AUR and needs an AUR helper (yay)."
+        ],
+        "managers": {
+                "arch": {
+                        "os": "Linux",
+                        "detect": "pacman",
+                        "helper": "yay",
+                        "install": [
+                                "yay",
+                                "-S",
+                                "--needed",
+                                "--noconfirm"
+                        ],
+                        "install_no_aur": [
+                                "sudo",
+                                "pacman",
+                                "-S",
+                                "--needed",
+                                "--noconfirm"
+                        ],
+                        "query": [
+                                "pacman",
+                                "-Si",
+                                "--"
+                        ],
+                        "aur_query": [
+                                "yay",
+                                "-Si",
+                                "--"
+                        ],
+                        "sudo": false
+                },
+                "freebsd": {
+                        "os": "FreeBSD",
+                        "detect": "pkg",
+                        "install": [
+                                "sudo",
+                                "pkg",
+                                "install",
+                                "-y"
+                        ],
+                        "query": [
+                                "pkg",
+                                "search",
+                                "-e",
+                                "-Q",
+                                "name",
+                                "--"
+                        ],
+                        "sudo": true
+                },
+                "macos": {
+                        "os": "Darwin",
+                        "detect": "brew",
+                        "install": [
+                                "brew",
+                                "install"
+                        ],
+                        "query": [
+                                "brew",
+                                "info",
+                                "--formula",
+                                "--"
+                        ],
+                        "sudo": false
+                },
+                "debian": {
+                        "os": "Linux",
+                        "detect": "apt-get",
+                        "install": [
+                                "sudo",
+                                "apt-get",
+                                "install",
+                                "-y"
+                        ],
+                        "query": [
+                                "apt-cache",
+                                "show",
+                                "--"
+                        ],
+                        "sudo": true
+                },
+                "fedora": {
+                        "os": "Linux",
+                        "detect": "dnf",
+                        "install": [
+                                "sudo",
+                                "dnf",
+                                "install",
+                                "-y"
+                        ],
+                        "query": [
+                                "dnf",
+                                "info",
+                                "--"
+                        ],
+                        "sudo": true
+                },
+                "gentoo": {
+                        "os": "Linux",
+                        "detect": "emerge",
+                        "install": [
+                                "sudo",
+                                "emerge",
+                                "--noreplace"
+                        ],
+                        "query": [
+                                "emerge",
+                                "--pretend",
+                                "--quiet",
+                                "--"
+                        ],
+                        "sudo": true
+                }
+        },
+        "packages": [
+                {
+                        "id": "git",
+                        "group": "core",
+                        "name": "git",
+                        "overrides": {
+                                "gentoo": "dev-vcs/git"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "curl",
+                        "group": "core",
+                        "name": "curl",
+                        "overrides": {
+                                "gentoo": "net-misc/curl"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "python",
+                        "group": "core",
+                        "name": "python3",
+                        "note": "Arch calls it 'python'; python3 is not a valid Arch package name.",
+                        "overrides": {
+                                "arch": "python",
+                                "gentoo": "dev-lang/python"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "fastfetch",
+                        "group": "core",
+                        "name": "fastfetch",
+                        "overrides": {},
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "stow",
+                        "group": "core",
+                        "name": "stow",
+                        "overrides": {
+                                "gentoo": "app-admin/stow"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "zsh",
+                        "group": "core",
+                        "name": "zsh",
+                        "overrides": {
+                                "gentoo": "app-shells/zsh"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "tmux",
+                        "group": "core",
+                        "name": "tmux",
+                        "overrides": {
+                                "gentoo": "app-misc/tmux"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "neovim",
+                        "group": "core",
+                        "name": "neovim",
+                        "note": "Was 'nvim' in minimal_packages.txt, which is not a real Arch package.",
+                        "overrides": {
+                                "gentoo": "app-editors/neovim"
+                        },
+                        "unverified": [
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "vim",
+                        "group": "core",
+                        "name": "vim",
+                        "note": "FreeBSD base ships neither vim nor nvim; vim/.vimrc is the config used there.",
+                        "overrides": {
+                                "gentoo": "app-editors/vim"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "ripgrep",
+                        "group": "core",
+                        "name": "ripgrep",
+                        "overrides": {
+                                "gentoo": "sys-apps/ripgrep"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "fd",
+                        "group": "core",
+                        "name": "fd-find",
+                        "note": "Arch and macOS call it 'fd'. FreeBSD sysutils/fd installs as 'fd-find' (verified via ports.freebsd.org); Debian and Fedora also use fd-find.",
+                        "overrides": {
+                                "arch": "fd",
+                                "macos": "fd",
+                                "gentoo": "sys-apps/fd"
+                        },
+                        "unverified": [
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "fzf",
+                        "group": "core",
+                        "name": "fzf",
+                        "overrides": {
+                                "gentoo": "app-shells/fzf"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "bat",
+                        "group": "core",
+                        "name": "bat",
+                        "note": "On Debian and Ubuntu the package is bat but the binary is batcat, because the name bat belongs to bacula-console-qt. zsh/.zsh_custom/alias.zsh detects this and aliases it back.",
+                        "overrides": {
+                                "gentoo": "sys-apps/bat"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "eza",
+                        "group": "core",
+                        "name": "eza",
+                        "note": "Used by the ls/ll/la/l aliases in zsh/.zsh_custom/alias.zsh. Not in Debian bookworm; trixie and later have it.",
+                        "overrides": {
+                                "gentoo": "sys-apps/eza"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "lsd",
+                        "group": "core",
+                        "name": "lsd",
+                        "note": "Used by the lt/lta aliases.",
+                        "overrides": {
+                                "gentoo": "sys-apps/lsd"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "gh",
+                        "group": "core",
+                        "name": "gh",
+                        "note": "Arch names it github-cli. FreeBSD devel/gh installs as 'gh' (verified).",
+                        "overrides": {
+                                "arch": "github-cli",
+                                "gentoo": "dev-util/gh"
+                        },
+                        "unverified": [
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "lazygit",
+                        "group": "core",
+                        "name": "lazygit",
+                        "note": "",
+                        "overrides": {
+                                "gentoo": "dev-vcs/lazygit"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "yazi",
+                        "group": "core",
+                        "name": "yazi",
+                        "note": "FreeBSD has sysutils/yazi. Not in Debian apt, and no confirmed Gentoo atom. Plugins are re-fetched with `ya pkg install` from yazi/.config/yazi/package.toml.",
+                        "overrides": {
+                                "debian": null,
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "zoxide",
+                        "group": "core",
+                        "name": "zoxide",
+                        "note": "zsh/.zshrc line 152 runs `eval \"$(zoxide init zsh)\"` unconditionally.",
+                        "overrides": {
+                                "gentoo": "app-shells/zoxide"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "direnv",
+                        "group": "core",
+                        "name": "direnv",
+                        "note": "zsh/.zshrc line 168 runs `eval \"$(direnv hook zsh)\"` unconditionally.",
+                        "overrides": {
+                                "gentoo": "dev-util/direnv"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "navi",
+                        "group": "core",
+                        "name": "navi",
+                        "note": "zsh/.zshrc line 172 runs `eval \"$(navi widget zsh)\"` unconditionally. No known Debian package, and no confirmed Gentoo atom, so both are skipped.",
+                        "overrides": {
+                                "debian": null,
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "fedora"
+                        ]
+                },
+                {
+                        "id": "atuin",
+                        "group": "core",
+                        "name": "atuin",
+                        "note": "Called from zsh/.zshrc, behind a command check. In Debian; no confirmed Gentoo atom, so Gentoo is skipped.",
+                        "overrides": {
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "fedora"
+                        ]
+                },
+                {
+                        "id": "openssh",
+                        "group": "core",
+                        "name": "openssh-server",
+                        "note": "Arch ships client and server in one 'openssh' package. FreeBSD and macOS have sshd in the base system, so nothing is installed there -- FreeBSD enables it with sshd_enable=YES in /etc/rc.conf, macOS with Remote Login. Note that Debian and Fedora start and enable sshd on install, while Arch only installs the unit.",
+                        "overrides": {
+                                "arch": "openssh",
+                                "freebsd": null,
+                                "macos": null,
+                                "gentoo": "net-misc/openssh"
+                        },
+                        "unverified": [
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "keychain",
+                        "group": "core",
+                        "name": "keychain",
+                        "note": "Required by the SSH_AUTH_SOCK fallback in zsh/.zprofile on FreeBSD and macOS, where no agent socket is preset. Confirmed present in Homebrew.",
+                        "overrides": {
+                                "gentoo": "net-misc/keychain"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "nodejs",
+                        "group": "core",
+                        "name": "nodejs",
+                        "note": "Homebrew's 'node' formula bundles npm, so macOS needs one entry where Arch has two. See the separate npm entry.",
+                        "overrides": {
+                                "macos": "node",
+                                "gentoo": "net-libs/nodejs"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "npm",
+                        "group": "core",
+                        "name": "npm",
+                        "note": "Skipped on macOS and Gentoo, where it ships with the node package.",
+                        "overrides": {
+                                "macos": null,
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "debian",
+                                "fedora"
+                        ]
+                },
+                {
+                        "id": "htop",
+                        "group": "core",
+                        "name": "htop",
+                        "overrides": {
+                                "gentoo": "sys-process/htop"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "btop",
+                        "group": "core",
+                        "name": "btop",
+                        "overrides": {
+                                "gentoo": "sys-process/btop"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "less",
+                        "group": "core",
+                        "name": "less",
+                        "note": "Present in FreeBSD base, so the pkg install is a no-op there.",
+                        "overrides": {
+                                "gentoo": "sys-apps/less"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "unzip",
+                        "group": "core",
+                        "name": "unzip",
+                        "overrides": {
+                                "gentoo": "app-arch/unzip"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "wget",
+                        "group": "core",
+                        "name": "wget",
+                        "overrides": {
+                                "gentoo": "net-misc/wget"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "w3m",
+                        "group": "core",
+                        "name": "w3m",
+                        "overrides": {
+                                "gentoo": "www-client/w3m"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "yt-dlp",
+                        "group": "core",
+                        "name": "yt-dlp",
+                        "overrides": {
+                                "gentoo": "net-misc/yt-dlp"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "mpv",
+                        "group": "core",
+                        "name": "mpv",
+                        "overrides": {
+                                "gentoo": "media-video/mpv"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "cmus",
+                        "group": "core",
+                        "name": "cmus",
+                        "overrides": {
+                                "gentoo": "media-sound/cmus"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "rmpc",
+                        "group": "core",
+                        "name": "rmpc",
+                        "note": "In Arch extra. Unlikely to be packaged elsewhere; skipped where absent.",
+                        "overrides": {
+                                "debian": null,
+                                "fedora": null,
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos"
+                        ]
+                },
+                {
+                        "id": "zathura",
+                        "group": "core",
+                        "name": "zathura",
+                        "note": "Homebrew has no zathura formula (formulae.brew.sh returns 404), so macOS is skipped.",
+                        "overrides": {
+                                "macos": null,
+                                "gentoo": "app-text/zathura"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "debian",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
+                        "id": "uwufetch",
+                        "group": "core",
+                        "name": "uwufetch",
+                        "overrides": {
+                                "debian": null,
+                                "fedora": null,
+                                "gentoo": null
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos"
+                        ]
+                },
+                {
+                        "id": "neofetch",
+                        "group": "core",
+                        "name": "neofetch",
+                        "note": "Discontinued upstream and dropped from the Arch repos, so it is AUR-only there. Still packaged on some other systems.",
+                        "aur": true,
+                        "overrides": {
+                                "gentoo": null,
+                                "debian": null
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "fedora"
+                        ]
+                },
+                {
+                        "id": "hyprland",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "hyprland"
+                },
+                {
+                        "id": "hyprshot",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "hyprshot"
+                },
+                {
+                        "id": "hyprpolkitagent",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "hyprpolkitagent"
+                },
+                {
+                        "id": "waybar",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "waybar"
+                },
+                {
+                        "id": "mako",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "mako"
+                },
+                {
+                        "id": "swaync",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "swaync"
+                },
+                {
+                        "id": "rofi",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "rofi"
+                },
+                {
+                        "id": "kitty",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "kitty"
+                },
+                {
+                        "id": "ghostty",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "ghostty"
+                },
+                {
+                        "id": "awww",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "awww",
+                        "note": "Not a typo for swww: swww was renamed to awww and is in extra."
+                },
+                {
+                        "id": "cava",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "cava"
+                },
+                {
+                        "id": "wl-clipboard",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "wl-clipboard"
+                },
+                {
+                        "id": "pavucontrol",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "pavucontrol"
+                },
+                {
+                        "id": "kdeconnect",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "kdeconnect"
+                },
+                {
+                        "id": "remmina",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "remmina"
+                },
+                {
+                        "id": "obs-studio",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "obs-studio"
+                },
+                {
+                        "id": "discord",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "discord"
+                },
+                {
+                        "id": "scrcpy",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "scrcpy",
+                        "note": "Used by the phonemirror alias."
+                },
+                {
+                        "id": "mpvpaper",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "mpvpaper",
+                        "aur": true
+                },
+                {
+                        "id": "waypaper",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "waypaper",
+                        "aur": true
+                },
+                {
+                        "id": "clipse",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "clipse",
+                        "aur": true
+                },
+                {
+                        "id": "clipboard-sync",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "clipboard-sync",
+                        "aur": true,
+                        "note": "Used by the fix-clipboard function in zsh/.zshrc."
+                },
+                {
+                        "id": "parui",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "parui",
+                        "aur": true,
+                        "note": "Used by the parui alias."
+                },
+                {
+                        "id": "bibata-cursor",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "bibata-cursor-git",
+                        "aur": true
+                },
+                {
+                        "id": "lunar-client",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "lunar-client",
+                        "aur": true
+                },
+                {
+                        "id": "uxplay",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "uxplay-git",
+                        "aur": true
+                },
+                {
+                        "id": "vencord-installer",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "vencord-installer-bin",
+                        "aur": true
+                },
+                {
+                        "id": "vscode",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "visual-studio-code-bin",
+                        "aur": true
+                },
+                {
+                        "id": "zen-browser",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "zen-browser-bin",
+                        "aur": true
+                },
+                {
+                        "id": "fcitx5",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5"
+                },
+                {
+                        "id": "fcitx5-anthy",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-anthy"
+                },
+                {
+                        "id": "fcitx5-configtool",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-configtool"
+                },
+                {
+                        "id": "fcitx5-gtk",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-gtk"
+                },
+                {
+                        "id": "fcitx5-kkc",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-kkc"
+                },
+                {
+                        "id": "fcitx5-lua",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-lua"
+                },
+                {
+                        "id": "fcitx5-qt",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-qt"
+                },
+                {
+                        "id": "fcitx5-chewing",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-chewing",
+                        "note": "Was misspelled 'fcixt5-chewing' in minimal_packages.txt."
+                },
+                {
+                        "id": "fcitx5-mcbopomofo",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "fcitx5-mcbopomofo-git",
+                        "aur": true
+                },
+                {
+                        "id": "ttf-jetbrains-mono-nerd",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "ttf-jetbrains-mono-nerd"
+                },
+                {
+                        "id": "noto-fonts",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "noto-fonts"
+                },
+                {
+                        "id": "noto-fonts-cjk",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "noto-fonts-cjk"
+                },
+                {
+                        "id": "noto-fonts-emoji",
+                        "group": "desktop",
+                        "os": [
+                                "arch"
+                        ],
+                        "name": "noto-fonts-emoji"
+                }
+        ]
 }
