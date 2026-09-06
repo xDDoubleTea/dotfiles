@@ -144,9 +144,18 @@ and aliases `bat` to it, and points fzf's `--preview` at the same binary.
 Neovim is the main editor (`nvim/`), with NvChad and LazyVim variants in
 `nvim_nvchad/` and `nvim_lazy/`.
 
-**macOS** needs the neovim config: `im-select.nvim` switches the system input
-method on mode changes and depends on the macOS input-method APIs. Stow `nvim`
-there.
+`im-select.nvim` switches the system input method on mode changes, and picks its
+backend from the OS: `macism` with `com.apple.keylayout.ABC` on macOS,
+`fcitx5-remote` with `keyboard-us` elsewhere. Stow `nvim` on macOS to get it.
+
+`macism` lives in a tap rather than homebrew-core, so install it separately:
+
+```bash
+brew tap laishulu/homebrew
+brew install macism
+```
+
+On Arch, `fcitx5-remote` comes with the `fcitx5` package in the desktop group.
 
 **FreeBSD** base ships neither vim nor nvim, so the `vim` package installs one.
 The working config there is `vim/.vimrc`; nvim is installed but not configured,
