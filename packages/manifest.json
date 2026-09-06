@@ -15,7 +15,7 @@
                 "full list rather than silently installing the wrong thing. Once you have",
                 "confirmed a name on a real box, drop that manager from the list.",
                 "",
-                "The 'arch', 'freebsd' and 'debian' columns are fully verified against a real package manager on the respective box. The others are not.",
+                "The 'arch', 'freebsd', 'debian' and 'macos' columns are fully verified against a real package manager on the respective box. The others are not.",
                 "'gentoo' is the least trustworthy column: atoms need a category prefix and none",
                 "of them have been checked. Packages with no known gentoo atom omit the key",
                 "entirely, which install.py reports as unmapped.",
@@ -26,7 +26,7 @@
                 "",
                 "\"aur\": true means the Arch name lives in the AUR and needs an AUR helper (yay).",
                 "",
-                "Each manager's 'query' must exit 0 for a real package and non-zero for a fake one. That is easy to get wrong and the failure looks like every package name being invalid at once. Verified so far: arch, debian, freebsd. NOT yet verified: macos, fedora, gentoo -- if one of those reports that every name is missing, suspect the query command before the names."
+                "Each manager's 'query' must exit 0 for a real package and non-zero for a fake one. That is easy to get wrong and the failure looks like every package name being invalid at once. Verified so far: arch, debian, freebsd, macos. NOT yet verified: fedora, gentoo -- if one of those reports that every name is missing, suspect the query command before the names."
         ],
         "managers": {
                 "arch": {
@@ -150,7 +150,6 @@
                                 "gentoo": "dev-vcs/git"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -163,7 +162,6 @@
                                 "gentoo": "net-misc/curl"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -178,7 +176,6 @@
                                 "gentoo": "dev-lang/python"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -189,7 +186,6 @@
                         "name": "fastfetch",
                         "overrides": {},
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -202,7 +198,6 @@
                                 "gentoo": "app-admin/stow"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -215,7 +210,6 @@
                                 "gentoo": "app-shells/zsh"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -228,7 +222,6 @@
                                 "gentoo": "app-misc/tmux"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -242,7 +235,6 @@
                                 "gentoo": "app-editors/neovim"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -256,7 +248,6 @@
                                 "gentoo": "app-editors/vim"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -269,7 +260,6 @@
                                 "gentoo": "sys-apps/ripgrep"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -285,7 +275,6 @@
                                 "gentoo": "sys-apps/fd"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -298,7 +287,6 @@
                                 "gentoo": "app-shells/fzf"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -312,7 +300,6 @@
                                 "gentoo": "sys-apps/bat"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -326,7 +313,6 @@
                                 "gentoo": "sys-apps/eza"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -340,7 +326,6 @@
                                 "gentoo": "sys-apps/lsd"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -355,7 +340,6 @@
                                 "gentoo": "dev-util/gh"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -369,7 +353,6 @@
                                 "gentoo": "dev-vcs/lazygit"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -384,7 +367,6 @@
                                 "gentoo": null
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -398,7 +380,6 @@
                                 "gentoo": "app-shells/zoxide"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -412,7 +393,6 @@
                                 "gentoo": "dev-util/direnv"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -427,7 +407,6 @@
                                 "gentoo": null
                         },
                         "unverified": [
-                                "macos",
                                 "fedora"
                         ]
                 },
@@ -440,7 +419,6 @@
                                 "gentoo": null
                         },
                         "unverified": [
-                                "macos",
                                 "fedora"
                         ]
                 },
@@ -484,7 +462,6 @@
                                 "freebsd": "node"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -511,7 +488,6 @@
                                 "gentoo": "sys-process/htop"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -524,7 +500,6 @@
                                 "gentoo": "sys-process/btop"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -538,7 +513,6 @@
                                 "gentoo": "sys-apps/less"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -551,7 +525,6 @@
                                 "gentoo": "app-arch/unzip"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -564,7 +537,6 @@
                                 "gentoo": "net-misc/wget"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -577,7 +549,6 @@
                                 "gentoo": "www-client/w3m"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -590,7 +561,6 @@
                                 "gentoo": "net-misc/yt-dlp"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -603,7 +573,6 @@
                                 "gentoo": "media-video/mpv"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -616,7 +585,6 @@
                                 "gentoo": "media-sound/cmus"
                         },
                         "unverified": [
-                                "macos",
                                 "fedora",
                                 "gentoo"
                         ]
@@ -632,9 +600,7 @@
                                 "gentoo": null,
                                 "freebsd": null
                         },
-                        "unverified": [
-                                "macos"
-                        ]
+                        "unverified": []
                 },
                 {
                         "id": "zathura",
@@ -658,11 +624,10 @@
                                 "debian": null,
                                 "fedora": null,
                                 "gentoo": null,
-                                "freebsd": null
+                                "freebsd": null,
+                                "macos": null
                         },
-                        "unverified": [
-                                "macos"
-                        ]
+                        "unverified": []
                 },
                 {
                         "id": "neofetch",
@@ -675,7 +640,6 @@
                                 "debian": null
                         },
                         "unverified": [
-                                "macos",
                                 "fedora"
                         ]
                 },

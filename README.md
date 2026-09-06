@@ -70,8 +70,8 @@ Package names differ between managers: `fd` is `fd-find` on FreeBSD, Debian and
 Fedora; Arch's `github-cli` is `gh` elsewhere; FreeBSD calls Node `node` and
 packages `npm` separately.
 
-The Arch, FreeBSD and Debian columns are verified against a live package manager.
-macOS, Fedora and Gentoo entries carry an `unverified` marker. `install.py`
+The Arch, FreeBSD, Debian and macOS columns are verified against a live package
+manager. Fedora and Gentoo entries carry an `unverified` marker. `install.py`
 checks every name against the local package manager before installing anything
 and reports all failures at once. Clear the marker for a manager once a real
 machine confirms the name.
