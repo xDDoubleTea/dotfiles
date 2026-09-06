@@ -431,6 +431,25 @@
                         ]
                 },
                 {
+                        "id": "sshfs",
+                        "group": "core",
+                        "name": "sshfs",
+                        "note": "Required by the sshfs.yazi plugin, which shells out to sshfs. On macOS the formula needs macFUSE, installed separately with `brew install --cask macfuse`; brew info succeeds regardless, so validation cannot catch a missing macFUSE.",
+                        "overrides": {
+                                "freebsd": "fusefs-sshfs",
+                                "fedora": "fuse-sshfs",
+                                "gentoo": "net-fs/sshfs"
+                        },
+                        "unverified": [
+                                "freebsd",
+                                "macos",
+                                "debian",
+                                "ubuntu",
+                                "fedora",
+                                "gentoo"
+                        ]
+                },
+                {
                         "id": "zoxide",
                         "group": "core",
                         "name": "zoxide",

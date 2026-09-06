@@ -38,6 +38,7 @@ openssh
 python
 ripgrep
 rmpc
+sshfs
 stow
 tmux
 unzip

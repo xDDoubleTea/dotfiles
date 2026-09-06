@@ -202,6 +202,13 @@ fatal — run `:PlugInstall` inside vim if the download fails.
 
 ## Yazi plugins
 
+The plugins shell out to external tools. `sshfs` is in the core package group
+for `sshfs.yazi`; on macOS it also needs macFUSE, which is a cask:
+
+```bash
+brew install --cask macfuse
+```
+
 Plugins under `yazi/.config/yazi/plugins/` are tracked as plain files, so a clone
 gets them. `yazi/.config/yazi/package.toml` pins each one by revision and hash.
 `setup.sh` runs `ya pkg install` at the end to sync them; run it again at any
