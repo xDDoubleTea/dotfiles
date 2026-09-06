@@ -79,6 +79,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-vi-mode golang archlinux docker docker-compose gitignore)
 
+# Customisations live in the dotfiles repo (stowed to ~/.zsh_custom), not in
+# $ZSH/custom -- oh-my-zsh's own .gitignore ignores custom/, so anything left
+# in there is tracked by no repository at all.
+export ZSH_CUSTOM="$HOME/.zsh_custom"
+
 source $ZSH/oh-my-zsh.sh
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -169,6 +174,12 @@ eval "$(direnv hook zsh)"
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
 
-eval "$(navi widget zsh)"
+# Guarded because neither is packaged everywhere: navi has no Debian or Ubuntu
+# package at all, and atuin is missing on some of the other targets.
+if (( $+commands[navi] )); then
+	eval "$(navi widget zsh)"
+fi
 
-eval "$(atuin init zsh)"
+if (( $+commands[atuin] )); then
+	eval "$(atuin init zsh)"
+fi

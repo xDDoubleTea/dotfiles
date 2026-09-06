@@ -9,6 +9,9 @@
 *.log.*
 *.sig
 
+__pycache__/
+*.py[cod]
+
 pkg/
 src/
 startvnc.sh
