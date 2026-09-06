@@ -174,6 +174,11 @@
       "overrides": { "debian": null, "gentoo": null },
       "unverified": ["freebsd", "macos", "fedora"] },
 
+    { "id": "openssh", "group": "core", "name": "openssh-server",
+      "note": "Arch ships client and server in one 'openssh' package. FreeBSD and macOS have sshd in the base system, so nothing is installed there -- FreeBSD enables it with sshd_enable=YES in /etc/rc.conf, macOS with Remote Login. Note that Debian and Fedora start and enable sshd on install, while Arch only installs the unit.",
+      "overrides": { "arch": "openssh", "freebsd": null, "macos": null, "gentoo": "net-misc/openssh" },
+      "unverified": ["debian", "fedora", "gentoo"] },
+
     { "id": "keychain", "group": "core", "name": "keychain",
       "note": "Required by the SSH_AUTH_SOCK fallback in zsh/.zprofile on FreeBSD and macOS, where no agent socket is preset. Confirmed present in Homebrew.",
       "overrides": { "gentoo": "net-misc/keychain" },
