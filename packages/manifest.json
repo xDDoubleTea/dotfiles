@@ -468,12 +468,11 @@
                         "id": "atuin",
                         "group": "core",
                         "name": "atuin",
-                        "note": "Called from zsh/.zshrc, behind a command check. In Debian; no confirmed Gentoo atom, so Gentoo is skipped.",
+                        "note": "Called from zsh/.zshrc, behind a command check. Confirmed present in Debian and FreeBSD; no confirmed Gentoo atom, so Gentoo is skipped.",
                         "overrides": {
                                 "gentoo": null
                         },
                         "unverified": [
-                                "freebsd",
                                 "macos",
                                 "fedora"
                         ]
