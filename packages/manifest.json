@@ -493,10 +493,11 @@
                         "id": "npm",
                         "group": "core",
                         "name": "npm",
-                        "note": "Skipped on macOS and Gentoo, where it ships with the node package.",
+                        "note": "Skipped on macOS and Gentoo, where it ships with the node package, and on Debian, where NodeSource's nodejs bundles npm and declares Conflicts: npm against Debian's separate package. Note that Debian's own nodejs does not include npm, so a box without the NodeSource repo will have node but no npm.",
                         "overrides": {
                                 "macos": null,
-                                "gentoo": null
+                                "gentoo": null,
+                                "debian": null
                         },
                         "unverified": [
                                 "fedora"
