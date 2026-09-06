@@ -50,7 +50,7 @@ def die(msg, code=1):
     sys.exit(code)
 
 
-def run(cmd, check=True, capture=False):
+def run(cmd, check=True, capture=False, timeout=None):
     """Run a command, or just print it under --dry-run."""
     printable = " ".join(cmd)
     if DRY_RUN:
@@ -61,6 +61,7 @@ def run(cmd, check=True, capture=False):
         cmd,
         check=check,
         text=True,
+        timeout=timeout,
         stdout=subprocess.PIPE if capture else None,
         stderr=subprocess.PIPE if capture else None,
     )
@@ -230,6 +231,51 @@ def init_submodules():
     info("Initialising git submodules...")
     run(["git", "-C", str(REPO), "submodule", "update", "--init", "--recursive"],
         check=False)
+
+
+VIM_PLUG_URL = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+
+def install_vim_plug():
+    """Fetch vim-plug, which vim/.vimrc calls on its first line.
+
+    No package manager ships it and it has to land in ~/.vim/autoload for vim
+    to find it, so it is downloaded rather than installed. Without it vim
+    errors out on every startup.
+    """
+    dest = Path.home() / ".vim" / "autoload" / "plug.vim"
+    if dest.exists():
+        info("vim-plug already installed.")
+    else:
+        info("Installing vim-plug...")
+        if shutil.which("curl"):
+            cmd = ["curl", "-fsSLo", str(dest), "--create-dirs", VIM_PLUG_URL]
+        elif shutil.which("wget"):
+            if not DRY_RUN:
+                dest.parent.mkdir(parents=True, exist_ok=True)
+            cmd = ["wget", "-qO", str(dest), VIM_PLUG_URL]
+        else:
+            warn("neither curl nor wget found; skipping vim-plug")
+            return
+        try:
+            run(cmd, timeout=120)
+        except (subprocess.SubprocessError, OSError) as exc:
+            warn("could not fetch vim-plug (%s); vim will error until it is "
+                 "installed by hand" % exc)
+            return
+
+    if not shutil.which("vim"):
+        return
+    # Fetch the plugins .vimrc declares. Silent ex mode so it cannot stop on a
+    # prompt; a failure here is not fatal, since :PlugInstall can be re-run.
+    info("Installing vim plugins...")
+    try:
+        run(["vim", "-es", "-u", str(Path.home() / ".vimrc"), "-i", "NONE",
+             "-c", "PlugInstall --sync", "-c", "qa"],
+            check=False, timeout=300)
+    except (subprocess.SubprocessError, OSError) as exc:
+        warn("vim PlugInstall did not finish (%s); run :PlugInstall in vim"
+             % exc)
 
 
 # ─── phase 5: stow ───────────────────────────────────────────────────────
@@ -430,6 +476,9 @@ def main():
 
     if not args.skip_stow:
         stow_packages(args.only)
+
+    # After stow, so PlugInstall reads the ~/.vimrc the stow step just linked.
+    install_vim_plug()
 
     set_login_shell()
     post_install(manager, want_desktop)

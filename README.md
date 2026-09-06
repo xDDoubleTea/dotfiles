@@ -142,6 +142,12 @@ FreeBSD base ships **neither vim nor nvim**, so the `vim` package installs one.
 On the FreeBSD boxes the working config is `vim/.vimrc` — nvim is installed but
 not configured there, so use `vim`, or stow `nvim` yourself if you want it.
 
+`vim/.vimrc` calls `plug#begin()` on its first line, so it needs vim-plug. No
+package manager ships it, so `setup.sh` downloads it to `~/.vim/autoload/plug.vim`
+after stowing and then runs `:PlugInstall`. Both steps are skipped if plug.vim is
+already there, and neither is fatal — re-run `:PlugInstall` inside vim if the
+download failed.
+
 ## Yazi plugins
 
 Plugins under `yazi/.config/yazi/plugins/` are tracked as plain files, so a
