@@ -136,6 +136,13 @@ every target: `navi` (absent from Ubuntu and Debian) and `atuin`.
 On Ubuntu and Debian, bat's binary is named `batcat`. `alias.zsh` detects this
 and aliases `bat` to it, and points fzf's `--preview` at the same binary.
 
+## Homebrew
+
+`zsh/.zprofile` runs `brew shellenv` for whichever prefix exists —
+`/opt/homebrew` on Apple silicon, `/usr/local` on Intel — so `PATH`, `MANPATH`
+and `INFOPATH` pick up Homebrew on login. It runs before the SSH agent block,
+which looks for `keychain` on `PATH`.
+
 ## SSH agent
 
 `zsh/.zprofile` handles this per-OS and needs no configuration:
