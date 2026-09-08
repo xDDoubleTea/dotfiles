@@ -2,49 +2,227 @@
 
 ![Hyprland](https://img.shields.io/badge/Hyprland-%2358E1FF.svg?style=for-the-badge&logo=hyprland&logoColor=black)
 
-Dotfiles for arch linux
+Dotfiles for Arch Linux with a Hyprland desktop, and for the CLI subset on
+FreeBSD, Ubuntu/Debian, Fedora, Gentoo and macOS.
 
 ## Requirements
 
-Arch linux (minimal setup with a user (other than root) is prefered)
+- **Arch Linux** for the full Hyprland desktop. A minimal install with a non-root
+  user that has sudo is preferred.
+- **Everything else** gets the *core* CLI tools. This covers the headless VMs:
+  FreeBSD, Ubuntu 24.04 server, Debian, Fedora, Gentoo and macOS.
+
+`git`, `stow` and a POSIX `/bin/sh` are the only hard requirements. The bootstrap
+installs Python 3 if it is missing.
 
 ## Installation
 
-Remember to switch to the user you want to install the dotfiles for and ensure that you have sudo privileges (and, of course, sudo is installed).
-
 ```bash
- sudo pacman -S git
- git clone --recurse-submodules https://github.com/xDDoubleTea/dotfiles ~/dotfiles
- cd dotfiles/
- chmod +x ./setup.sh
- ./setup.sh
+git clone --recurse-submodules https://github.com/xDDoubleTea/dotfiles ~/dotfiles
+cd ~/dotfiles
+./setup.sh              # core CLI tools, all platforms
+./setup.sh --desktop    # core + the Hyprland desktop (Arch only)
 ```
 
-Take a look at the minimal_packages.txt to know what packages were installed.
-
-You're all setup!
-
-The install script has been tested on a fresh arch linux install, and should work without issues.
-It has also been tested on wsl with arch linux, and should work without issues as well.
-
-The install script will stow all the directories in this repo, which means it will create symlinks in your home directory to the files in the directories.
-If you don't want to use the install script, you can install a program called `stow`, and then run the following commands:
+`--recurse-submodules` is required — oh-my-zsh, ohmytmux, powerlevel10k and
+zsh-vi-mode are submodules, and the shell needs all four. Repair a clone made
+without it:
 
 ```bash
-stow package
+git submodule update --init --recursive
 ```
 
-where `package` is a directory of this repo (you can take a look at `all_stowed_files.txt`). What this does is it will create symlinks in your home directory to the files in the `package` directory. For example, if you run `stow nvim`, it will create symlinks in your home directory to the files in the `nvim` directory. Since `nvim` contains `.config/nvim`, it will create a symlink in your home directory to `~/.config/nvim`.
+### What setup.sh does
 
-After creating the symlinks, you can just install and run neovim, and it will use the configuration in `~/.config/nvim`.
+`setup.sh` is a POSIX `sh` script that detects the OS, ensures Python 3 is
+installed, and hands over to `tools/install.py`. That script validates package
+names, installs them, initialises submodules, stows the packages, installs
+vim-plug, and sets the login shell to zsh.
 
-Before stowing, make sure to backup your existing configuration files (using `mv ~/.config/nvim ~/.config/nvim_bak` for example), as they will be overwritten by the symlinks created by stow.
+| Flag | Effect |
+| --- | --- |
+| `--desktop` | also install the Hyprland desktop group (Arch only) |
+| `--dry-run` | print every command, change nothing |
+| `--skip-packages` | stow only |
+| `--skip-stow` | install packages, create no symlinks |
+| `--only PKG...` | stow just these packages |
+| `--manager KEY` | use the named package manager, skipping detection |
+| `--dump-list [KEY]` | print the resolved package names for a manager |
 
-All the configurations after stowing should be done through modifying the files in the `~/dotfiles` directory, as the symlinks will point to those files. For example, if you want to modify the neovim configuration, you can edit the file `~/dotfiles/nvim/init.lua`, and it will be reflected in `~/.config/nvim/init.lua`.
+`./setup.sh --dry-run` prints the exact package list and stow operations without
+touching the system. Run it first on a new machine.
+
+### Package manager per OS
+
+Packages are declared in `packages/manifest.json` and mapped to per-OS names from
+there. `minimal_packages.txt` is a generated Arch view of the same data.
+
+| OS | Manager | Groups |
+| --- | --- | --- |
+| Arch | `yay`, falling back to `pacman` when no AUR package is in scope | core + desktop |
+| FreeBSD | `pkg` | core |
+| macOS | `brew` | core |
+| Debian | `apt-get` | core |
+| Ubuntu | `apt-get` | core |
+| Fedora | `dnf` | core |
+| Gentoo | `emerge` | core |
+
+Package names differ between managers: `fd` is `fd-find` on FreeBSD, Debian and
+Fedora; Arch's `github-cli` is `gh` elsewhere; FreeBSD calls Node `node` and
+packages `npm` separately.
+
+Ubuntu and Debian have separate columns. Both use apt, and `install.py` tells
+them apart by the `ID` field in `/etc/os-release`; an apt distro matching neither
+falls back to the Debian column. Their package sets differ — Ubuntu 24.04
+predates the Debian uploads of `lazygit` and `atuin`, so both are skipped there.
+
+The Arch, FreeBSD, Debian, Ubuntu and macOS columns are verified against a live
+package manager. Fedora and Gentoo entries carry an `unverified` marker. `install.py`
+checks every name against the local package manager before installing anything
+and reports all failures at once. Clear the marker for a manager once a real
+machine confirms the name.
+
+Packages absent from a manager are declared `null` there and skipped with a
+message — Homebrew has no `zathura`, apt has no `yazi`.
+
+Name validation cannot detect conflicts between two packages that both exist. On
+Ubuntu and Debian, `npm` is skipped because NodeSource's `nodejs` bundles npm and
+declares `Conflicts: npm`. A Debian system without the NodeSource repository gets
+node without npm.
+
+## Installing without setup.sh
+
+Stowing by hand is fully supported, and is the usual path on a CLI-only VM:
+
+```bash
+cd ~/dotfiles
+stow nvim        # symlinks ~/.config/nvim -> ~/dotfiles/nvim/.config/nvim
+stow zsh         # symlinks ~/.zshrc, ~/.zprofile, ~/.zsh_custom, ...
+```
+
+Each top-level directory is a stow package whose contents mirror the path
+relative to `$HOME`, so `nvim/.config/nvim` lands at `~/.config/nvim`.
+`all_stowed_files.txt` lists the packages `setup.sh` installs by default; other
+directories in the repo are stowed manually.
+
+Back up an existing config first (`mv ~/.config/nvim ~/.config/nvim_bak`), or let
+`setup.sh` handle it — it renames conflicting files to `<name>.bak` before
+stowing. `stow -D <package>` removes a package's symlinks, and `stow -R <package>`
+restows after adding or deleting files inside one.
+
+Edit the files in `~/dotfiles`. The paths under `~/.config` are symlinks back
+into the repo.
+
+## Shell setup
+
+Everything zsh needs is tracked in the repo.
+
+```
+zsh/.zshrc                              sets ZSH_CUSTOM="$HOME/.zsh_custom"
+zsh/.zsh_custom/alias.zsh               aliases
+zsh/.zsh_custom/themes/powerlevel10k/   submodule
+zsh/.zsh_custom/plugins/zsh-vi-mode/    submodule
+zsh/.p10k.zsh                           powerlevel10k config
+```
+
+Customisations live in `~/.zsh_custom`, outside `~/.oh-my-zsh/custom`. oh-my-zsh
+ignores `custom/` in its own `.gitignore`, so files kept there are invisible to
+both the submodule and this repo and disappear on a fresh clone. Setting
+`ZSH_CUSTOM` to a stowed directory keeps them tracked.
+
+Two hooks are guarded by a command check, because neither tool is packaged on
+every target: `navi` (absent from Ubuntu and Debian) and `atuin`.
+
+On Ubuntu and Debian, bat's binary is named `batcat`. `alias.zsh` detects this
+and aliases `bat` to it, and points fzf's `--preview` at the same binary.
+
+## Homebrew
+
+`zsh/.zprofile` runs `brew shellenv` for whichever prefix exists —
+`/opt/homebrew` on Apple silicon, `/usr/local` on Intel — so `PATH`, `MANPATH`
+and `INFOPATH` pick up Homebrew on login. It runs before the SSH agent block,
+which looks for `keychain` on `PATH`.
+
+## SSH agent
+
+`zsh/.zprofile` handles this per-OS and needs no configuration:
+
+- **Linux** — uses the systemd user socket, `SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket`.
+  Enable it once with `systemctl --user enable --now ssh-agent.socket`.
+- **FreeBSD / macOS** — falls back to `keychain --eval id_ed25519`, which reuses
+  one agent across logins. `keychain` is in the core package group.
+
+## Editors
+
+Neovim is the main editor (`nvim/`), with NvChad and LazyVim variants in
+`nvim_nvchad/` and `nvim_lazy/`.
+
+### First run on a new machine
+
+nvim-treesitter compiles parsers on demand, and lazy.nvim needs the `vimdoc`
+parser to generate helptags — so the first sync has to install that parser
+partway through:
+
+```bash
+nvim --headless -c 'Lazy! restore' -c qa
+nvim --headless -c 'TSInstall vimdoc' -c qa
+nvim --headless -c 'Lazy! restore' -c qa
+```
+
+Once per machine. Afterwards `Lazy restore` alone is enough.
+
+`Lazy restore` pins every plugin to `lazy-lock.json`. `Lazy update` and
+`Lazy sync` rewrite that file to the latest upstream commits — run those on one
+machine, commit the lockfile, and `Lazy restore` on the others.
+
+### Input method
+
+`im-select.nvim` switches the system input method on mode changes, and picks its
+backend from the OS: `macism` with `com.apple.keylayout.ABC` on macOS,
+`fcitx5-remote` with `keyboard-us` elsewhere. It loads only when that backend is
+on `PATH`, so it stays out of the way on headless boxes reached over SSH.
+
+`macism` lives in a tap rather than homebrew-core, so install it separately:
+
+```bash
+brew tap laishulu/homebrew
+brew install macism
+```
+
+On Arch, `fcitx5-remote` comes with the `fcitx5` package in the desktop group.
+
+**FreeBSD** base ships neither vim nor nvim, so the `vim` package installs one.
+The working config there is `vim/.vimrc`; nvim is installed but not configured,
+so use `vim` or stow `nvim` yourself.
+
+`vim/.vimrc` calls `plug#begin()` on its first line and needs vim-plug. `setup.sh`
+downloads it to `~/.vim/autoload/plug.vim` after stowing, then runs
+`:PlugInstall`. Both steps are skipped when plug.vim is present. Neither is
+fatal — run `:PlugInstall` inside vim if the download fails.
+
+## Yazi plugins
+
+The plugins shell out to external tools. `sshfs`, `mediainfo` and `exiftool` are
+in the core package group for `sshfs.yazi`, `mediainfo.yazi` and
+`exifaudio.yazi`.
+
+macOS has no sshfs package: homebrew-core dropped it because macFUSE stopped
+being open source, and the `gromgit/fuse` replacement was disabled in February
+2026. Use FUSE-T, which needs no kernel extension:
+
+```bash
+brew install macos-fuse-t/homebrew-cask/fuse-t
+brew install macos-fuse-t/homebrew-cask/sshfs-fuse-t
+```
+
+Plugins under `yazi/.config/yazi/plugins/` are tracked as plain files, so a clone
+gets them. `yazi/.config/yazi/package.toml` pins each one by revision and hash.
+`setup.sh` runs `ya pkg install` at the end to sync them; run it again at any
+time.
 
 ## Notes
 
-The `--recurse-submodules` option in git clone is necessary, as it clones the submodules in this repo, which are dependencies for ohmyzsh, ohmytmux, neofetch theme and zathura theme to work.
+The four submodules are oh-my-zsh, ohmytmux, powerlevel10k and zsh-vi-mode. The neofetch and zathura themes are tracked as plain files and need nothing extra.
 
 The install script assumes you want the default settings of kitty and hypr to be replaced.
 
