@@ -35,12 +35,12 @@
   /*
     Home Icon Image
   */
-  --home-icon-image: url(https://i.imgur.com/oN1eBVE.jpg);
+  --home-icon-image: url(https://assets.hoshiyomi-dev.work/laplus.jpg);
 
   /*
     Change your friends icon image position
   */
-  --home-icon-image-position: center left;
+  --home-icon-image-position: top center;
 
   /*
     Change your friends icon image zoom
