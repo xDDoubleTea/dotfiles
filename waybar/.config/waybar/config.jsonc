@@ -2,6 +2,7 @@
   "layer": "top",
   "position": "top",
   "mod": "dock",
+  "output": "DP-1",
   "height": 38,
   "exclusive": true,
   "passthrough": false,
