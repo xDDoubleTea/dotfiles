@@ -183,3 +183,10 @@ fi
 if (( $+commands[atuin] )); then
 	eval "$(atuin init zsh)"
 fi
+
+# bun completions
+[ -s "/home/susamogus/.bun/_bun" ] && source "/home/susamogus/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
