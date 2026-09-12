@@ -68,6 +68,17 @@ local conform = {
             lua = { "stylua" },
             markdown = { "prettier" },
             python = { "ruff_organize_imports", "ruff_format" },
+            -- Without these, conform falls back to the LSP formatter, and
+            -- tsserver ignores the project's .prettierrc.
+            javascript = { "prettier" },
+            javascriptreact = { "prettier" },
+            typescript = { "prettier" },
+            typescriptreact = { "prettier" },
+            json = { "prettier" },
+            jsonc = { "prettier" },
+            yaml = { "prettier" },
+            css = { "prettier" },
+            html = { "prettier" },
         },
         format_on_save = function(bufnr)
             if vim.b[bufnr].autoformat == false then

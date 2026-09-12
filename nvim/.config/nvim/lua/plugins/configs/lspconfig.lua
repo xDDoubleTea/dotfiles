@@ -34,6 +34,34 @@ local server_configs = {
         },
     },
     marksman = {},
+    vtsls = {
+        settings = {
+            typescript = {
+                inlayHints = {
+                    parameterNames = { enabled = "literals" },
+                    variableTypes = { enabled = false },
+                    functionLikeReturnTypes = { enabled = true },
+                    parameterTypes = { enabled = true },
+                    propertyDeclarationTypes = { enabled = true },
+                    enumMemberValues = { enabled = true },
+                },
+                preferences = {
+                    importModuleSpecifier = "shortest",
+                },
+                updateImportsOnFileMove = { enabled = "always" },
+            },
+            vtsls = {
+                -- Resolve imports across workspace packages in a monorepo.
+                enableMoveToFileCodeAction = true,
+                autoUseWorkspaceTsdk = true,
+                experimental = {
+                    -- Surface the full type instead of truncating it at hover.
+                    maxInlayHintLength = 40,
+                    completion = { enableServerSideFuzzyMatch = true },
+                },
+            },
+        },
+    },
     lua_ls = {
         settings = {
             Lua = {
@@ -77,7 +105,11 @@ end
 -- mason-lspconfig's automatic_enable will call vim.lsp.enable() for us
 require("mason-lspconfig").setup({
     ensure_installed = servers_to_ensure,
-    automatic_enable = true,
+    automatic_enable = {
+        -- ts_ls and vtsls both wrap tsserver, so enabling both attaches two
+        -- servers to every TS buffer. vtsls is configured above; keep only it.
+        exclude = { "ts_ls" },
+    },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
