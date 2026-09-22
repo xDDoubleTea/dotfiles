@@ -1,7 +1,7 @@
 hl.on("hyprland.start", function()
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("swaync")
-	hl.exec_cmd("awww-daemon")
+	-- hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("/usr/bin/kwalletd6 & /usr/bin/kdeconnectd & kdeconnect-indicator")
 	hl.exec_cmd("waybar & clipboard-sync")
