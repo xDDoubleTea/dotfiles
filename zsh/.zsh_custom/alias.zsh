@@ -29,7 +29,7 @@ phonemirror() {
   while true; do
     adb wait-for-device || return
     scrcpy --no-clipboard-autosync --keyboard=aoa --disable-screensaver --stay-awake \
-      --video-codec=h265 --max-fps=120 --video-bit-rate=20M --audio-source=playback \
+      --video-codec=h265 --max-fps=120 --video-bit-rate=40M --audio-source=playback \
       --window-title=PhoneMirror "$@"
     rc=$?
     (( rc == 2 )) || return $rc
