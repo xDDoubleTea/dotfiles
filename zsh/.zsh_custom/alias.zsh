@@ -22,7 +22,20 @@ alias ll='eza -alhF --icons --color=always --group-directories-first'
 alias la='eza -ah --icons --color=always --group-directories-first'
 alias l='eza -lhF --icons --color=always --group-directories-first'
 alias lf='yazi'
-alias phonemirror='scrcpy --no-clipboard-autosync --keyboard=aoa --disable-screensaver --stay-awake --max-fps=60 --audio-source=playback --video-bit-rate=20M --window-title=PhoneMirror'
+# scrcpy closes its window shortly after the phone disconnects (exit code 2) and
+# has no option to keep it, so relaunch once the phone is back instead.
+phonemirror() {
+  local rc
+  while true; do
+    adb wait-for-device || return
+    scrcpy --no-clipboard-autosync --keyboard=aoa --disable-screensaver --stay-awake \
+      --video-codec=h265 --max-fps=120 --video-bit-rate=20M --audio-source=playback \
+      --window-title=PhoneMirror "$@"
+    rc=$?
+    (( rc == 2 )) || return $rc
+    print "phonemirror: phone disconnected, waiting for it (Ctrl+C to stop)"
+  done
+}
 alias parui='parui -p=yay'
 alias lt='lsd --tree --depth 3'
 alias lta='lt -a'
