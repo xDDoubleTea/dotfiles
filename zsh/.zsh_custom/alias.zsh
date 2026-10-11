@@ -26,3 +26,4 @@ alias phonemirror='scrcpy --no-clipboard-autosync --keyboard=aoa --disable-scree
 alias parui='parui -p=yay'
 alias lt='lsd --tree --depth 3'
 alias lta='lt -a'
+alias warptest='curl https://cloudflare.com/cdn-cgi/trace | grep warp'
