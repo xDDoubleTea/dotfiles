@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-vi-mode golang archlinux docker docker-compose gitignore)
+plugins=(git zsh-vi-mode golang archlinux docker docker-compose gitignore zsh-autosuggestions zsh-syntax-highlighting)
 
 # Customisations live in the dotfiles repo (stowed to ~/.zsh_custom), not in
 # $ZSH/custom -- oh-my-zsh's own .gitignore ignores custom/, so anything left
