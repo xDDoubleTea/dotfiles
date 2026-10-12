@@ -40,3 +40,6 @@ alias parui='parui -p=yay'
 alias lt='lsd --tree --depth 3'
 alias lta='lt -a'
 alias warptest='curl https://cloudflare.com/cdn-cgi/trace | grep warp'
+# Audio-only mpv (YouTube via yt-dlp, live streams too). Starts at 30% volume;
+# override with e.g. `playmusic --volume=50 URL`, or 9/0 while playing.
+alias playmusic='mpv --no-video --volume=30'
