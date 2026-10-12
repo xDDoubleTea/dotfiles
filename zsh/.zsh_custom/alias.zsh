@@ -43,3 +43,8 @@ alias warptest='curl https://cloudflare.com/cdn-cgi/trace | grep warp'
 # Audio-only mpv (YouTube via yt-dlp, live streams too). Starts at 30% volume;
 # override with e.g. `playmusic --volume=50 URL`, or 9/0 while playing.
 alias playmusic='mpv --no-video --volume=30'
+# Navidrome password comes from the desktop keyring (gnome-keyring), never this repo.
+# Store it once: secret-tool store --label='Navidrome' service navidrome
+spotatui() {
+  SPOTATUI_SUBSONIC_PASSWORD="$(secret-tool lookup service navidrome 2>/dev/null)" command spotatui "$@"
+}
