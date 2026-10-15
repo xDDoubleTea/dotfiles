@@ -192,3 +192,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 source $ZSH_CUSTOM/netbird.zsh
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/susamogus/.local/bin:$PATH"

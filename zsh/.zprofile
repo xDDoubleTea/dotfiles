@@ -19,3 +19,7 @@ esac
 if [ -z "$SSH_AUTH_SOCK" ] && command -v keychain >/dev/null 2>&1; then
 	eval $(keychain --eval --quiet id_ed25519)
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/susamogus/.local/bin:$PATH"
