@@ -343,6 +343,9 @@ require("lazy").setup({
     lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
     defaults = { lazy = false, version = nil },
 
+    -- hererocks cannot build LuaJIT on FreeBSD (its Makefile calls gcc)
+    rocks = { enabled = vim.fn.has("bsd") == 0 },
+
     ui = {
         icons = {
             ft = "",

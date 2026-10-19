@@ -79,6 +79,18 @@ local server_configs = {
 -- Merge custom server configs
 utils.merge_tables(server_configs, custom_servers)
 
+-- Mason has no FreeBSD builds of these; install them with pkg instead
+-- (pkg install go gopls ruff lua-language-server rust-analyzer).
+-- marksman has no FreeBSD package at all.
+if vim.fn.has("bsd") == 1 then
+    for _, server in ipairs({ "gopls", "ruff", "lua_ls", "rust_analyzer" }) do
+        if server_configs[server] then
+            server_configs[server].mason = false
+        end
+    end
+    server_configs.marksman = nil
+end
+
 -- Get blink.cmp capabilities
 local ok_blink, blink = pcall(require, "blink.cmp")
 local capabilities = ok_blink and blink.get_lsp_capabilities() or vim.lsp.protocol.make_client_capabilities()
@@ -97,6 +109,9 @@ for server, config in pairs(server_configs) do
         -- Track for mason installation
         if config.mason ~= false then
             servers_to_ensure[#servers_to_ensure + 1] = server
+        else
+            -- automatic_enable only covers servers that Mason installed
+            vim.lsp.enable(server)
         end
     end
 end
