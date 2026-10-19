@@ -35,7 +35,7 @@
             "enabled": true
         },
         "MessagePopoverAPI": {
-            "enabled": false
+            "enabled": true
         },
         "MessageUpdaterAPI": {
             "enabled": true
@@ -78,7 +78,8 @@
             "closeAllHomeButton": false,
             "closeAllFolders": false,
             "forceOpen": false,
-            "sidebarAnim": true
+            "sidebarAnim": true,
+            "closeServerFolder": false
         },
         "BetterGifAltText": {
             "enabled": true
@@ -96,7 +97,7 @@
             "enabled": false
         },
         "BetterSessions": {
-            "enabled": false,
+            "enabled": true,
             "backgroundCheck": false,
             "checkInterval": 20
         },
@@ -151,7 +152,8 @@
         },
         "CustomRPC": {
             "enabled": true,
-            "type": 0
+            "type": 0,
+            "enablePresence": true
         },
         "CustomIdle": {
             "enabled": false
@@ -713,6 +715,12 @@
         },
         "GifProviderSwitcher": {
             "enabled": false
+        },
+        "AddAttachments": {
+            "enabled": true
+        },
+        "FixDiscordCss": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -725,7 +733,7 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1791399868846
+        "settingsSyncVersion": 1792351062666
     },
     "eagerPatches": false,
     "uiElements": {
