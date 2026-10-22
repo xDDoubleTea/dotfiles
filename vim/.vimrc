@@ -21,6 +21,14 @@ set shiftwidth=4     " Determines the amount of whitespace to add/remove
 set smartindent      " Automatically indents after { and newlines (Crucial for C++)
 set autoindent       " Copies indentation from the previous line
 
+" --- Bracketed paste inside tmux/screen (vim only enables it for xterm) ---
+if &term =~ '^\(tmux\|screen\)'
+    let &t_BE = "\e[?2004h"
+    let &t_BD = "\e[?2004l"
+    let &t_PS = "\e[200~"
+    let &t_PE = "\e[201~"
+endif
+
 " --- UI & Searching ---
 set cursorline       " Highlights the line your cursor is currently on
 set wildmenu         " Shows a visual autocomplete menu for command line actions
