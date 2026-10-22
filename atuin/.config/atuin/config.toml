@@ -423,4 +423,4 @@ model = "gemma4"
 history_search = true   # AI can search your own atuin history for relevant past commands
 history_output = true   # AI can view output of previous commands — requires pty-proxy + daemon running
 file_tools = true       # read/write/edit files
-command_execution = true # AI can actually run commands, not just suggest them
+command_execution = false # AI can actually run commands, not just suggest them
