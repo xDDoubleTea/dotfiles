@@ -133,6 +133,10 @@ both the submodule and this repo and disappear on a fresh clone. Setting
 Two hooks are guarded by a command check, because neither tool is packaged on
 every target: `navi` (absent from Ubuntu and Debian) and `atuin`.
 
+The `atuin` package holds atuin's config: the sync server, the daemon and the AI
+endpoint. The encryption key in `~/.local/share/atuin/key` is not tracked; copy it
+to a new machine before the first sync.
+
 On Ubuntu and Debian, bat's binary is named `batcat`. `alias.zsh` detects this
 and aliases `bat` to it, and points fzf's `--preview` at the same binary.
 

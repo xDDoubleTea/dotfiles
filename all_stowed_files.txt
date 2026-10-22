@@ -1,4 +1,5 @@
 Vencord
+atuin
 btop
 cava
 cmus

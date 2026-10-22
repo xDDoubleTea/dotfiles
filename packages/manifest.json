@@ -532,7 +532,7 @@
                         "id": "atuin",
                         "group": "core",
                         "name": "atuin",
-                        "note": "Called from zsh/.zshrc, behind a command check. Confirmed present in Debian and FreeBSD; no confirmed Gentoo atom, so Gentoo is skipped. not in Ubuntu 24.04; Debian trixie has it.",
+                        "note": "Called from zsh/.zshrc, behind a command check. Config is the atuin stow package. Confirmed present in Debian and FreeBSD; no confirmed Gentoo atom, so Gentoo is skipped. not in Ubuntu 24.04; Debian trixie has it.",
                         "overrides": {
                                 "gentoo": null,
                                 "ubuntu": null
