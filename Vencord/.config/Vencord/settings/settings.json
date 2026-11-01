@@ -721,6 +721,15 @@
         },
         "ExpressionManager": {
             "enabled": false
+        },
+        "DirectFileDownload": {
+            "enabled": false
+        },
+        "JumpToTop": {
+            "enabled": false
+        },
+        "MutedServersActivityBadge": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -733,7 +742,7 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1793505138547
+        "settingsSyncVersion": 1793525875197
     },
     "eagerPatches": false,
     "uiElements": {

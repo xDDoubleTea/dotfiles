@@ -20,7 +20,7 @@
 :root {
   /*シュヴィ https://imgur.com/xBtvalG.jpg
               https://imgur.com/EueO4mS.jpg*/
-  --theme-background-image: url(https://cs-notes-assets.hoshiyomi-dev.work/nozomi.jpg);
+  --theme-background-image: url(https://assets.hoshiyomi-dev.work/for-vencord/nozomi.jpg);
 
   /*
     Main Theme Color
@@ -35,7 +35,7 @@
   /*
     Home Icon Image
   */
-  --home-icon-image: url(https://cs-notes-assets.hoshiyomi-dev.work/laplus.jpg);
+  --home-icon-image: url(https://assets.hoshiyomi-dev.work/for-vencord/laplus.jpg);
 
   /*
     Change your friends icon image position
