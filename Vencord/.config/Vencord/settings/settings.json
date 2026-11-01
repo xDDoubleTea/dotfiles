@@ -674,9 +674,6 @@
         "HideMedia": {
             "enabled": false
         },
-        "ExpressionCloner": {
-            "enabled": false
-        },
         "AutoDNDWhilePlaying": {
             "enabled": true
         },
@@ -721,6 +718,9 @@
         },
         "FixDiscordCss": {
             "enabled": true
+        },
+        "ExpressionManager": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -733,7 +733,7 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1792351062666
+        "settingsSyncVersion": 1793505138547
     },
     "eagerPatches": false,
     "uiElements": {

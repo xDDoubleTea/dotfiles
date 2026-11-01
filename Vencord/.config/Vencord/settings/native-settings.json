@@ -6,6 +6,12 @@
             "img-src",
             "style-src",
             "font-src"
+        ],
+        "cs-notes-assets.hoshiyomi-dev.work": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
         ]
     }
 }
