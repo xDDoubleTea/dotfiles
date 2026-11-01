@@ -121,7 +121,7 @@ hl.config({
 	animations = {
 		enabled = true,
 	},
-	cursor = { inactive_timeout = -1 },
+	cursor = { inactive_timeout = 0 },
 })
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
