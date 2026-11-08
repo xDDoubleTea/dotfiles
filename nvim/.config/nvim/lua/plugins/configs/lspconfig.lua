@@ -83,7 +83,7 @@ utils.merge_tables(server_configs, custom_servers)
 
 -- Mason has no FreeBSD builds of these; install them with pkg instead
 -- (pkg install go gopls ruff lua-language-server rust-analyzer).
--- marksman has no FreeBSD package at all.
+-- marksman and laravel_lsp have no FreeBSD package at all.
 if vim.fn.has("bsd") == 1 then
     for _, server in ipairs({ "gopls", "ruff", "lua_ls", "rust_analyzer" }) do
         if server_configs[server] then
@@ -91,6 +91,7 @@ if vim.fn.has("bsd") == 1 then
         end
     end
     server_configs.marksman = nil
+    server_configs.laravel_lsp = nil -- no FreeBSD build in Mason, and only useful in Laravel projects
 end
 
 -- Get blink.cmp capabilities
