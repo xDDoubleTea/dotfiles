@@ -1,5 +1,5 @@
 # style name or JSON path (default "auto")
-style: "~/.config/glow/styles/catppuccin-mocha.json"
+style: "auto"  # theme is passed by the glow alias in zsh/.zsh_custom/alias.zsh: the TUI does not expand ~ here
 # mouse support (TUI-mode only)
 mouse: true
 # use pager to display markdown

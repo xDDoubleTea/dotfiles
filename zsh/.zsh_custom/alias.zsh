@@ -48,3 +48,7 @@ alias playmusic='mpv --no-video --volume=30'
 spotatui() {
   SPOTATUI_SUBSONIC_PASSWORD="$(secret-tool lookup service navidrome 2>/dev/null)" command spotatui "$@"
 }
+
+# glow: pass config and theme with $HOME expanded (glow -t does not expand ~ in glow.yml;
+# and macOS glow looks for its config under ~/Library, not ~/.config/glow)
+alias glow='glow --config "$HOME/.config/glow/glow.yml" -s "$HOME/.config/glow/styles/catppuccin-mocha.json"'
