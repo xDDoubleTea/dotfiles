@@ -26,3 +26,6 @@ waybar/.config/waybar/scripts/last_screen_temp.txt
 kitty/.config/kitty/mappings.conf
 waypaper/.config/waypaper/config.ini
 btop/.config/btop/btop.conf
+
+# Written by the atuin standalone installer; machine-specific
+atuin/.config/atuin/atuin-receipt.json

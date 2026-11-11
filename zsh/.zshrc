@@ -180,6 +180,8 @@ if (( $+commands[navi] )); then
 	eval "$(navi widget zsh)"
 fi
 
+# The standalone installer (used where no package exists) puts atuin in ~/.atuin/bin.
+[[ -f "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
 if (( $+commands[atuin] )); then
 	eval "$(atuin init zsh)"
 fi
