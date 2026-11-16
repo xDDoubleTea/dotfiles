@@ -1,1 +1,6 @@
-action = type
+# Enter types the emoji and also copies it; wtype can type Unicode (ydotool can't)
+action = [type, copy]
+clipboarder = wl-copy
+typer = wtype
+skin-tone = neutral
+max-recent = 10
