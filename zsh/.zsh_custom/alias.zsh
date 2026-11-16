@@ -52,3 +52,13 @@ spotatui() {
 # glow: pass config and theme with $HOME expanded (glow -t does not expand ~ in glow.yml;
 # and macOS glow looks for its config under ~/Library, not ~/.config/glow)
 alias glow='glow --config "$HOME/.config/glow/glow.yml" -s "$HOME/.config/glow/styles/catppuccin-mocha.json"'
+
+# Hugo dev server for the phone over NetBird, behind Caddy (~/docker_img/caddy):
+# blog-test.home.internal (NetBird custom DNS zone) -> NetBird IP -> Caddy :80
+# -> 127.0.0.1:1313. baseURL must be that name or links point at localhost; live
+# reload goes through Caddy on 80 too.
+hugo-lan() {
+  print "hugo-lan: http://blog-test.home.internal/"
+  hugo server -D --bind 127.0.0.1 --baseURL http://blog-test.home.internal \
+    --appendPort=false --liveReloadPort 80 "$@"
+}
