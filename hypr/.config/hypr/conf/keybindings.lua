@@ -88,7 +88,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind(mainMod .. " + T", hl.dsp.group.toggle({ hl.get_active_window() }))
 hl.bind(supershift .. " + TAB", hl.dsp.group.next())
 hl.bind(supershift .. " + ALT + TAB", hl.dsp.group.prev())
-hl.bind(supershift .. " + CTRL + L", hl.dsp.group.lock_active())
+hl.bind(supershift .. " + CTRL + L", hl.dsp.group.lock())
 hl.bind(supershift .. " + CTRL + left", hl.dsp.window.move({ direction = "left", group_aware = true }))
 hl.bind(supershift .. " + CTRL + right", hl.dsp.window.move({ direction = "right", group_aware = true }))
 hl.bind(supershift .. " + CTRL + up", hl.dsp.window.move({ direction = "up", group_aware = true }))
