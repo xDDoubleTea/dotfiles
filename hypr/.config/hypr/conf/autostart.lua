@@ -5,7 +5,10 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("/usr/bin/kwalletd6 & /usr/bin/kdeconnectd & kdeconnect-indicator")
 	hl.exec_cmd("waybar")
-	hl.exec_cmd("clipboard-sync")
+	-- clipboard-sync breaks pasting since the 2026-11-23 upgrade (Hyprland 0.57.2):
+	-- offers stay listed but wl-paste returns empty. Hyprland already syncs the
+	-- XWayland clipboard itself, and CopyQ alone works.
+	-- hl.exec_cmd("clipboard-sync")
 	hl.exec_cmd("megasync")
 	hl.exec_cmd("nextcloud --background")
 	hl.exec_cmd("copyq --start-server")
