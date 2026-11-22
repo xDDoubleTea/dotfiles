@@ -256,7 +256,10 @@
             "enabled": false
         },
         "MemberCount": {
-            "enabled": false
+            "enabled": true,
+            "toolTip": true,
+            "memberList": true,
+            "voiceActivity": true
         },
         "MentionAvatars": {
             "enabled": true,
@@ -508,10 +511,16 @@
             "iconSize": 32
         },
         "ShowHiddenChannels": {
-            "enabled": false
+            "enabled": false,
+            "hideUnreads": true,
+            "showMode": 0,
+            "defaultAllowedUsersAndRolesDropdownState": true
         },
         "ShowHiddenThings": {
-            "enabled": false
+            "enabled": false,
+            "showTimeouts": true,
+            "showInvitesPaused": true,
+            "showModView": true
         },
         "ShowMeYourName": {
             "enabled": false
@@ -526,7 +535,8 @@
             "enabled": true,
             "isEnabled": true,
             "showIcon": false,
-            "contextMenu": true
+            "contextMenu": true,
+            "showTypingIn": ""
         },
         "SortFriendRequests": {
             "enabled": false
@@ -642,7 +652,8 @@
         },
         "NoTrack": {
             "enabled": true,
-            "disableAnalytics": true
+            "disableAnalytics": true,
+            "allowBadgeTracking": true
         },
         "WebContextMenus": {
             "enabled": true,
@@ -730,6 +741,12 @@
         },
         "MutedServersActivityBadge": {
             "enabled": false
+        },
+        "BetterSearch": {
+            "enabled": false
+        },
+        "BetterYouTubeEmbeds": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -742,7 +759,7 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1793525875197
+        "settingsSyncVersion": 1795338274249
     },
     "eagerPatches": false,
     "uiElements": {
