@@ -133,11 +133,6 @@ check-sshd(){
 rm-nvim-cache(){
   rm -rf ~/.local/share/nvim/
 }
-fix-clipboard(){
-  clipse -kill
-  clipse -listen
-  clipboard-sync &
-}
 
 ytdl(){
   $HOME/.config/yt-dlp/download_scripts.py
