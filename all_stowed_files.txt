@@ -21,3 +21,4 @@ waypaper
 yazi
 zathura
 zsh
+cursors
