@@ -46,11 +46,11 @@ require("conf.autostart")
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
-hl.env("XCURSOR_SIZE", "32")
-hl.env("HYPRCURSOR_SIZE", "32")
+hl.env("XCURSOR_SIZE", "48")
+hl.env("HYPRCURSOR_SIZE", "48")
 
-hl.env("XCURSOR_THEME", "shiro")
-hl.env("HYPRCURSOR_THEME", "shiro")
+hl.env("XCURSOR_THEME", "shiro-hd")
+hl.env("HYPRCURSOR_THEME", "shiro-hd")
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
